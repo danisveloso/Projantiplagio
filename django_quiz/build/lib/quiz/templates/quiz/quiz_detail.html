@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+{{ quiz.title }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ quiz.title }}</h2>
+<h3>{% trans "Categoria" %}: {{ quiz.category }}</h3>
+{% if quiz.single_attempt %}
+  <h4>{% trans "Você terá apenas uma tentativa neste questionário" %}.</h4>
+{% endif %}
+<p>{{ quiz.description }}</p>
+<p>
+  <a href="{% url 'quiz_question' quiz_name=quiz.url %}">
+	{% trans "Start quiz" %}
+  </a>
+</p>
+{% endblock %}

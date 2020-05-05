@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Questinários relacionados a" %} {{ category.category }}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Questionários na" %} <strong>{{ category.category }} </strong>{% trans "categoria" %}</h1>
+
+  {% with object_list as quizzes %}
+    {% if quizzes %}
+        <ul>
+        {% for quiz in quizzes %}
+            <li>
+			  <a href="{% url 'quiz_question' quiz_name=quiz.url %}">
+				{{ quiz.title }}
+			  </a>
+			</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>{% trans "Não há questionários" %}</p>
+    {% endif %}
+  {% endwith %}
+{% endblock %}
