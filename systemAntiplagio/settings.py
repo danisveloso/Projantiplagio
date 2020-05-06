@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import ldap
+import ldap3
 from django_auth_ldap.config import LDAPSearch
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -84,7 +84,7 @@ ROOT_URLCONF = 'systemAntiplagio.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [ 'templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -181,8 +181,8 @@ LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN = "unifesp.br"
 # The LDAP username and password of a user for querying the LDAP database for user
 # details. If None, then the authenticated user will be used for querying, and
 # the `ldap_sync_users` command will perform an anonymous query.
-LDAP_AUTH_CONNECTION_USERNAME = "administrador"
-LDAP_AUTH_CONNECTION_PASSWORD = "5S49e1tt"
+LDAP_AUTH_CONNECTION_USERNAME = None
+LDAP_AUTH_CONNECTION_PASSWORD = None
 
 # Set connection/receive timeouts (in seconds) on the underlying `ldap3` library.
 LDAP_AUTH_CONNECT_TIMEOUT = None
@@ -212,3 +212,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL  = 'quiz_index'
+LOGOUT_REDIRECT_URL = 'quiz_index'

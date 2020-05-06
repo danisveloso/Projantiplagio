@@ -1,7 +1,9 @@
 try:
-    from django.conf.urls import url
+    from django.conf.urls import url, include
 except ImportError:
     from django.urls import re_path as url
+
+from django.urls import path
 
 from .views import QuizListView, CategoriesListView, \
     ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList, \
