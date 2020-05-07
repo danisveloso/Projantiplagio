@@ -11,13 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import ldap
-from django_auth_ldap.config import LDAPSearch, PosixGroupType, LDAPSearchUnion, GroupOfNamesType
-import logging
 
-logger = logging.getLogger('django_auth_ldap')
-logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.WARNING)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -115,40 +109,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 AUTHENTICATION_BACKENDS = (
-    'django_auth_ldap.backend.LDAPBackend',
+
     'django.contrib.auth.backends.ModelBackend',
    
 )
-
-AUTH_LDAP_START_TLS = False
-
-AUTH_LDAP_SERVER_URI = "ldap://ldap.unifesp.br"
-
-AUTH_LDAP_BIND_DN = 'cn=admin,dc=unifesp,dc=br'
-AUTH_LDAP_BIND_PASSWORD='5S49e1tt'
-MAIN_DN = "dc=unifesp,dc=br"
-USERS_DN = "ou=People,"+MAIN_DN
-GROUPS_DN = "ou=Groups,"+MAIN_DN
-
-AUTH_LDAP_USER_SEARCH = LDAPSearch(
-    USERS_DN,
-    ldap.SCOPE_SUBTREE,
-    '(uid=%(user)s)',
-)
-
-AUTH_LDAP_USER_DN_TEMPLATE = "uid=%(user)s,"+USERS_DN
-
-AUTH_LDAP_USER_ATTR_MAP = {"first_name": "cn", "last_name": "sn"}
-
-
-
-
-# Use LDAP group membership to calculate group permissions.
-AUTH_LDAP_FIND_GROUP_PERMS = True
-
-# Cache distinguished names and group memberships for an hour to minimize
-# LDAP traffic.
-AUTH_LDAP_CACHE_TIMEOUT = 3600
 
 
 
