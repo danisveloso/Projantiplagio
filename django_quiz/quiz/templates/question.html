@@ -21,7 +21,7 @@
   	  <p><small>
 		{% trans "Sua resposta foi" %} </small>
 		<strong>
-		  {{ previous.previous_outcome|yesno:"correct,incorrect" }}
+		  {{ previous.previous_outcome|{% trans "e está" %}yesno:"correta,incorreta" }}
 		</strong>
 	  </p>
 

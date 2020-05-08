@@ -1,19 +1,28 @@
 {% load i18n %}
+{% load static %}
+
 <!DOCTYPE html>
 <html xmlns:fb="http://www.facebook.com/2008/fbml" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>{% trans "Teste seu conhecimento - Quiz " %} | {% block title %}{% endblock %}</title>
 <meta name="description" content="{% block description %}{% endblock %}">
 
 <!-- styles -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+
+
+<!-- Theme Style -->
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
 
 </head>
 
@@ -22,15 +31,61 @@
 
 <!-- Before the quiz content -->
 
-<div class="container">
 
-{% block content %}
 
+{% block menu %}
 {% endblock %}
 
+<div class="container">
+
+    {% block content %}
+    {% endblock %}
+
 </div>
+{% block footer %}
+    <footer class="site-footer" style="background: #334520 !important;">
+        <div class="container">
+        <div class="row mb-5">
+            <p>Universidade Federal de São Paulo - UNIFESP<br>
+                Instituto de Ciência e Tecnologia - ICT<br>
+            </p>
+            <div class="col-md-6 ml-auto">
+            <div class="row">
+                <div class="col-md-4">
+                <ul class="list-unstyled">
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+                </div>
+                
+            </div>
+        </div>
+        </div>
+        </div>
+    </footer>
+  <!-- END footer -->
+{% endblock %}
+
 
 <!-- After the quiz content -->
+
+
+<div id="loader" class="show fullscreen">
+    <svg class="circular" width="48px" height="48px">
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/>
+    </svg>
+</div>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-migrate-3.0.0.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
 
 
 </body>

@@ -18,15 +18,15 @@
   		<tr>
       	  <td>{{ answer.content }}</td>
   		  <td>
-  			{% if previous.question_type.MCQuestion %}
-  			  {% if answer.id|add:"0" == previous.previous_answer|add:"0" %}
-  			    {% trans "Essa foi a sua resposta." %}
-  			  {% endif %}
-  			{% endif %}
+			{% if previous.question_type.MCQuestion %}
+		   		{% if answer.id|add:"0" == previous.previous_answer|add:"0" %}
+					{% trans "Essa foi a sua resposta." %}
+				{% endif %}
+			{% endif %}
   		  </td>
-  	  {% endif %}
+  	    {% endif %}
   	    </tr>
-  	{% endfor %}
+  	  {% endfor %}
     </tbody>
   </table>
 {% endif %}

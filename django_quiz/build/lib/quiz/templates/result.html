@@ -12,9 +12,9 @@
 
   <p class="muted"><small>{% trans "A pergunta anterior" %}:</small></p>
   <p>{{ previous.previous_question }}</p>
-  <p>Sua resposta foi
+  <p>Sua resposta está
 	<strong>
-	  {{ previous.previous_outcome|yesno:"correct,incorrect" }}
+	  {{ previous.previous_outcome|yesno:"correta,incorreta" }}
 	</strong>
   </p>
   {% include 'correct_answer.html' %}
@@ -35,7 +35,7 @@
 	  <strong>{{ quiz.title }}</strong></p>
 
 	<p class="lead">
-	  {% trans "You answered" %} {{ score }} {% trans "questões corretamente fora de" %} {{ max_score }}, {% trans "dando-lhe" %} {{ percent }} {% trans "porcento correto" %}
+	  {% trans "Você respondeu" %} {{ score }} {% trans "questões corretamente fora de" %} {{ max_score }}, {% trans "dando-lhe" %} {{ percent }} {% trans "porcento correto" %}
 	</p>
 
 	{% if quiz.pass_mark %}

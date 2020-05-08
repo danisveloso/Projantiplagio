@@ -27,7 +27,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     url(r'^accounts/login/$', auth_views.LoginView.as_view(), name='login'),
-    url(r'^accounts/logout/$', auth_views.LogoutView.as_view(next_page="/"), name='logout'),
+    url(r'^accounts/logout/$', auth_views.LogoutView.as_view(next_page="login"), name='logout'),
    
 
     path('quiz/', include('quiz.urls')),
