@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html xmlns:fb="http://www.facebook.com/2008/fbml" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr">
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,15 +11,13 @@
 <meta name="description" content="{% block description %}{% endblock %}">
 
 <!-- styles -->
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
 
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900" rel="stylesheet">
 
 <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 <link rel="stylesheet" href="{% static 'css/animate.css' %}">
 <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-
-
 
 <!-- Theme Style -->
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -34,19 +33,20 @@
 
 
 {% block menu %}
+
 {% endblock %}
+
 <section class="site-section">
     <div class="container">
-
     {% block content %}
+   
     {% endblock %}
-
     </div>
 </section>
-{% block footer %}
-    <footer class="site-footer" style="background: #334520 !important;">
+
+<footer class="site-footer" style="background: #334520 !important;">
         <div class="container">
-        <div class="row mb-5">
+        <div class="row mb-2">
             <p>Universidade Federal de São Paulo - UNIFESP<br>
                 Instituto de Ciência e Tecnologia - ICT<br>
             </p>
@@ -60,17 +60,13 @@
                 </div>
                 
             </div>
+            </div>
         </div>
         </div>
-        </div>
-    </footer>
+</footer>
   <!-- END footer -->
-{% endblock %}
 
-
-<!-- After the quiz content -->
-
-
+ <!-- javascript -->
 <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'js/jquery-migrate-3.0.0.js' %}"></script>
 <script src="{% static 'js/popper.min.js' %}"></script>
@@ -79,6 +75,8 @@
 <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
 <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
+
+
 
 
 

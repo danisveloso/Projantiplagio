@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'multichoice',
     'true_false',
     'essay',
+    'siteTutorial'
 ]
 
 MIDDLEWARE = [

@@ -40,14 +40,14 @@
                     <a class="dropdown-item" href="topico2.html">Má conduta acadêmica - plágio</a>
                     <a class="dropdown-item" href="topico3.html">Como evitar o plágio</a>
                     <a class="dropdown-item" href="topico4.html">Legislação e casos de plágio.</a>
-                    <a class="dropdown-item" href="exercicios.html">Teste seu conhecimento</a>
+                    
                   </div>
               </li>
 
               </li>
               
               <li class="nav-item">
-                <a class="nav-link" href="about.html">Sobre</a>
+                <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="contact.html">Contato</a>
@@ -123,7 +123,7 @@
 {# Assumes you setup the password_reset view in your URLconf #}
 <footer class="site-footer" style="background: #334520 !important;">
     <div class="container">
-      <div class="row mb-5">
+      <div class="row mb-2">
           <p>Universidade Federal de São Paulo - UNIFESP<br>
             Instituto de Ciência e Tecnologia - ICT<br>
           </p>
@@ -131,7 +131,6 @@
           <div class="row">
             <div class="col-md-4">
               <ul class="list-unstyled">
-                <li><a href="#">Sobre</a></li>
                 <li><a href="#">Contato</a></li>
               </ul>
             </div>
@@ -143,7 +142,6 @@
   </footer>
   <!-- END footer -->
   
-
   <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
   <script src="{% static 'js/jquery-migrate-3.0.0.js' %}"></script>
   <script src="{% static 'js/popper.min.js' %}"></script>
@@ -154,3 +152,5 @@
 
   
   <script src="{% static 'js/main.js' %}"></script>
+
+  
