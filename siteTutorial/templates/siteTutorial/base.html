@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -51,8 +52,7 @@
             <div class="row">
                 <div class="col-md-4">
                 <ul class="list-unstyled">
-                    <li><a href="#">Sobre</a></li>
-                    <li><a href="#">Contato</a></li>
+                    <li><a href="{% url 'siteTutorial_contato' %}">Contato</a></li>
                 </ul>
                 </div>
                 

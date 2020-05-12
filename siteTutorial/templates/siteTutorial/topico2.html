@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'siteTutorial/base.html' %}
 {% load i18n %}
 {% load static %}
 
-{% block title %}{% trans "Tutorial Online." %}{% endblock %}
+{% block title %}{% trans "Tutorial Online - Má conduta acadêmica - plágio" %}{% endblock %}
 
 
 
@@ -38,7 +38,7 @@
 			  <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
 			</li>
 			<li class="nav-item">
-			  <a class="nav-link" href="contact.html">Contato</a>
+			  <a class="nav-link" href="{% url 'siteTutorial_contato' %}">Contato</a>
 			</li>
 		  </ul>
 		  <ul class="navbar-nav absolute-right">

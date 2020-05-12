@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'siteTutorial/base.html' %}
 {% load i18n %}
 {% load static %}
 
@@ -38,7 +38,7 @@
 			  <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
 			</li>
 			<li class="nav-item">
-			  <a class="nav-link" href="contact.html">Contato</a>
+			  <a class="nav-link" href="{% url 'siteTutorial_contato' %}">Contato</a>
 			</li>
 		  </ul>
 		  <ul class="navbar-nav absolute-right">
@@ -94,7 +94,7 @@
         <div class="row align-items-center">
           <div class="col-md-12" align="justify">
             <p>Neste tutorial, iremos apresentar o objetivo da redação acadêmica, definir o que é plágio, identificar os tipos de plágio, ensinar práticas de citação e referência, falar sobre a legislação e as possíveis implicações que podem ocorrer a quem comete o plágio e citar casos de plágio que aconteceram no mundo.</p>
-             <b>Quanto tempo vou precisar para aprender com este tutorial e para fazer os testes?</b>
+             <b>Quanto tempo vou precisar ver o tutorial e para fazer os testes?</b>
             <p>Espere gastar cerca de 1 hora e 30 minutos aprendendo com essa instrução e fazendo os testes. Você pode dividir seu aprendizado, não é necessário fazer todo o conteúdo de uma vez. Se você não for bem no teste, um feedback é fornecido sobre os tipos de erros que você cometeu, você poderá ver o tutorial e responder o teste quantas vezes quiser.</p>
          </div>
         </div>
@@ -103,7 +103,7 @@
             <span class="episode-number">1</span>
           </div>
           <div class="col-md-9">
-            <p class="meta">Tópico 1 <a href="topico1.html">Escrita acadêmica</a></p>
+            <p class="meta">Tópico 1 <a href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a></p>
             <p>Vamos iniciar mostrando a importância da escrita acadêmica.</p>
             
           </div>
@@ -114,7 +114,7 @@
             <span class="episode-number">2</span>
           </div>
           <div class="col-md-9">
-            <p class="meta">Tópico 2 <a href="#">Má conduta acadêmica - plágio</a></p>
+            <p class="meta">Tópico 2 <a href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a></p>
             <p> Vamos definir má conduta acadêmica, o que é plágio e os tipos mais comuns de plágio.</p>
           </div>
         </div>
@@ -124,7 +124,7 @@
             <span class="episode-number">3</span>
           </div>
           <div class="col-md-9">
-            <p class="meta">Tópico 3 <a href="#">Como evitar o plágio </a></p>
+            <p class="meta">Tópico 3 <a href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio </a></p>
             <p>Vamos ensinar como evitar o plágio.</p>
           </div>
         </div>
@@ -134,7 +134,7 @@
             <span class="episode-number">4</span>
           </div>
           <div class="col-md-9">
-            <p class="meta">Tópico 4 <a href="#">Legislação e casos de plágio</a></p>
+            <p class="meta">Tópico 4 <a href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio</a></p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, fugit!</p>
           </div>
         </div>
@@ -144,7 +144,7 @@
             <span class="episode-number">5</span>
           </div>
           <div class="col-md-9">
-            <p class="meta">Tópico 5 <a href="#">Teste seu conhecimento</a></p>
+            <p class="meta">Tópico 5 <a href="{% url 'quiz_index' %}">Teste seu conhecimento</a></p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, fugit!</p>
           </div>
         </div>

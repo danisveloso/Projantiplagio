@@ -5,109 +5,60 @@
 
 {% block title %} {{ quiz.title}} {% endblock %}
 {% block description %} {% trans "Resultados do teste" %} {{ quiz.title }} {% endblock %}
-{% block menu %}
-<header role="banner">
-     
-	<nav class="navbar navbar-expand-md navbar-dark bg-light">
-	  <div class="container">
-		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">AntiPlágio</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
-		  <span class="navbar-toggler-icon"></span>
-		</button>
 
-		<div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
-		  <ul class="navbar-nav mx-auto">
-			<li class="nav-item">
-			  <a class="nav-link" href="{% url 'siteTutorial_home' %}">Home</a>
-			</li>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
-				<div class="dropdown-menu" aria-labelledby="dropdown04">
-					<a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
-					<a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
-					<a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
-					<a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
-				</div>
-			</li>
 
-			</li>
-			
-			<li class="nav-item">
-			  <a class="nav-link active" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
-			</li>
-			<li class="nav-item">
-			  <a class="nav-link" href="contact.html">Contato</a>
-			</li>
-		  </ul>
-		  <ul class="navbar-nav absolute-right">
-			{% if user.is_authenticated %}
-			<li class="nav-item">
-				<a class="nav-link disabled" href="">Ola, {{ user }}</a>
-            </li>
-
-            <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-            </li>
-			{% else %}
-			<li class="nav-item">
-					<a class="nav-link" href="{% url 'login' %}">Login</a>
-			</li>
-			{% endif %}
-		  </ul>     
-		</div>
-	  </div>
-	</nav>
-</header>
-  <!-- END header -->     
-{% endblock %}
 {% block content %}
 
-  {% if previous.answers %}
+<section class="site-section">
+    <div class="container">
 
-  <p class="muted"><small>{% trans "A pergunta anterior" %}:</small></p>
-  <p>{{ previous.previous_question }}</p>
-  <p>Sua resposta está
-	<strong>
-	  {{ previous.previous_outcome|yesno:"correta,incorreta" }}
-	</strong>
-  </p>
-  {% include 'correct_answer.html' %}
-  <p><strong>{% trans "Explanation" %}:</strong></p>
-  <div class="well " style="background-color: #fcf8e3;">
-    <p>{{ previous.previous_question.explanation }}</p>
-  </div>
-  <hr>
+		{% if previous.answers %}
 
-  {% endif %}
+		<p class="muted"><small>{% trans "A pergunta anterior" %}:</small></p>
+		<p>{{ previous.previous_question }}</p>
+		<p>Sua resposta está
+			<strong>
+			{{ previous.previous_outcome|yesno:"correta,incorreta" }}
+			</strong>
+		</p>
+		{% include 'correct_answer.html' %}
+		<p><strong>{% trans "Explanation" %}:</strong></p>
+		<div class="well " style="background-color: #fcf8e3;">
+			<p>{{ previous.previous_question.explanation }}</p>
+		</div>
+		<hr>
 
-  {% if max_score %}
+		{% endif %}
 
-  <div>
-	<h2>{% trans "Resultados teste " %}</h2>
-	<p>
-	  <small class="muted">{% trans "Título teste" %}: </small>
-	  <strong>{{ quiz.title }}</strong></p>
+		{% if max_score %}
 
-	<p class="lead">
-	  {% trans "Você respondeu" %} {{ score }} {% trans "questão(ões) corretamente de" %} {{ max_score }}, {% trans "dando-lhe" %} {{ percent }} {% trans "porcento de acerto" %}
-	</p>
+		<div>
+			<h2>{% trans "Resultados teste " %}</h2>
+			<p>
+			<small class="muted">{% trans "Título teste" %}: </small>
+			<strong>{{ quiz.title }}</strong></p>
 
-	{% if quiz.pass_mark %}
-	<hr>
-        <p class="lead">{{ sitting.result_message }}</p>
-	<hr>
+			<p class="lead">
+			{% trans "Você respondeu" %} {{ score }} {% trans "questão(ões) corretamente de" %} {{ max_score }}, {% trans "dando-lhe" %} {{ percent }} {% trans "porcento de acerto" %}
+			</p>
 
-	{% endif %}
+			{% if quiz.pass_mark %}
+			<hr>
+				<p class="lead">{{ sitting.result_message }}</p>
+			<hr>
 
-	<p>{% trans "Revise as perguntas abaixo, veja novamente o tutorial online e tente o exame novamente no futuro"%}.</p>
+			{% endif %}
 
-	{% if user.is_authenticated %}
+			<p>{% trans "Revise as perguntas abaixo, veja novamente o tutorial online e tente o exame novamente no futuro"%}.</p>
 
-	  <p>{% trans "O resultado deste teste será armazenado na sua seção de progresso, para que você possa revisar e monitorar o seu progresso." %}</p>
-	{% endif %}
-  </div>
+			{% if user.is_authenticated %}
 
+			<p>{% trans "O resultado deste teste será armazenado na sua seção de progresso, para que você possa revisar e monitorar o seu progresso." %}</p>
+			{% endif %}
+		</div>
 
+	</div>
+</section>
   {% endif %}
 
 

@@ -1,3 +1,4 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from .models import Contato
 
@@ -8,21 +9,19 @@ def home(request):
 
 def contato(request):
     mensagem = ''
-    if request.method == POST:
+    if request.method == 'POST':
         try:
             contato = {}
             contato['nome'] = request.POST.get('nome')
             contato['email'] = request.POST.get('email')
             contato['mensagem'] = request.POST.get('mensagem')
-
-
             Contato.objects.create(**contato)
         except Exception as e:
             mensagem = str(e)
         else:
             mensagem = 'Contato realizado com sucesso'
 
-    return render(request, 'siteTutorial/contact.html')
+    return render(request, 'siteTutorial/contact.html', {'mensagem': mensagem})
 
 
 def topicos(request):

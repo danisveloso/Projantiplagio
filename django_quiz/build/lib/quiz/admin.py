@@ -7,7 +7,7 @@ from .models import Quiz, Category, SubCategory, Progress, Question
 from multichoice.models import MCQuestion, Answer
 from true_false.models import TF_Question
 from essay.models import Essay_Question
-from siteTutorial.models import Contato
+
 
 
 class AnswerInline(admin.TabularInline):
@@ -110,4 +110,4 @@ admin.site.register(MCQuestion, MCQuestionAdmin)
 admin.site.register(Progress, ProgressAdmin)
 admin.site.register(TF_Question, TFQuestionAdmin)
 admin.site.register(Essay_Question, EssayQuestionAdmin)
-admin.site.register(Contato, Contato)
+
