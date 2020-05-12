@@ -144,5 +144,5 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL  = 'quiz_index'
-LOGOUT_REDIRECT_URL = 'quiz_index'
+LOGIN_REDIRECT_URL  = 'siteTutorial_home'
+LOGOUT_REDIRECT_URL = 'siteTutorial_home'

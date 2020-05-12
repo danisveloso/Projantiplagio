@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Contato
 
 # Create your views here.
 def home(request):
@@ -6,8 +7,36 @@ def home(request):
 
 
 def contato(request):
+    mensagem = ''
+    if request.method == POST:
+        try:
+            contato = {}
+            contato['nome'] = request.POST.get('nome')
+            contato['email'] = request.POST.get('email')
+            contato['mensagem'] = request.POST.get('mensagem')
+
+
+            Contato.objects.create(**contato)
+        except Exception as e:
+            mensagem = str(e)
+        else:
+            mensagem = 'Contato realizado com sucesso'
+
     return render(request, 'siteTutorial/contact.html')
 
 
-def tutorial(request):
+def topicos(request):
     return render(request, 'siteTutorial/tutorial.html')
+
+
+def topico1(request):
+    return render(request, 'siteTutorial/topico1.html')
+
+def topico2(request):
+    return render(request, 'siteTutorial/topico2.html')
+
+def topico3(request):
+    return render(request, 'siteTutorial/topico3.html')
+
+def topico4(request):
+    return render(request, 'siteTutorial/topico4.html')

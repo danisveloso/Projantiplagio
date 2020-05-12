@@ -9,6 +9,7 @@ from true_false.models import TF_Question
 from essay.models import Essay_Question
 
 
+
 class AnswerInline(admin.TabularInline):
     model = Answer
 
@@ -109,3 +110,4 @@ admin.site.register(MCQuestion, MCQuestionAdmin)
 admin.site.register(Progress, ProgressAdmin)
 admin.site.register(TF_Question, TFQuestionAdmin)
 admin.site.register(Essay_Question, EssayQuestionAdmin)
+
