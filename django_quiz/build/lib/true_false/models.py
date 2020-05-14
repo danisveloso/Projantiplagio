@@ -14,9 +14,9 @@ class TF_Question(Question):
                                   verbose_name=_("Correta"))
 
     def check_if_correct(self, guess):
-        if guess == "True":
+        if guess == "Verdadeiro":
             guess_bool = True
-        elif guess == "False":
+        elif guess == "Falso":
             guess_bool = False
         else:
             return False
@@ -27,10 +27,10 @@ class TF_Question(Question):
             return False
 
     def get_answers(self):
-        return [{'correct': self.check_if_correct("True"),
-                 'content': 'True'},
-                {'correct': self.check_if_correct("False"),
-                 'content': 'False'}]
+        return [{'correct': self.check_if_correct("Verdadeiro"),
+                 'content': 'Verdadeiro'},
+                {'correct': self.check_if_correct("Falso"),
+                 'content': 'Falso'}]
 
     def get_answers_list(self):
         return [(True, True), (False, False)]
