@@ -6,9 +6,9 @@ from quiz.models import Question
 
 
 ANSWER_ORDER_OPTIONS = (
-    ('conteudo', _('Conteúdo')),
-    ('aleatorio', _('Aleatório')),
-    ('nenhum', _('Nenhum'))
+    ('content', _('Conteúdo')),
+    ('random', _('Aleatório')),
+    ('none', _('Nenhum'))
 )
 
 
@@ -17,7 +17,7 @@ class MCQuestion(Question):
     answer_order = models.CharField(
         max_length=30, null=True, blank=True,
         choices=ANSWER_ORDER_OPTIONS,
-        help_text=_("A ordem na qual as opções de resposta"
+        help_text=_("A ordem na qual as opções de resposta "
                     "multipla escolha são exibidas"
                     "para o usuário"),
         verbose_name=_("Ordem da resposta"))
@@ -31,11 +31,11 @@ class MCQuestion(Question):
             return False
 
     def order_answers(self, queryset):
-        if self.answer_order == 'conteudo':
-            return queryset.order_by('conteudo')
-        if self.answer_order == 'aleatorio':
+        if self.answer_order == 'content':
+            return queryset.order_by('content')
+        if self.answer_order == 'random':
             return queryset.order_by('?')
-        if self.answer_order == 'nenhum':
+        if self.answer_order == 'none':
             return queryset.order_by()
         return queryset
 
@@ -43,11 +43,11 @@ class MCQuestion(Question):
         return self.order_answers(Answer.objects.filter(question=self))
 
     def get_answers_list(self):
-        return [(answer.id, answer.conteudo) for answer in
+        return [(answer.id, answer.content) for answer in
                 self.order_answers(Answer.objects.filter(question=self))]
 
     def answer_choice_to_string(self, guess):
-        return Answer.objects.get(id=guess).conteudo
+        return Answer.objects.get(id=guess).content
 
     class Meta:
         verbose_name = _("Questão de múltipla escolha")
@@ -58,9 +58,9 @@ class MCQuestion(Question):
 class Answer(models.Model):
     question = models.ForeignKey(MCQuestion, verbose_name=_("Questão"), on_delete=models.PROTECT)
 
-    conteudo = models.CharField(max_length=1000,
+    content = models.CharField(max_length=1000,
                                blank=False,
-                               help_text=_("Digite o texto da resposta que "
+                               help_text=_("Digite o texto da resposta "
                                            "que você deseja exibir"),
                                verbose_name=_("Conteúdo"))
 
@@ -70,7 +70,7 @@ class Answer(models.Model):
                                   verbose_name=_("Correta"))
 
     def __str__(self):
-        return self.conteudo
+        return self.content
 
     class Meta:
         verbose_name = _("Resposta")
