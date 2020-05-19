@@ -97,9 +97,9 @@ class TFQuestionAdmin(admin.ModelAdmin):
 
 
 class EssayQuestionAdmin(admin.ModelAdmin):
-    list_display = ('content', 'category', )
+    list_display = ('content', 'category',)
     list_filter = ('category',)
-    fields = ('content', 'category', 'sub_category', 'quiz', 'explanation', )
+    fields = ('content', 'category', 'sub_category', 'tipo_citacao', 'citacao', 'referencia', 'quiz', 'explanation', )
     search_fields = ('content', 'explanation')
     filter_horizontal = ('quiz',)
 

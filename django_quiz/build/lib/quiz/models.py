@@ -569,7 +569,7 @@ class Question(models.Model):
                                null=True,
                                verbose_name=_("Figura"))
 
-    content = models.CharField(max_length=1000,
+    content = models.TextField(max_length=2000,
                                blank=False,
                                help_text=_("Digite o texto da pergunta que"
                                            "você deseja exibir"),

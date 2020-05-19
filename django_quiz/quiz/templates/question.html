@@ -15,31 +15,31 @@
 
 		{% if previous.answers %}
 
-		<p class="muted"><small>{% trans "A pergunta anterior" %}:</small></p>
-		<p>{{ previous.previous_question }}</p>
+			<p class="muted"><small>{% trans "A pergunta anterior" %}:</small></p>
+			<p>{{ previous.previous_question }}</p>
 
-		{% if previous.previous_outcome %}
-			<div class="alert alert-success">
-		{% else %}
-			<div class="alert alert-warning">
-		{% endif %}
-			<p><small>
-				{% trans "Sua resposta está " %} </small>
-				<strong>
-				{{ previous.previous_outcome|yesno:"correta,incorreta" }}
-				</strong>
-			</p>
+			{% if previous.previous_outcome %}
+				<div class="alert alert-success">
+			{% else %}
+				<div class="alert alert-warning">
+			{% endif %}
+				<p><small>
+					{% trans "Sua resposta está " %} </small>
+					<strong>
+					{{ previous.previous_outcome|yesno:"correta,incorreta" }}
+					</strong>
+				</p>
 
-			</div>
+				</div>
 
-			{% include 'correct_answer.html' %}
+				{% include 'correct_answer.html' %}
 
-			<p><strong>{% trans "Explicação" %}:</strong></p>
-			<div class="well " style="background-color: #fcf8e3;">
-			<p>{{ previous.previous_question.explanation }}</p>
-			</div>
+				<p><strong>{% trans "Explicação" %}:</strong></p>
+				<div class="well " style="background-color: #fcf8e3;">
+				<p>{{ previous.previous_question.explanation }}</p>
+				</div>
 
-			<hr>
+				<hr>
 
 		{% endif %}
 
@@ -47,37 +47,39 @@
 
 		{% if question %}
 
-		{% if progress %}
-		<div style="float: right;">
-		{% trans "Questão" %} {{ progress.0|add:1 }} {% trans "de" %} {{ progress.1 }}
-		</div>
-		{% endif %}
+			{% if progress %}
+			<div style="float: right;">
+			{% trans "Questão" %} {{ progress.0|add:1 }} {% trans "de" %} {{ progress.1 }}
+			</div>
+			{% endif %}
 
-		<p>
-		<small class="muted">{% trans "Categoria questão" %}:</small>
-		<strong>{{ question.category }}</strong>
-		</p>
+			<p>
+			<small class="muted">{% trans "Categoria questão" %}:</small>
+			<strong>{{ question.category }}</strong>
+			</p>
 
-		<p class="lead">{{ question.content }}</p>
+			<p class="lead">{{ question.content }}</p>
 
-		{% if question.figure %}
-			<img src="{{ question.figure.url }}" alt="{{ question.content }}" />
-		{% endif %}
+			{% if question.figure %}
+				<img src="{{ question.figure.url }}" alt="{{ question.content }}" />
+			{% endif %}
 
-		<form action="" method="POST">{% csrf_token %}
-		<input type=hidden name="question_id" value="{{ question.id }}">
+		
+			<form action="" method="POST">{% csrf_token %}
+			<input type=hidden name="question_id" value="{{ question.id }}">
 
-		<ul class="list-group">
+			<ul class="list-group">
 
-			{% for answer in form.answers %}
-			<li class="list-group-item">
-					{{ answer }}
-			</li>
-			{% endfor %}
+				{% for answer in form.answers %}
+				<li class="list-group-item">
+						{{ answer }}
+				</li>
+				{% endfor %}
+			
 
-		</ul>
-		<input type="submit" value={% trans "Verificar" %} class="btn btn-large btn-block btn-warning" >
-		</form>
+			</ul>
+			<input type="submit" value={% trans "Verificar" %} class="btn btn-large btn-block btn-warning" >
+			</form>
 
 		{% endif %}
 

@@ -169,6 +169,7 @@ class QuizTake(FormView):
 
         if self.question.__class__ is Essay_Question:
             form_class = EssayForm
+            
         else:
             form_class = self.form_class
 
