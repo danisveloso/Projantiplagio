@@ -49,7 +49,7 @@
 
 			{% endif %}
 
-			<p>{% trans "Revise as perguntas abaixo, veja novamente o tutorial online e tente o exame novamente no futuro"%}.</p>
+			<p>{% trans "Veja novamente o tutorial online e faça o teste novamente no futuro"%}.</p>
 
 			{% if user.is_authenticated %}
 
@@ -57,19 +57,18 @@
 			{% endif %}
 		</div>
 
-	</div>
-</section>
+	
   {% endif %}
 
 
   <hr>
 
   {% if possible %}
-
+  <div>
   <p class="lead">
 	{% trans "A pontuação da sua sessão é" %} {{ session }} {% trans "de" %} {{ possible }} {% trans "questões respondidas" %}
   </p>
-
+</div>
   <hr>
 
   {% endif %}
@@ -79,16 +78,18 @@
     {% for question in questions %}
 
       <p class="lead">
-		{{ question.content }}
+		<b>Pergunta: </b>{{ question.content }}
 	  </p>
 
 	  {% correct_answer_for_all question %}
 
-      {% if question.user_answer %}
+	  
+	  {% if question.user_answer %}
+	
       <p>{% trans "Sua resposta" %}: {{ question|answer_choice_to_string:question.user_answer }}</p>
       {% endif %}
 
-	  <p><strong>{% trans "Expicação" %}:</strong></p>
+	  <p><strong>{% trans "Explicação" %}:</strong></p>
 	  <div class="well " style="background-color: #fcf8e3;">
 		<p>{{ question.explanation|safe }}</p>
 	  </div>
@@ -99,5 +100,6 @@
 
   {% endif %}
 
-
+</div>
+</section>
 {% endblock %}

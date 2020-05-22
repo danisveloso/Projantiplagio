@@ -58,9 +58,11 @@
 			<strong>{{ question.category }}</strong>
 			</p>
 
-			{% if essay_question.original_text %}
-				<p>{{ essay_question.original_text }}</p>
-				<p>{{ essay_question.referencia }}</p>
+			{% if question.original_text %}
+				<p class="lead">Texto original</p>	
+				<p>{{ question.original_text }}</p>
+				<p class="lead">Referência</p>
+				<p>{{ question.referencia }}</p>
 			{% endif %}
 
 			<p class="lead">{{ question.content }}</p>
