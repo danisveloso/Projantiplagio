@@ -169,6 +169,7 @@ class QuizTake(FormView):
 
         if self.question.__class__ is Essay_Question:
             form_class = EssayForm
+            
         else:
             form_class = self.form_class
 
@@ -197,6 +198,7 @@ class QuizTake(FormView):
         context = super(QuizTake, self).get_context_data(**kwargs)
         context['question'] = self.question
         context['quiz'] = self.quiz
+        context['essay_question'] = Essay_Question.original_text
         if hasattr(self, 'previous'):
             context['previous'] = self.previous
         if hasattr(self, 'progress'):

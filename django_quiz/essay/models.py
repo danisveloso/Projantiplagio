@@ -18,6 +18,10 @@ class Essay_Question(Question):
         choices=OPTIONS_CITATION,
         help_text=_("Escolha qual tipo de citação o aluno terá que fazer nesta questão"),
         verbose_name=_("tipo de citação"))
+    original_text = models.TextField(max_length=1000,
+                                blank=False,
+                                help_text=_("Digite o texto original"),
+                                verbose_name=_("texto original"))
     citacao = models.TextField(max_length=1000,
                                blank=False,
                                help_text=_("Digite como é a citação correta para o texto"),
@@ -30,10 +34,32 @@ class Essay_Question(Question):
     
 
     def check_if_correct(self, guess):
-        return False
+        parafrase = guess
+        original_text = self.original_text
+        
+
+        # Convert list to string
+        str1= ''.join(original_text)
+        str2= ''.join(parafrase)
+
+        #split the string
+        sent_text1=str1.split('.')
+        sent_text2=str2.split('.')
+
+        #create a for loop that compares two lists
+        final_list=[]
+        for z in sent_text1:
+            for y in sent_text2:
+                if z == y:
+                    final_list.append(z)
+            
+        if not final_list:
+            return True
+        else:
+            return False
 
     def get_answers(self):
-        return False
+        return self.content
 
     def get_answers_list(self):
         return False
