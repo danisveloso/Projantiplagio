@@ -6,12 +6,13 @@ from django.utils.translation import ugettext_lazy as _
 from .models import Quiz, Category, SubCategory, Progress, Question
 from multichoice.models import MCQuestion, Answer
 from true_false.models import TF_Question
-from essay.models import Essay_Question
+from essay.models import Essay_Question, Referencia
 
 
 
 class AnswerInline(admin.TabularInline):
     model = Answer
+
 
 
 class QuizAdminForm(forms.ModelForm):
@@ -31,7 +32,7 @@ class QuizAdminForm(forms.ModelForm):
         required=False,
         label=_("Questions"),
         widget=FilteredSelectMultiple(
-            verbose_name=_("Questions"),
+            verbose_name=_("Questões"),
             is_stacked=False))
 
     def __init__(self, *args, **kwargs):
@@ -95,13 +96,19 @@ class TFQuestionAdmin(admin.ModelAdmin):
     search_fields = ('content', 'explanation')
     filter_horizontal = ('quiz',)
 
+class ReferenciaAdmin(admin.ModelAdmin):
+    list_display = ('referencia',)
+    list_filter = ('referencia',)
+    search_fields = ('referencia',)
+
 
 class EssayQuestionAdmin(admin.ModelAdmin):
     list_display = ('content', 'category',)
-    list_filter = ('category',)
-    fields = ('content', 'category', 'sub_category', 'original_text', 'tipo_citacao', 'citacao', 'referencia', 'quiz', 'explanation', )
+    list_filter = ('category', 'original_text', 'referencia',)
+    fields = ('content', 'category', 'sub_category', 'original_text', 'referencia', 'tipo_citacao', 'citacao1', 'citacao2', 'explanation', 'quiz', )
     search_fields = ('content', 'explanation')
     filter_horizontal = ('quiz',)
+
 
 admin.site.register(Quiz, QuizAdmin)
 admin.site.register(Category, CategoryAdmin)
@@ -109,5 +116,7 @@ admin.site.register(SubCategory, SubCategoryAdmin)
 admin.site.register(MCQuestion, MCQuestionAdmin)
 admin.site.register(Progress, ProgressAdmin)
 admin.site.register(TF_Question, TFQuestionAdmin)
+admin.site.register(Referencia, ReferenciaAdmin)
 admin.site.register(Essay_Question, EssayQuestionAdmin)
+
 
