@@ -85,6 +85,9 @@
 			
 
 			</ul>
+			{% if question.original_text %}
+			<input type="submit" value={% trans "Verificar" %} class="btn btn-large btn-block btn-info" >
+			{% endif %}
 			<input type="submit" value={% trans "Verificar" %} class="btn btn-large btn-block btn-warning" >
 			</form>
 
