@@ -26,7 +26,7 @@ class TF_Question(Question):
         else:
             return False
 
-    def get_answers(self):
+    def get_answers(self, guess):
         return [{'correct': self.check_if_correct("True"),
                  'content': 'Verdadeiro'},
                 {'correct': self.check_if_correct("False"),
@@ -37,6 +37,15 @@ class TF_Question(Question):
 
     def answer_choice_to_string(self, guess):
         return str(guess)
+
+    def check_similaridade(self, guess):
+        return False
+
+    def get_citacao(self, guess):
+        return False
+
+    def get_original_text(self):
+        return False
 
     class Meta:
         verbose_name = _("Questão Verdadeiro/Falso")

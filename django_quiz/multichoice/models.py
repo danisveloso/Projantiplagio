@@ -39,7 +39,7 @@ class MCQuestion(Question):
             return queryset.order_by()
         return queryset
 
-    def get_answers(self):
+    def get_answers(self, guess):
         return self.order_answers(Answer.objects.filter(question=self))
 
     def get_answers_list(self):
@@ -48,6 +48,15 @@ class MCQuestion(Question):
 
     def answer_choice_to_string(self, guess):
         return Answer.objects.get(id=guess).content
+
+    def check_similaridade(self, guess):
+        return False
+
+    def get_citacao(self, guess):
+        return False
+
+    def get_original_text(self):
+        return False
 
     class Meta:
         verbose_name = _("Questão de múltipla escolha")

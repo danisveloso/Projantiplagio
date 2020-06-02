@@ -220,7 +220,10 @@ class QuizTake(FormView):
             self.previous = {'previous_answer': guess,
                              'previous_outcome': is_correct,
                              'previous_question': self.question,
-                             'answers': self.question.get_answers(),
+                             'previous_text_original': self.question.get_original_text(),
+                             'answers': self.question.get_answers(guess),
+                             'citacao': self.question.get_citacao(guess),
+                             'similaridade':self.question.check_similaridade(guess),
                              'question_type': {self.question
                                                .__class__.__name__: True}}
         else:
@@ -318,7 +321,8 @@ class QuizTake(FormView):
             self.previous = {'previous_answer': guess,
                              'previous_outcome': is_correct,
                              'previous_question': self.question,
-                             'answers': self.question.get_answers(),
+                             'answers': self.question.get_answers(guess),
+                             'similaridade':self.question.check_similaridade(guess),
                              'question_type': {self.question
                                                .__class__.__name__: True}}
 

@@ -12,14 +12,15 @@ import nltk
 import os
 import nltk.corpus
 import string
-nltk.download('stopwords')
 from nltk.tokenize import word_tokenize
-# importing stopwors from nltk library
 from collections import Counter
 from nltk import word_tokenize
+from nltk.probability import FreqDist
 from nltk.corpus import stopwords
+from nltk.corpus import floresta
 from nltk import ne_chunk
 from nltk.util import ngrams
+from heapq import nlargest
 
 
 OPTIONS_CITATION = (
@@ -103,16 +104,26 @@ class Essay_Question(Question):
             ngram_parafrase = get_ngrams(filtered_stopwords_parafrase)
 
            
-            common = compare(ngram_original,ngram_parafrase)
+            common = compare_ngram(ngram_original,ngram_parafrase)
             # talvez ajustar para usar contagem caracteres para ajustar o algoritmo de similaridade 
             similaridade = cosine_similarity_ngrams(ngram_original, ngram_parafrase)
 
 
             check_citacao_indireta =  verificar_citacao(parafrase, self.citacao1, self.citacao2)
 
+
+            #verificar a frequencia de palavras nos dois textos, se não houver nenhum tipo de similaridade é possivel que o aluno está enganando a ferramenta
+            freq_original = FreqDist(filtered_stopwords_original)
+            freq_parafrase = FreqDist(filtered_stopwords_parafrase)
+            common_freq = compare_list(freq_original,freq_parafrase)
+           
+
+            important_words = palavras_importantes(freq_original) 
+
+
             #teste = get_chunk(common)
 
-            if common or check_citacao_indireta == False:
+            if common or not common_freq or check_citacao_indireta == False:
                 return False
             else:
                 return True
@@ -145,30 +156,54 @@ class Essay_Question(Question):
             ngram_parafrase = get_ngrams(filtered_stopwords_parafrase)
 
            
-            common = compare(ngram_original,ngram_parafrase)
+            common = compare_ngram(ngram_original,ngram_parafrase)
             # talvez ajustar para usar contagem caracteres para ajustar o algoritmo de similaridade 
             similaridade = cosine_similarity_ngrams(ngram_original, ngram_parafrase)
 
+            similaridade = round(similaridade,2)*100
 
             check_citacao_indireta =  verificar_citacao(parafrase, self.citacao1, self.citacao2)
 
-            #teste = get_chunk(common)
 
-            if common or check_citacao_indireta == False:
-                return common + similaridade
-            else:
-                return "Parabéns"
+            #verificar a frequencia de palavras nos dois textos, se não houver nenhum tipo de similaridade é possivel que o aluno está enganando a ferramenta
+            freq_original = FreqDist(filtered_stopwords_original)
+            freq_parafrase = FreqDist(filtered_stopwords_parafrase)
+            common_freq = compare_list(freq_original,freq_parafrase)
+           
+
+            important_words = palavras_importantes(freq_original) 
+
+
+            if common:
+                return "Similaridade:" + str(similaridade) + "%. Seu texto contém trechos idênticos ao texto original."
+            else: 
+                if not common_freq:
+                    return "Seu texto não tem nenhum tipo de similaridade com original, podendo indicar que você está tentando enganar a ferramenta."
+            return "Não foi encontrado trechos semelhantes com o texto original."
+            
 
         if self.tipo_citacao == 'resumo':
             return False
        
+    def get_citacao(self, guess):
+        parafrase = guess
+        check_citacao_direta =  verificar_citacao(parafrase, self.citacao1, self.citacao2)         
+        if check_citacao_direta == False:
+            return "Você não fez a citação corretamente. Existem duas maneiras de citar corretamente o texto: " + self.citacao1 + " ou " + self.citacao2 +"."
+        else:
+            return  "Citação feita corretamente." 
+        
 
-    def get_answers(self):
-
-        return self.check_similaridade.
+                
+    def get_answers(self,guess):
+        
+        return guess
 
     def get_answers_list(self):
         return False
+
+    def get_original_text(self):
+        return self.original_text
 
     def answer_choice_to_string(self, guess):
         return str(guess)
@@ -179,6 +214,20 @@ class Essay_Question(Question):
     class Meta:
         verbose_name = _("Questão dissertativa")
         verbose_name_plural = _("Questões dissertativas")
+
+#https://medium.com/@viniljf/utilizando-processamento-de-linguagem-natural-para-criar-um-sumariza%C3%A7%C3%A3o-autom%C3%A1tica-de-textos-775cb428c84e
+def dist_frequencia(text):
+    filtered_stopwords = get_stopwords(text)
+    frequencia = FreqDist(filtered_stopwords)
+    return frequencia
+
+
+
+def palavras_importantes(frequencia):
+    top_palavras = nlargest(8, frequencia, frequencia.get)
+    return top_palavras
+
+
 
 def verificar_citacao(parafrase, citacao1, citacao2):
     if citacao1 in parafrase or citacao2 in parafrase:
@@ -194,7 +243,8 @@ def get_chunk(texto):
 def get_stopwords(texto):
     #Remove stopwords e pontuações
     stop_words = set(stopwords.words('portuguese'))
-    word_tokens = word_tokenize(texto)
+    word_tokens = word_tokenize(texto.lower())
+    # antes de retirar stopwords preciso colocar o texto em letras minúsculas
     filtered_sentence = [w for w in word_tokens if w not in stop_words and w not in string.punctuation]
     filtered_sentence = []
     for w in word_tokens: 
@@ -203,12 +253,12 @@ def get_stopwords(texto):
     return filtered_sentence
     
 def get_ngrams(texto):
-    n = 5
-    fivegrams=[]
+    n = 4
+    fgrams=[]
     ngram = ngrams(texto,n)
     for grams in ngram:
-        fivegrams.append(grams)
-    return fivegrams
+        fgrams.append(grams)
+    return fgrams
 
 def append_elements(n_gram):
     for element in range(len(n_gram)):
@@ -220,7 +270,7 @@ def append_elements(n_gram):
 
 
 
-def compare(n_gram1, n_gram2):
+def compare_ngram(n_gram1, n_gram2):
     n_gram1 = append_elements(n_gram1)
     n_gram2 = append_elements(n_gram2)
     common = []
