@@ -5,7 +5,8 @@ from django.core.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404, render
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView, FormView
-
+from django.http import HttpResponse
+from django.views import View
 from .forms import QuestionForm, EssayForm
 from .models import Quiz, Category, Progress, Sitting, Question
 from essay.models import Essay_Question, Referencia
@@ -107,6 +108,30 @@ class QuizMarkingList(QuizMarkerMixin, SittingFilterTitleMixin, ListView):
             queryset = queryset.filter(user__username__icontains=user_filter)
 
         return queryset
+
+class SystemFeedbackView(QuizMarkerMixin, DetailView):
+    model = Sitting
+    template_name = 'feedback_detail.html'
+    def post(self, request, *args, **kwargs):
+        sitting = self.get_object()
+
+        q_to_toggle = request.POST.get('qid', None)
+        if q_to_toggle:
+            q = Question.objects.get_subclass(id=int(q_to_toggle))
+            if int(q_to_toggle) in sitting.get_incorrect_questions:
+                sitting.remove_incorrect_question(q)
+            else:
+                sitting.add_incorrect_question(q)
+
+        return self.get(request)
+
+  
+    def get_context_data(self, **kwargs):
+        context = super(SystemFeedbackView, self).get_context_data(**kwargs)
+        context['questions'] =\
+            context['sitting'].get_questions(with_answers=True)
+        return context
+
 
 
 class QuizMarkingDetail(QuizMarkerMixin, DetailView):

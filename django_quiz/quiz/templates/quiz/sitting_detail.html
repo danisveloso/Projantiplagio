@@ -51,10 +51,20 @@
 					{% endif %}
 				</td>
 				<td>
+					{% if question.original_text %}
+					
+					<a href="{% url 'feedback' pk=sitting.id %}">
+							{% trans "Ver feedback do sistema" %}
+					</a>
+
+					<br>
 					<form action="" method="POST">{% csrf_token %}
 					<input type=hidden name="qid" value="{{ question.id }}">
+					
 					<button type="submit" class="btn btn-warning">{% trans "Alterar" %}</button>
 					</form>
+					{% endif %}
+					
 				</td>
 				</tr>
 

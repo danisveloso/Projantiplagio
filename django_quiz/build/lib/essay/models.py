@@ -179,7 +179,7 @@ class Essay_Question(Question):
             else: 
                 if not common_freq:
                     return "Seu texto não tem nenhum tipo de similaridade com original, podendo indicar que você está tentando enganar a ferramenta."
-            return "Não foi encontrado trechos parecidos com o texto original"
+            return "Não foi encontrado trechos semelhantes com o texto original."
             
 
         if self.tipo_citacao == 'resumo':
