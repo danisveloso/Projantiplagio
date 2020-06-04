@@ -23,3 +23,12 @@ def correct_answer_for_all(context, question):
 @register.filter
 def answer_choice_to_string(question, answer):
     return question.answer_choice_to_string(answer)
+
+@register.filter
+def check_similaridade(question, answer):
+    return question.check_similaridade(answer)
+
+@register.filter
+def get_citacao(question, answer):
+    return question.get_citacao(answer)
+

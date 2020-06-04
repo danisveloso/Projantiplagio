@@ -33,13 +33,13 @@
 		{% if max_score %}
 
 		<div>
-			<h2>{% trans "Resultados teste " %}</h2>
+			<h2>{% trans "Resultado preliminar do teste " %}</h2>
 			<p>
 			<small class="muted">{% trans "Título teste" %}: </small>
 			<strong>{{ quiz.title }}</strong></p>
 
 			<p class="lead">
-			{% trans "Você respondeu" %} {{ score }} {% trans "questão(ões) corretamente de" %} {{ max_score }}, {% trans "dando-lhe" %} {{ percent }} {% trans "porcento de acerto" %}
+			{% trans "Você respondeu" %} {{ score }} {% trans "questão(ões) corretamente de" %} {{ max_score }}, {% trans "dando-lhe" %} {{ percent }} % de acerto.
 			</p>
 
 			{% if quiz.pass_mark %}
@@ -54,6 +54,7 @@
 			{% if user.is_authenticated %}
 
 			<p>{% trans "O resultado deste teste será armazenado na sua seção de progresso, para que você possa revisar e monitorar o seu progresso." %}</p>
+			
 			{% endif %}
 		</div>
 

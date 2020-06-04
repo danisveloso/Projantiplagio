@@ -23,8 +23,7 @@
 				<tr>
 				<th>{% trans "Questão" %}</th>
 				<th>{% trans "Resposta do usuário" %}</th>
-				<th></th>
-				<th></th>
+				<th>{% trans "Correção" %}</th>
 				</tr>
 			</thead>
 
@@ -33,14 +32,24 @@
 
 				<tr>
 				<td>
-					{{ question.content }}
+					
+					<strong>Pergunta:</strong>{{ question.content }}
 					{% if question.figure %}
-					<div style="max-width: 100px;"><img src="{{ question.figure.url }}" alt="{{ question.figure }}"/></div>
+						<div style="max-width: 100px;"><img src="{{ question.figure.url }}" alt="{{ question.figure }}"/></div>
 					{% endif %}
 					{% if question.original_text %}
-					<br>
-					{{ question.original_text }}
+						<br>
+						<strong>Texto original:</strong>{{ question.original_text }}
+						<br>
+						<strong>Feedback do sistema:</strong>	
+						{{question|check_similaridade:question.user_answer}}
+						<br>
+						{{question|get_citacao:question.user_answer}}				
+						
+						<br>
 					{% endif %}
+					
+					
 				</td>
 				<td>{{ question|answer_choice_to_string:question.user_answer }}</td>
 				<td>
@@ -49,23 +58,16 @@
 					{% else %}
 					<p>{% trans "Correta" %}</p>
 					{% endif %}
-				</td>
-				<td>
-					{% if question.original_text %}
-					
-					<a href="{% url 'feedback' pk=sitting.id %}">
-							{% trans "Ver feedback do sistema" %}
-					</a>
-
 					<br>
+					{% if question.original_text %}
 					<form action="" method="POST">{% csrf_token %}
-					<input type=hidden name="qid" value="{{ question.id }}">
-					
-					<button type="submit" class="btn btn-warning">{% trans "Alterar" %}</button>
+						<input type=hidden name="qid" value="{{ question.id }}">
+						
+						<button type="submit" class="btn btn-warning">{% trans "Alterar" %}</button>
 					</form>
 					{% endif %}
-					
 				</td>
+				
 				</tr>
 
 			{% endfor %}

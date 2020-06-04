@@ -58,14 +58,16 @@
 			<strong>{{ question.category }}</strong>
 			</p>
 
+			<strong>Pergunta: </strong><p class="lead">{{ question.content }}</p>
+
 			{% if question.original_text %}
-				<p class="lead">Texto original</p>	
+				<strong>Texto original:</strong>	
 				<p>{{ question.original_text }}</p>
-				<p class="lead">Referência</p>
+				<strong>Referência:</strong>
 				<p>{{ question.referencia }}</p>
 			{% endif %}
 
-			<p class="lead">{{ question.content }}</p>
+			
 
 			{% if question.figure %}
 				<img src="{{ question.figure.url }}" alt="{{ question.content }}" />

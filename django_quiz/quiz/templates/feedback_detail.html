@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load quiz_tags %}
+{% block title %}
+{% trans "Resultado do" %} {{ sitting.quiz.title }} {% trans "para" %} {{ sitting.user }}
+{% endblock %}
+
+
+{% block content %}
+<section class="site-section">
+    <div class="container">
+			<h2>{% trans "Título do questionário" %}: {{ sitting.quiz.title }}</h2>
+			<h3>{% trans "Categoria" %}: {{ sitting.quiz.category }}</h3>
+			<p>{{ sitting.quiz.description }}</p>
+			<hr>
+			<p>{% trans "Usário" %}: {{ sitting.user }}</p>
+			<p>{% trans "Concluído" %}: {{ sitting.end|date }}</p>
+
+			{% for question in questions %}
+				{% if question.original_text %}
+				<table class="table table-striped table-bordered">
+				<tbody>
+					<tr>
+						<td><strong>Pergunta:</strong>{{ question.content}}</td>
+					</tr>
+					<tr>
+						<td><strong>Pergunta:{{ question.original_text }}</td>
+					</tr>
+					<tr>
+						<td><strong>Resposta do usuário:</strong>{{ question|answer_choice_to_string:question.user_answer }}</td>
+						
+					</tr>
+					
+					<tr>
+						<td>{{question|check_similaridade:question.user_answer}}</td>
+					</tr>
+					<tr>
+						<td>{{question|get_citacao:question.user_answer}}</td>
+					</tr>
+					<tr>
+						<td>
+					{% if question.id in sitting.get_incorrect_questions %}
+					<strong>A resposta está:</strong>
+					{% trans "Incorreta" %}
+					{% else %}
+					<strong>A resposta está:</strong>{% trans "Correta" %}
+					{% endif %}
+						</td>
+					</tr>
+
+				</tbody>
+				</table>
+				
+				<p><strong>{% trans "Explicação" %}:</strong></p>
+   				<div class="well " style="background-color: #fcf8e3;">
+  					<p>{{ question.explanation }}</p>
+				</div>
+				<div align="center">
+				<form action="" method="POST">{% csrf_token %}
+					<input type=hidden name="qid" value="{{ question.id }}">
+					
+					<button type="submit" class="btn btn-warning">{% trans "Alterar correção" %}</button>
+				</form>
+				</div>
+				{% endif %}
+			{% endfor %}
+  
+		</div>
+	</section>
+{% endblock %}

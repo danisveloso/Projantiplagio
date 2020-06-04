@@ -25,7 +25,7 @@ urlpatterns = [
         view=ViewQuizListByCategory.as_view(),
         name='quiz_category_list_matching'),
 
-    url(r'^progress/$',
+    path('progress/',
         view=QuizUserProgressView.as_view(),
         name='quiz_progress'),
 
