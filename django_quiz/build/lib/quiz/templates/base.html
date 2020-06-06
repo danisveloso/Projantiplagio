@@ -62,11 +62,11 @@
 
 			{% if user.is_authenticated %}
             <li class="nav-item">
-                <a class="nav-link" href="">Seu progresso</a>
+                <a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
             </li>
 			{% else %}
 			<li class="nav-item" style="display: none;">
-					<a class="nav-link" href="">Seu progresso</a>
+					<a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
 			</li>
 			{% endif %}
 
