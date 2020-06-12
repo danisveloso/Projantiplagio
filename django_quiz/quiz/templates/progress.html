@@ -3,19 +3,95 @@
 
 {% load quiz_tags %}
 
-{% block title %} {% trans "Página de progresso" %} {% endblock %}
-{% block description %} {% trans "Página progresso do usuário" %} {% endblock %}
+
+{% block scripts %}
+<!-- SCRIPT GRÁFICO PROGRESSO POR CATEGORIA - SCRIPT GRÁFICO PROGRESSO POR CATEGORIA - SCRIPT   -->
+<script type="text/javascript">
+
+    	google.charts.load("current", {packages:['corechart']});
+    	google.charts.setOnLoadCallback(drawChart);
+     
+        function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Categorias', 'Porcentagem de acerto'],
+            {% for cat, value in cat_scores.items %}
+                ['{{ cat }}', {{ value.2 }}]{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]);
+
+        var options = {
+		  title: 'PROGRESSO POR CATEGORIA EM TODAS AS TENTATIVAS ',
+          backgroundColor: {
+              fill: '#fff'
+          },
+          legendTextStyle: { color: '#555' },
+          titleTextStyle: { color: '#555' },
+          is3D: true
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
+
+		// ordena a coluna
+		data.sort([{column: 1}]);
+
+        chart.draw(data, options);
+      }
+	
+    </script>
+
+	<!-- SCRIPT GRÁFICO PROGRESSO EM TODAS AS TENTATIVAS - SCRIPT GRÁFICO - SCRIPT GRÁFICO - SCRIPT GRÁFICO  - SCRIPT   -->
+	<script type="text/javascript">
+
+    	google.charts.load("current", {packages:['corechart']});
+    	google.charts.setOnLoadCallback(drawChart);
+     
+        function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Data', 'Porcentagem'],
+            {% for exam in exams %}
+                ['{{ exam.end }}', {{ exam.get_percent_correct }}]{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]);
+
+        var options = {
+          backgroundColor: {
+              fill: '#fff'
+          },
+          legendTextStyle: { color: '#555' },
+          titleTextStyle: { color: '#555' },
+          is3D: true
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('column_2'));
+
+		// ordena a coluna
+		data.sort([{column: 0}]);
+
+	
+        	chart.draw(data, options);
+	
+      }
+	
+    </script>
+
+	<!-- SCRIPT GRÁFICO - SCRIPT GRÁFICO - SCRIPT GRÁFICO - SCRIPT GRÁFICO  - SCRIPT   -->
 
 
+
+{% endblock %}
+
+ 
 
 {% block content %}
 
 <section class="site-section">
     <div class="container">
 
-		{% if cat_scores %}
-
-		<h1>{% trans "Categoria questão pontuação" %}</h1>
+	{% if cat_scores %}
+	
+		<h1>{% trans "Progresso" %}</h1>
 
 		<table class="table table-bordered table-striped">
 
@@ -23,7 +99,7 @@
 			<tr>
 				<th>{% trans "Categoria" %}</th>
 				<th>{% trans "Questões respondidas corretamente" %}</th>
-				<th>{% trans "Questões incorretas" %}</th>
+				<th>{% trans "Total de questões" %}</th>
 				<th>%</th>
 			</tr>
 			</thead>
@@ -44,11 +120,12 @@
 			</tbody>
 
 		</table>
+		
+		<div align="center" id="columnchart_values" style="width: 800px; height: 500px;"></div>
+		
+	{% endif %}
 
-
-		{% endif %}
-
-		{% if exams %}
+	{% if exams %}
 
 		<hr>
 
@@ -84,9 +161,14 @@
 			</tbody>
 
 		</table>
+		
+				<strong> Título do questionário: {{ exams.quiz.title }}</strong>
+				<div align="center" id="column_2" style="width: 800px; height: 500px;"></div>
+		
 
-		{% endif %}
+	{% endif %}
 	</div>
 </section>
 
+	
 {% endblock %}

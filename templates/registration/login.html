@@ -83,15 +83,15 @@
     <div class="container">
 
         {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
+        <strong>Seu usuário e senha estão incorretos. Por favor tente novamente.</strong>
         {% endif %}
 
         {% if next %}
             {% if user.is_authenticated %}
-            <p>Your account doesn't have access to this page. To proceed,
-            please login with an account that has access.</p>
+            <strong>Sua conta não tem acesso a está página. Para prosseguir,
+            por favor faça login com uma conta que tenha permissão de acesso.</strong>
             {% else %}
-            <p>Please login to see this page.</p>
+            <strong>Por favor faça login para ver está página.</strong>
             {% endif %}
         {% endif %}
       <div class="row justify-content-center">
