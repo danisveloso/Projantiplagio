@@ -1,0 +1,336 @@
+{% extends 'siteTutorial/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Tutorial Online - Redação acadêmica" %}{% endblock %}
+
+
+
+{% block menu %}
+  
+<header role="banner">
+     
+	<nav class="navbar navbar-expand-md navbar-dark bg-light">
+	  <div class="container">
+		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">AntiPlágio</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+		  <ul class="navbar-nav mx-auto">
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'siteTutorial_home' %}">Home</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle active" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
+				<div class="dropdown-menu" aria-labelledby="dropdown04">
+				  <a class="dropdown-item active" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
+				</div>
+			</li>
+
+			</li>
+			
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
+			</li>
+
+			{% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
+            </li>
+			{% else %}
+			<li class="nav-item" style="display: none;">
+					<a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
+			</li>
+			{% endif %}
+
+
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'siteTutorial_contato' %}">Contato</a>
+			</li>
+		  </ul>
+		  <ul class="navbar-nav absolute-right">
+			{% if user.is_authenticated %}
+			<li class="nav-item">
+				<a class="nav-link disabled" href="">Ola, {{ user }}</a>
+            </li>
+
+            <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+			{% else %}
+			<li class="nav-item">
+					<a class="nav-link" href="{% url 'login' %}">Login</a>
+			</li>
+			{% endif %}
+		  </ul>     
+		</div>
+	  </div>
+	</nav>
+</header>
+  <!-- END header -->     
+{% endblock %}
+
+{% block content %}
+     <section class="site-section episodes">
+      <div class="container">
+        <div class="row bg-light align-items-center p-4 episode">
+          <div class="col-md-12">
+            <p class="meta">Tópico 4 - Como evitar o plágio - Citação no formato ABNT </p>
+            
+            
+          </div>
+ 		<div class="row">
+          <div class="col-md-12" align="justify">
+             <h1><b>Citações</b></h1>
+				<p>Tanto as citações direta e indireta, a indicação das fontes, devem ser feitas pelo sobrenome do autor, ou pela instituição
+				responsável ou pelo título incluído na sentença em letras maiúscula e minúsculas.
+				Caso estejam entre parênteses no final do parágrafo, devem estar em letras maiúsculas.</p> 
+				<b> Exemplo: </b>
+				<div class="row">
+          		<div class="col-md-3" align="center">
+				<div class="well " style="background-color: #fcf8e3;">
+					<p> <b> No texto: </b> </p>
+					<p> Sobrenome, ano, x p. </p>
+					<p> Instituição, ano, x p. </p>
+					<p> Título, ano, x p. </p>
+					<p> <b> No final do parágrafo: </b> </p>
+					<p> (SOBRENOME, ano, x p.) </p>
+				</div>
+				</div>
+				</div>
+			  <p> Clique nos ícones abaixo para saber como fazer citações na norma ABNT.
+			<div class="w3-bar w3-green">
+				<button class="w3-bar-item w3-button tablink w3-black" onclick="openCity(event,'citacoes')">Citações - autores</button>
+				<button class="w3-bar-item w3-button tablink" onclick="openCity(event,'citacaodireta')">Citação direta</button>
+				<button class="w3-bar-item w3-button tablink" onclick="openCity(event,'citacaoindireta')">Citação indireta</button>
+				<button class="w3-bar-item w3-button tablink" onclick="openCity(event,'citacaocitacao')">Citação de citação</button>
+			</div>
+
+			<div id="citacoes" class="w3-container city">
+				<h1> Citações - Com um ou mais autores </h1>
+				<p> O sobrenome do autor deve ser indicado. </p>
+				<h3> Quando o autor é parte integrante do texto:</h3>
+				<p><b> Um autor </b></p>
+				<p> Exemplo: </p>
+				<p><b> Dois autores </b></p>
+				<p> Exemplo: </p>
+				<p><b> Três autores </b></p>
+				<p> Exemplo: </p>
+				<p><b> Mais de três autores </b></p>
+				<p> Exemplo: </p>
+				<h3> Quando o nome do autor aparece ao final do parágrafo:</h3>
+				<p><b> Um autor </b></p>
+				<p> Exemplo: </p>
+				<p><b> Dois autores </b></p>
+				<p> Exemplo: </p>
+				<p><b> Três autores </b></p>
+				<p> Exemplo: </p>
+				<p><b> Mais de três autores </b></p>
+				<p> Exemplo: </p>
+			</div>
+			
+            <div id="citacaodireta" class="w3-container city" style="display:none">
+				<h1>Citação direta</h1>
+				<p>Citação direta é a transcrição na íntegra de parte da obra do autor consultado.</p>
+				<p>Há dois tipos de citação direta:</p>
+				<ul style="list-style-type:disc;">
+					<li><b>curta</b> (até 3 linhas);</li>
+					<li><b>longa</b> (mais de 3 linhas). A indicação da página é obrigatória.</li>
+				</ul>
+				<p><b>Não faça citação direta o tempo todo:</b>  reserve está situação para casos especiais.</p>
+
+				<h3>Quando devo fazer citação direta?</h3>
+				<ul style="list-style-type:disc;">
+					<li>Quando a linguagem é particularmente viva ou expressiva;</li>
+					<li>Quando o texto exato é necessário para a precisão técnica;</li>
+					<li>Quando são as palavras de uma autoridade importante, para dar peso a um argumento.</li>
+				</ul>
+				<h3>Como posso mostrar que estou citando a fonte corretamente?</h3>
+				<ul style="list-style-type:disc;">
+					<li>Utilizando aspas em citação curta; </li>
+					<li>Para citações longas, utilizando recuo de 4cm, fonte tamanho 10, não utilizar aspas;</li>
+					<li>Cite a fonte de forma adequada.</li>
+				</ul>
+				<b>Se você não fizer, é plágio.</b>
+				<p>Exemplo de citação direta curta.</p>
+				<div style="overflow-x:auto;">
+				<table>
+					<tr>
+					<th>Original</th>
+					<th>Citação correta</th>
+					<th>Plágio</th>
+					</tr>
+					<tr>
+					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”</td>
+					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”.</td>
+					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”</td>
+					</tr>
+					
+				</table>
+				<br>
+				</div>
+				<p>Exemplo de citação direta longa.</p>
+				<div style="overflow-x:auto;">
+				<table>
+					<tr>
+					<th>Original</th>
+					<th>Citação correta</th>
+					<th>Plágio</th>
+					</tr>
+					<tr>
+					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”</td>
+					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”.</td>
+					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”</td>
+					</tr>
+					
+				</table>
+				<br>
+				</div>
+			</div>
+          
+            
+
+            <div id="citacaoindireta" class="w3-container city" style="display:none">
+              <h1>Citação indireta</h1> 
+              <p>Depois de aprender a fazer citação direta corretamente, você pode se sentir 
+			  tentado a escrever trabalhos consistindo principalmente ou inteiramente de aspas. 
+			  Se você entregar esse trabalho, provavelmente descobrirá que seus professores ou 
+			  orientadores irão devolver sem ler. Geralmente, eles esperam muito mais de você. 
+			  De fato, na redação acadêmica a citação direta é usada raramente. Portanto, você 
+			  deverá parafrasear. </p>
+              <h3>O que é paráfrase ?</h3>
+              <p><b>Paráfrase</b> é um recurso de interpretação textual que consiste na reformulação de um texto, trocando as palavras e expressões originais, mas mantendo a ideia central da informação. Desta forma, você mantém o sentido do texto original, mas não copia a sua formulação exata.</p>
+
+              <h3>Quais  estratégias posso usar para  fazer uma paráfrase?</h3>
+              <ul style="list-style-type:disc;">
+                <li>Use sinônimos para todas as palavras que não são genéricas. Palavras como mundo, comida, ou a ciência são tão básicos para o nosso vocabulário que é difícil encontrar um sinônimo;</li>
+                <li>Alterar a estrutura da frase;</li>
+                <li>Alterar a voz de ativa para passiva e vice-versa;</li>
+                <li>Alterar partes do texto mantendo o sentido do texto original.</li>
+              </ul>
+
+
+
+				<b>Uma boa paráfrase combina uma série de estratégias: o objetivo é reformular a informação para que ela pareça com suas palavras, e não as do autor.</b>
+				<p>Exemplo1: Usando estratégias múltiplas para Paráfrase</p>
+				<div style="overflow-x:auto;">
+				<table>
+					<tr>
+					<th>Original</th>
+					<th>Paráfrase aceitável 1</th>
+					<th>Paráfrase aceitável 2</th>
+					</tr>
+					<tr>
+					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”</td>
+					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”.<br>
+					<b>O que o escritor fez?</b>
+					<ul style="list-style-type:disc;">
+						<li>Usou sinônimos; </li>
+						<li>Mudou a estrutura da frase;</li>
+						<li>Alterou a voz;</li>
+						<li>Citou a fonte.</li>
+					</ul>
+					</td>
+					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”<br>
+						<b>O que o escritor fez?</b>
+						<ul style="list-style-type:disc;">
+						<li>Usou sinônimos; </li>
+						<li>Mudou a estrutura da frase ( usou duas frases ao invés de uma);</li>
+						<li>Alterou a voz;</li>
+						<li>Mudou parte da texto;</li>
+						<li>Citou a fonte.</li>
+						</ul>
+
+					</td>
+					</tr>
+					
+				</table>
+				<br>
+				</div>
+
+				<p>Exemplo2: Paráfrase inaceitável</p>
+				<div style="overflow-x:auto;">
+				<table>
+					<tr>
+					<th>Original</th>
+					<th>Paráfrase inaceitável 1</th>
+					<th>Paráfrase inaceitável 2</th>
+					</tr>
+					<tr>
+					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”</td>
+					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”.
+						<br>
+						<b>Por que é inaceitável?</b>
+						<ul style="list-style-type:disc;">
+						<li>O escritou manteve exatamente a mesma estrutura da frase; </li>
+						<li>O escritor substituiu alguns sinônimos em certos lugares, em outros, o texto é exatamente o mesmo que a do original;</li>
+						<li>Mesmo que o escritor mencionou a fonte original na frase introdutória, o resultado é plágio.</li>
+						</ul>
+					</td>
+					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”
+						<br>
+						<b>Por que é inaceitável?</b>
+						<ul style="list-style-type:disc;">
+						<li>Embora o  escritor mudou a estrutura da frase, frases-chave foram tomadas diretamente a partir do original;</li>
+						<li>Mesmo que o escritor mencionou a fonte original na frase introdutória, o resultado é plágio.</li>
+						</ul>
+					</td>
+					</tr>
+					
+				</table>
+				<br>
+				</div>
+			</div>
+                     
+
+            <div id="citacaocitacao" class="w3-container city" style="display:none">
+              <h1>Citação de citação</h1>
+              
+              <p>Citação direta ou indireta de um texto, o qual não houve acesso ao original.
+			  Este tipo de citação deve ser evitado, <b> o ideal é sempre consultar a obra original. </b></p>
+              <h4> Quando o autor é parte integrante do texto:</h4>
+              <p>Exemplo:</p>
+			  <h4> Quando o nome do autor aparece ao final do parágrafo:</h4>
+              <p>Exemplo:</p>
+             
+			</div>
+
+
+
+            
+          <hr/>
+		  <p>Para mais informações consulte: </p>
+          <b>Fonte:</b>
+          <p class="meta"> <a href="https://www.unifesp.br/campus/gua/images/Biblioteca/MANUAL_de_normaliza%C3%A7%C3%A3o_2020.pdf" target="_blank">Manual de normalização de trabalhos acadêmicos - Unifesp - Biblioteca da Escola de Filosofia, Letras e Ciências Humanas</a></p>
+	      <p class="meta"> <a href="https://integrity.mit.edu/handbook/academic-writing/incorporating-words-and-ideas-others" target="_blank">Academic Integrity at MIT - A Handbook for Students</a></p>
+		</div>
+    </div>
+	</div>
+		<hr/>
+			<div class="row">
+			<div class="col" align="left">
+				
+					<p class="meta"> <a href="{% url 'siteTutorial_topicos' %}" ><<-Tutorial online</a></p>
+				
+				</div>
+		
+				<div class="col" align="right">
+				
+					<p class="meta"> <a href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica- plágio->></a></p>
+					
+				
+				</div>
+			</div>
+	</section>
+		
+			
+       
+
+    {% endblock %}
+       
+     

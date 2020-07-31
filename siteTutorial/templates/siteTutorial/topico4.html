@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}{% trans "Tutorial Online - Legislação e casos de plágio." %}{% endblock %}
+{% block title %}{% trans "Tutorial Online - Como evitar o plágio." %}{% endblock %}
 
 
 
@@ -27,8 +27,8 @@
 				<div class="dropdown-menu" aria-labelledby="dropdown04">
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
-				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
-				  <a class="dropdown-item active" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
+				  <a class="dropdown-item active" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
 				</div>
 			</li>
 
@@ -38,7 +38,7 @@
 			  <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
 			</li>
 
-			{% if user.is_authenticated %}
+      {% if user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
             </li>
@@ -50,7 +50,7 @@
 
 
 			<li class="nav-item">
-			  <a class="nav-link" href="contact.html">Contato</a>
+			  <a class="nav-link" href="{% url 'siteTutorial_contato' %}">Contato</a>
 			</li>
 		  </ul>
 		  <ul class="navbar-nav absolute-right">
@@ -75,61 +75,87 @@
   <!-- END header -->     
 {% endblock %}
 
+  
 {% block content %}
     
      <section class="site-section episodes">
       <div class="container">
         <div class="row bg-light align-items-center p-4 episode">
-          <div class="col-md-9">
-            <p class="meta">Tópico 4 - Legislação e casos de plágio</a></p>
+          <div class="col-md-12">
+            <p class="meta">Tópico 4 - Como evitar o plágio</a></p>
+            <p>Vamos ensinar maneiras de evitar o plágio na escrita acadêmica</p>
             
+          <hr/>
+          </div>
+
+          
+          <div class="row">
+          <div class="col-md-6" align="justify">
+            <h1><b>Como evitar o plágio</b></h1>
+            <b>Citando e referênciando as palavras e ideias de outras pessoas.</b>
+            <p>O plágio, na maioria das vezes acontece de forma não intencional. 
+            Isso pode acontecer quando você tenta colocar informações de uma fonte em suas 
+            próprias palavras, mas não consegue fazer corretamente. Geralmente, o plágio ocorre porque
+            o aluno não foi ensinado como incorporar as palavras e ideias de outras pessoas de forma 
+            adequada.</p>
+            
+            <hr/>
+            <p>Existem várias opções para incorporar as palavras e ideias de outras pessoas 
+            em seu próprio trabalho:</p>
+            <ul style="list-style-type:disc;">
+              <li><b><a href="{% url 'siteTutorial_citacao' %}">Citar diretamente:</a></b> colocar entre aspas as palavras e citar a fonte;</li>
+              <li><b><a href="{% url 'siteTutorial_citacao' %}">Citar indiretamente:</a></b> colocar as informações em suas próprias palavras e citar a fonte;</li>
+              <li><b><a href="{% url 'siteTutorial_resumo' %}">Resumir:</a></b> encontrar as ideias-chave, parafrasear e citar a fonte.</li>
+            
+            </ul>
+            <p> Não se esqueça de criar a <a href="{% url 'siteTutorial_referencia' %}"><b>Referência bibliográfica</b></a> para cada fonte e 
+            colocá-la no final do seu documento, essa padronização facilita as pesquisas posteriores. </p>
+
+          </div>
+          <div class="col-md-6" align="justify">
+            <img src="static/img/identificar.png" alt="Identificar o plágio" width="500" height="629"/>
+          </div>
+          <hr/>
           </div>
 
           <div class="row">
-          <div class="col-md-10" align="justify">
-            <hr/>
-            <h1><b>Legislação</b></h1>
-           
-           
-            <p>É importante compreender que os padrões de reutilização de produção criativa variam de disciplina para disciplina e cultura para cultura.</p>
-            <p>No Brasil, a <a href="http://www.planalto.gov.br/ccivil_03/leis/l9610.htm" target="_blank"><b>Lei 9.610/1998 </b></a> trata do direito autoral. Em muitos de seus artigos são determinadas as consequências para quem comete plágio. Veja:</p>
-            <blockquote>
-              <p>Art. 103 – Quem editar obra literária, artística ou científica, sem autorização do titular, perderá para este os exemplares que se apreenderem e pagar-lhe-á o preço dos que tiver vendido.</p>
-              <p>Art. 106 – A sentença condenatória poderá determinar a destruição de todos os exemplares ilícitos, bem como as matrizes, moldes, negativos e demais elementos utilizados para praticar o ilícito civil, assim como a perda de máquinas, equipamentos e insumos destinados a tal fim ou, servindo eles unicamente para o fim ilícito, sua destruição.</p>
-            </blockquote>
-            <hr/>
-            <h1>Casos de plágio</h1>
-            <p>Pesquisando na internet é possível verificar algumas das consequências deste crime.</p>
-            <p>No site da <a href="https://educacao.uol.com.br/album/2013/11/18/colas-e-trapacas.htm?mode=list&foto=1" target="_blank"><b>UOL Educação </b></a> é possível visualizar os 15 casos famosos de cola e plágio acadêmico.</p>
+          <div class="col-md-12" align="justify">
 
-           <p>Alguns citados no site , por exemplo são:</p>
+
+            
+            <hr/>
+            <p>A forma que você usará para citar e referênciar dependerá do estilo de citação que será usado:</p>
             <ul style="list-style-type:disc;">
-              <li><a href="https://educacao.estadao.com.br/noticias/geral,professor-da-usp-e-demitido-por-plagio,682903" target="_blank"> Professor da USP que foi demitido por liderar um estudo com trechos de outro trabalho;</a></li>
-              <li><a href="http://g1.globo.com/mundo/noticia/2011/03/ministro-acusado-de-plagio-renuncia-na-alemanha.html" target="_blank">Ministro acusado de plágio acadêmico renúncia na Alemanha;</a></li>
-              <li><a href="https://exame.abril.com.br/mundo/ministra-alema-perde-titulo-de-doutora-por-plagiar-tese/" target="_blank">Ministra alemã perde título de doutora por plagiar tese.</a></li>
+              <li>ABNT - Associação Brasileira de Normas Técnicas - é o órgão responsável por regular e orientar a normalização de todos os trabalhos acadêmicos que são publicados no Brasil.;</li>
+              <li>APA - O estilo American Psychological Association é frequentemente utilizado pela história, economia, psicologia e ciência política;</li>
+              <li>Vancouver - comumente usado nas publicações científicas da área de ciências médicas e da saúde.</li>
             </ul>
-            <p>A acusação de plágio pode ter consequências graves, incluindo a expulsão de uma universidade ou perda de um emprego, para não mencionar a perda de credibilidade e reputação profissional.</p>
-           
+            <p>Existem outros estilos de citação. Algumas revistas acadêmicas, por exemplo, têm os seus próprios estilos. Siga as instruções do seu professor ou orientador para saber qual estilo usar.</p>
+            <b>Neste tutorial, todos os exemplos estarão no estilo de citação  e referência ABNT.</b>
+          <hr/>
+          <b>Adaptado de:</b>
+          <p class="meta"> <a href="https://integrity.mit.edu/handbook/academic-writing/incorporating-words-and-ideas-others" target="_blank">Academic Integrity at MIT - A Handbook for Students</a></p>
+          <p class="meta"> <a href="https://easybib.files.wordpress.com/2012/03/plagiarisim-011.jpg"> EasyBib </a>
           </div>
         </div>
-        </div> 
+      </div>  
 
-		<hr/>
+      <hr/>
 			<div class="row">
 			<div class="col" align="left">
 				
-					<p class="meta"> <a href="{% url 'siteTutorial_topico3' %}" ><<-Como evitar o plágio</a></p>
+					<p class="meta"> <a href="{% url 'siteTutorial_topico2' %}" ><<-Má conduta acadêmica - plágio</a></p>
 				
 				</div>
 		
 				<div class="col" align="right">
 				
-					
+					<p class="meta"> <a href="{% url 'siteTutorial_topico4' %}" >Legislação e casos de plágio->></a></p>
 					
 				
 				</div>
 			</div>
 
-    </section>
+  </section>
 
 {% endblock %}

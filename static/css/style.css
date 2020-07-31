@@ -250,6 +250,7 @@ header .navbar.navbar-light .nav-link.active {
 
 .episodes .episode-number {
   border: 2px solid #2E8B57;
+  background: rgb(75, 131, 109);
   text-align: center;
   display: inline-block;
   width: 80px;
@@ -257,7 +258,6 @@ header .navbar.navbar-light .nav-link.active {
   text-transform: uppercase;
   line-height: 74px;
   border-radius: 50%;
-  background:#8FBC8F;
   color: #fff;
   font-size: 30px;
 }

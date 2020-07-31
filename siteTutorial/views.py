@@ -39,3 +39,16 @@ def topico3(request):
 
 def topico4(request):
     return render(request, 'siteTutorial/topico4.html')
+
+def citacao(request):
+    return render(request, 'siteTutorial/citacao.html')
+
+def referencia(request):
+    return render(request, 'siteTutorial/referencia.html')
+
+def resumo(request):
+    return render(request, 'siteTutorial/resumo.html')
+
+def topico5(request):
+    return render(request, 'siteTutorial/topico5.html')
+
