@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}{% trans "Tutorial Online - Má conduta acadêmica - plágio" %}{% endblock %}
+{% block title %}{% trans "Tutorial Online - Como evitar o plágio." %}{% endblock %}
 
 
 
@@ -12,7 +12,7 @@
      
 	<nav class="navbar navbar-expand-md navbar-dark bg-light">
 	  <div class="container">
-		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">TutorPlágio</a>
+		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">AntiPlágio</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
 		</button>
@@ -26,11 +26,8 @@
 				<a class="nav-link dropdown-toggle active" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
 				<div class="dropdown-menu" aria-labelledby="dropdown04">
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
-				  <a class="dropdown-item active" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
-				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
-				  <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
-				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
-				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
+				  <a class="dropdown-item active" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
 				</div>
 			</li>
@@ -50,7 +47,6 @@
 					<a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
 			</li>
 			{% endif %}
-
 
 
 			<li class="nav-item">
@@ -81,75 +77,20 @@
 
 
 {% block content %}
-
-    
      <section class="site-section episodes">
       <div class="container">
-        <div class="row bg-light align-items-center p-4 episode">
+        <div class="row bg-light align-items-center p-4 episodes">
           <div class="col-md-12">
-            <p class="meta">Tópico 2 - Má conduta acadêmica - plágio</a></p>
-            <p>Olá! Antes de falar sobre o que é plágio, vamos falar sobre a má conduta acadêmica.</p>
-            <div class="video-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/0kYm7pv9rI0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-          </div>
-
-          <div class="row">
-          <div class="col-md-12" align="justify">
-            <hr/>
-            <h1><b>Má conduta acadêmica - plágio</b></h1>
-            <hr/>
-            <h3>Má conduta acadêmica</h2>
-            <p>Má conduta acadêmica é qualquer ação de trapaça que um aluno comete e sabe que levará a avaliação inadequada do trabalho acadêmico, enganando os professores para que receba uma nota não merecida.</p>
-            <p>Enganar viola a confiança mútua que deveria existir entre professor e aluno.
-            Além disso, é importante manter um bom networking na universidade,
-             mostrar um comportamento ético entre seus próprios colegas.
-             Um comportamento antiético na universidade poderá refletir na sua carreira profissional. 
-    
+            <p class="meta">Tópico 3 - Tipos de plágio acadêmico </p>
             
-            </p>
-                      
-            <h3>O que é Plágio?</h3>
-            <p>Plágio é uma forma de má conduta acadêmica na qual você 
-            representa as palavras ou ideias de outra pessoa como sendo sua.</p>
-
-             <p> 
-             
-           
-            Você comete plágio se:</p>
-
-            <ul style="list-style-type:disc;">
-              <li>Entregar o trabalho de outra pessoa como sendo seu;</li>
-              <li>Copiar palavras ou idéias de outra pessoa sem dar crédito;</li>
-              <li>Não colocar entre aspas o texto e não citar a fonte;</li>
-              <li>Fornecer informações incorretas sobre a origem de uma citação;</li>
-              <li>Alterar as palavras, mas copiar a estrutura da frase de uma fonte 
-              sem dar crédito;</li>
-            </ul>
-
-
-            <p> A maioria dos casos de plágio pode ser evitado, citando as fontes. 
-            Simplesmente reconhecer que determinado material foi emprestado e fornecer 
-            ao seu público as informações necessárias para encontrar essa fonte geralmente 
-            é suficiente para evitar o plágio. Veja o nosso tópico sobre citação para obter 
-            mais informações sobre como citar fontes corretamente.</p>
-
-            <h3> E quanto as imagens, tabelas, vídeos e músicas?</h3>
-
-            <p> Bem, este tutorial se concentra no plágio de trabalhos escritos, 
-           porém usar imagens, tabelas, vídeos, músicas,
-           código-fonte de computador, expressões matemáticas e obras artísticas
-            em um trabalho que você produziu sem receber 
-            a devida permissão ou fornecer a citação apropriada é plágio. 
-            Essas atividades são muito comuns atualmente na sociedade, apesar de sua popularidade, 
-            são consideradas plágio. </p>
-           <hr/>
-
-
-      <h3>Tipos mais comuns de plágio cometidos pelos alunos</h3>
+			<h1><b>Tipos mais comuns de plágio cometidos pelos alunos</b></h1>
 			<p>Clique nos ícones abaixo para saber mais sobre cada tipo de plágio.</p>
-      <div class="row bg-light">
-       <div class="col-md-12">  
+		  </div>
+		
+		<br>
+
+		<div class="row bg-light">
+          <div class="col-md-12">  
 			<div class="row bg-light" >
 				
 				<div class="col-sm" >
@@ -309,54 +250,37 @@
 
 
 			</div>
-		 
-
+		  </div>
           
-            <hr/>
-            <h3>O que é conhecimento comum?</h3>
-            <p>Ao contrário de citações ou ideias parafraseadas, as informações consideradas de
-             "conhecimento comum"  não precisam ser citadas. Mas o que é "Conhecimento comum" ?
-             </p>
-            <p><b>Conhecimento comum </b> são informações amplamente conhecidas ou 
-            facilmente verificáveis. Isso inclui:</p>
-
-             <ul style="list-style-type:disc;">
-              <li><b>A informação que a maioria das pessoas conhecem,</b> tal como a água pura congela a 0° C e ferve a 100° C;</li>
-              <li><b>Informações compartilhadas por um grupo cultural ou nacional,</b> como os nomes de heróis ou eventos famosos da história da nação que são lembrados e comemorados;</li>
-              
-            </ul>
-            
-            <p>
-            O conhecimento comum pode mudar dependendo da sua cultura, 
-            localização geográfica, idade ou outros fatores. 
-            </P>
-          </div>  
-          </div>
-          <hr/>
-          <b>Referências:</b>
-          <p class="meta"> <a href="https://integrity.mit.edu/handbook/citing-your-sources/what-common-knowledge" target="_blank">Academic Integrity at MIT - A Handbook for Students</a></p>
-          <p class="meta"> <a href="https://www.plagiarism.org/article/what-is-plagiarism" target="_blank">Plagiarism.org</a></p>
-          
-          </div>
-        </div>
-        </div> 
-        <hr/>
+				<div class="row bg-light">
+				<div class="col"> 
+				
+					<b>Adaptado de:</b>
+					<p class="meta"> <a href="https://libraries.ucsd.edu/assets/elearning/plagiarism/mod1-define-web/story_html5.html" target="_blank">The Library UC SAN DIEGO</a></p>
+				</div>
+				</div>
+		</div>
+	  </div>
+		<hr/>
 			<div class="row">
 			<div class="col" align="left">
 				
-					<p class="meta"> <a href="{% url 'siteTutorial_topico1' %}" ><<-Redação acadêmica</a></p>
+				<p class="meta"> <a href="{% url 'siteTutorial_topicos' %}" ><<-Tutorial online</a></p>
 				
-				</div>
+			</div>
 		
-				<div class="col" align="right">
+			<div class="col" align="right">
 				
-					<p class="meta"> <a href="{% url 'siteTutorial_topico3' %}" >Como evitar o plágio->></a></p>
+				<p class="meta"> <a href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica- plágio->></a></p>
 					
 				
-				</div>
-			</div>    
-    </section>
+			</div>
+			</div>
+		</div>
+	</section>
+		
+			
 
-   
-          
-{% endblock %}
+    {% endblock %}
+
+    

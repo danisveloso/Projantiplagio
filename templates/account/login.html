@@ -22,11 +22,14 @@
 			  <a class="nav-link" href="{% url 'siteTutorial_home' %}">Home</a>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle active" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
+				<a class="nav-link dropdown-toggle" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
 				<div class="dropdown-menu" aria-labelledby="dropdown04">
-				  <a class="dropdown-item active" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
 				</div>
 			</li>
@@ -63,7 +66,7 @@
             </li>
 			{% else %}
 			<li class="nav-item">
-					<a class="nav-link" href="{% url 'login' %}">Login</a>
+					<a class="nav-link active" href="{% url 'login' %}">Login</a>
 			</li>
 			{% endif %}
 		  </ul>     

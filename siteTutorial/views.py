@@ -49,6 +49,3 @@ def referencia(request):
 def resumo(request):
     return render(request, 'siteTutorial/resumo.html')
 
-def topico5(request):
-    return render(request, 'siteTutorial/topico5.html')
-

@@ -224,8 +224,8 @@ function openCity(evt, cityName) {
   }
   tablinks = document.getElementsByClassName("tablink");
   for (i = 0; i < x.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" w3-black", "");
+    tablinks[i].className = tablinks[i].className.replace(" w3-gray", "");
   }
   document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " w3-black";
+  evt.currentTarget.className += " w3-gray";
 }

@@ -5,7 +5,7 @@ except ImportError:
 
 from django.urls import path
 
-from .views import home, contato, topicos, topico1, topico2, topico3, topico4, citacao, referencia, resumo, topico5
+from .views import home, contato, topicos, topico1, topico2, topico3, topico4, citacao, referencia, resumo
 
 urlpatterns = [
     url(r'^$', home, name='siteTutorial_home'),
@@ -18,5 +18,4 @@ urlpatterns = [
     path('citacao', citacao, name='siteTutorial_citacao'),
     path('referencia', referencia, name='siteTutorial_referencia'),
     path('resumo', resumo, name='siteTutorial_resumo'),
-    path('topico5', topico5, name='siteTutorial_topico5'),
 ]

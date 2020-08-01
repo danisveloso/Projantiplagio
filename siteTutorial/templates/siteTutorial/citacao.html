@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static %}
 
-{% block title %}{% trans "Tutorial Online - Redação acadêmica" %}{% endblock %}
+{% block title %}{% trans "Tutorial Online - Citações" %}{% endblock %}
 
 
 
@@ -12,7 +12,7 @@
      
 	<nav class="navbar navbar-expand-md navbar-dark bg-light">
 	  <div class="container">
-		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">AntiPlágio</a>
+		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">TutorPlágio</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
 		</button>
@@ -25,9 +25,12 @@
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle active" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
 				<div class="dropdown-menu" aria-labelledby="dropdown04">
-				  <a class="dropdown-item active" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
+				  <a class="dropdown-item active" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
 				</div>
 			</li>
@@ -80,32 +83,38 @@
       <div class="container">
         <div class="row bg-light align-items-center p-4 episode">
           <div class="col-md-12">
-            <p class="meta">Tópico 4 - Como evitar o plágio - Citação no formato ABNT </p>
+            <p class="meta">Tópico 3 - Como evitar o plágio - Citação no formato ABNT </p>
             
             
           </div>
  		<div class="row">
           <div class="col-md-12" align="justify">
              <h1><b>Citações</b></h1>
-				<p>Tanto as citações direta e indireta, a indicação das fontes, devem ser feitas pelo sobrenome do autor, ou pela instituição
-				responsável ou pelo título incluído na sentença em letras maiúscula e minúsculas.
-				Caso estejam entre parênteses no final do parágrafo, devem estar em letras maiúsculas.</p> 
-				<b> Exemplo: </b>
-				<div class="row">
-          		<div class="col-md-3" align="center">
-				<div class="well " style="background-color: #fcf8e3;">
-					<p> <b> No texto: </b> </p>
-					<p> Sobrenome, ano, x p. </p>
-					<p> Instituição, ano, x p. </p>
-					<p> Título, ano, x p. </p>
-					<p> <b> No final do parágrafo: </b> </p>
-					<p> (SOBRENOME, ano, x p.) </p>
+			 <div class="row">
+			 	<div class="col-md-6">
+					<p>Tanto as citações diretas quanto as indiretas a indicação das fontes pesquisadas devem ser feitas pelo sobrenome do autor, ou pela instituição
+					responsável ou pelo título incluído na sentença em letras maiúsculas e minúsculas.
+					Caso estejam entre parênteses no final do parágrafo, devem estar em letras maiúsculas.</p>
 				</div>
-				</div>
-				</div>
+				<div class="col-md-6" > 
+					<b> Exemplo: </b>
+					<div class="row">
+					<div class="col-md-6" align="center">
+						<div class="well " style="background-color: #fcf8e3;">
+							<p> <b> No texto: </b> </p>
+							<p> Sobrenome, ano, x p. </p>
+							<p> Instituição, ano, x p. </p>
+							<p> Título, ano, x p. </p>
+							<p> <b> No final do parágrafo: </b> </p>
+							<p> (SOBRENOME, ano, x p.) </p>
+						</div>
+						</div>
+						</div>
+					</div>
+				</div>	
 			  <p> Clique nos ícones abaixo para saber como fazer citações na norma ABNT.
 			<div class="w3-bar w3-green">
-				<button class="w3-bar-item w3-button tablink w3-black" onclick="openCity(event,'citacoes')">Citações - autores</button>
+				<button class="w3-bar-item w3-button tablink w3-gray" onclick="openCity(event,'citacoes')">Citações - Citação com um ou mais autores</button>
 				<button class="w3-bar-item w3-button tablink" onclick="openCity(event,'citacaodireta')">Citação direta</button>
 				<button class="w3-bar-item w3-button tablink" onclick="openCity(event,'citacaoindireta')">Citação indireta</button>
 				<button class="w3-bar-item w3-button tablink" onclick="openCity(event,'citacaocitacao')">Citação de citação</button>
@@ -113,25 +122,53 @@
 
 			<div id="citacoes" class="w3-container city">
 				<h1> Citações - Com um ou mais autores </h1>
-				<p> O sobrenome do autor deve ser indicado. </p>
-				<h3> Quando o autor é parte integrante do texto:</h3>
-				<p><b> Um autor </b></p>
-				<p> Exemplo: </p>
-				<p><b> Dois autores </b></p>
-				<p> Exemplo: </p>
-				<p><b> Três autores </b></p>
-				<p> Exemplo: </p>
-				<p><b> Mais de três autores </b></p>
-				<p> Exemplo: </p>
-				<h3> Quando o nome do autor aparece ao final do parágrafo:</h3>
-				<p><b> Um autor </b></p>
-				<p> Exemplo: </p>
-				<p><b> Dois autores </b></p>
-				<p> Exemplo: </p>
-				<p><b> Três autores </b></p>
-				<p> Exemplo: </p>
-				<p><b> Mais de três autores </b></p>
-				<p> Exemplo: </p>
+				
+				<b> Quando o autor é parte integrante do texto:</b>
+				<p> Exemplos: </p>
+				<table>
+					<tr  >
+					<th style="background-color:#A9A9A9!important">Um autor</th>
+					<th style="background-color:#A9A9A9!important">Dois autores</th>
+					<th style="background-color:#A9A9A9!important">Três autores</th>
+					<th style="background-color:#A9A9A9!important">Mais de três autores</th>
+					</tr>
+					<tr>
+					<td>Mota (1996) afirma que “Os acontecimentos de superfície são
+						regidos pelas transformações de profundidade: é todo um sistema posto em
+						questão”.</td>
+					<td>Souza e Castro (2001) observam que os recursos informacionais tem um
+						papel crucial no processo de construção do conhecimento.</td>
+					<td>Silva, Moura e Hollanda (1999) recuperam os conceitos fundamentados por
+						ele criado.</td>
+					<td>Franco et al. (2008) confirma a designação dada a esse episódio.</td>
+					</tr>
+					
+				</table>
+
+				<b> Quando o nome do autor aparece ao final do parágrafo:</b>
+				<p> Exemplos: </p>
+				<table>
+					<tr>
+					<th style="background-color:#A9A9A9!important">Um autor</th>
+					<th style="background-color:#A9A9A9!important">Dois autores</th>
+					<th style="background-color:#A9A9A9!important">Três autores</th>
+					<th style="background-color:#A9A9A9!important">Mais de três autores</th>
+					</tr>
+					<tr>
+					<td>A globalização implica uniformização de padrões econômicos e culturais 
+					    em âmbito mundial (LOPEZ, 2013).</td>
+					<td>Embora o método Kaiser seja pouco conhecido e utilizado, ele foi discutido
+					     há, aproximadamente, 25 anos (LÉBART e DREYFEIS, 1972).</td>
+					<td>A satisfação do cliente é um ponto importante para o entendimento 
+					    do marketing. (LOVELOCK; WIRTZ; HEMZO, 2011).</td>
+					<td>"O balanço tem por finalidade apresentar a posição financeira e patrimonial da 
+					     empresa em determinada data, representando, portanto, uma posição 
+						 estática.” (MARTINS et al., 2013).</td>
+					</tr>
+					
+				</table>
+
+				
 			</div>
 			
             <div id="citacaodireta" class="w3-container city" style="display:none">
@@ -161,9 +198,9 @@
 				<div style="overflow-x:auto;">
 				<table>
 					<tr>
-					<th>Original</th>
-					<th>Citação correta</th>
-					<th>Plágio</th>
+					<th style="background-color:#A9A9A9!important">Original</th>
+					<th style="background-color:#A9A9A9!important">Citação correta</th>
+					<th style="background-color:#A9A9A9!important">Plágio</th>
 					</tr>
 					<tr>
 					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”</td>
@@ -178,9 +215,9 @@
 				<div style="overflow-x:auto;">
 				<table>
 					<tr>
-					<th>Original</th>
-					<th>Citação correta</th>
-					<th>Plágio</th>
+					<th style="background-color:#A9A9A9!important">Original</th>
+					<th style="background-color:#A9A9A9!important">Citação correta</th>
+					<th style="background-color:#A9A9A9!important">Plágio</th>
 					</tr>
 					<tr>
 					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”</td>
@@ -221,9 +258,9 @@
 				<div style="overflow-x:auto;">
 				<table>
 					<tr>
-					<th>Original</th>
-					<th>Paráfrase aceitável 1</th>
-					<th>Paráfrase aceitável 2</th>
+					<th style="background-color:#A9A9A9!important">Original</th>
+					<th style="background-color:#A9A9A9!important">Paráfrase aceitável 1</th>
+					<th style="background-color:#A9A9A9!important">Paráfrase aceitável 2</th>
 					</tr>
 					<tr>
 					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”</td>
@@ -257,9 +294,9 @@
 				<div style="overflow-x:auto;">
 				<table>
 					<tr>
-					<th>Original</th>
-					<th>Paráfrase inaceitável 1</th>
-					<th>Paráfrase inaceitável 2</th>
+					<th style="background-color:#A9A9A9!important">Original</th>
+					<th style="background-color:#A9A9A9!important">Paráfrase inaceitável 1</th>
+					<th style="background-color:#A9A9A9!important">Paráfrase inaceitável 2</th>
 					</tr>
 					<tr>
 					<td>Segundo Teixeira (1998, pág.35) “A ideia de que a mente funciona como um computador digital e que este último pode servir de modelo ou metáfora para conceber a mente humana iniciou a partir da década de 40”</td>
@@ -295,8 +332,14 @@
 			  Este tipo de citação deve ser evitado, <b> o ideal é sempre consultar a obra original. </b></p>
               <h4> Quando o autor é parte integrante do texto:</h4>
               <p>Exemplo:</p>
+			  <p>De acordo com Gough (1972, p. 59, apud NARDI, 1993, p. 94), “o ato de ler 
+			  envolve um processamento serial que começa com uma fixação ocular sobre o texto, 
+			  prosseguindo da esquerda para a direita de forma linear.”</p>
 			  <h4> Quando o nome do autor aparece ao final do parágrafo:</h4>
               <p>Exemplo:</p>
+			  <p>“O direito penal está inserido no dia a dia da sociedade brasileira, 
+			      de modo a estratificar comportamentos considerados inadequados.” 
+				  (BALBOA, 2010, p. 111 apud CAPEZ, 1999, p. 33).</p>
              
 			</div>
 
@@ -307,7 +350,7 @@
 		  <p>Para mais informações consulte: </p>
           <b>Fonte:</b>
           <p class="meta"> <a href="https://www.unifesp.br/campus/gua/images/Biblioteca/MANUAL_de_normaliza%C3%A7%C3%A3o_2020.pdf" target="_blank">Manual de normalização de trabalhos acadêmicos - Unifesp - Biblioteca da Escola de Filosofia, Letras e Ciências Humanas</a></p>
-	      <p class="meta"> <a href="https://integrity.mit.edu/handbook/academic-writing/incorporating-words-and-ideas-others" target="_blank">Academic Integrity at MIT - A Handbook for Students</a></p>
+	      <p class="meta"> <a href="https://normas-abnt.espm.br/index.php?title=Normas_para_Apresenta%C3%A7%C3%A3o_de_Trabalhos_Acad%C3%AAmicos" target="_blank">Normas ABNT - Bibliotecas ESPM</a></p>
 		</div>
     </div>
 	</div>
@@ -315,13 +358,13 @@
 			<div class="row">
 			<div class="col" align="left">
 				
-					<p class="meta"> <a href="{% url 'siteTutorial_topicos' %}" ><<-Tutorial online</a></p>
+					<p class="meta"> <a href="{% url 'siteTutorial_topico3' %}" ><<- Como evitar o plágio</a></p>
 				
 				</div>
 		
 				<div class="col" align="right">
 				
-					<p class="meta"> <a href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica- plágio->></a></p>
+					<p class="meta"> <a href="{% url 'siteTutorial_resumo' %}">Resumo ->></a></p>
 					
 				
 				</div>

@@ -12,7 +12,7 @@
      
 	<nav class="navbar navbar-expand-md navbar-dark bg-light">
 	  <div class="container">
-		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">AntiPlágio</a>
+		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">TutorPlágio</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
 		</button>
@@ -28,6 +28,9 @@
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
 				  <a class="dropdown-item active" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
+          <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
 				</div>
 			</li>
@@ -75,212 +78,87 @@
   <!-- END header -->     
 {% endblock %}
 
-
+  
 {% block content %}
+    
      <section class="site-section episodes">
       <div class="container">
-        <div class="row bg-light align-items-center p-4 episodes">
+        <div class="row bg-light align-items-center p-4 episode">
           <div class="col-md-12">
-            <p class="meta">Tópico 3 - Tipos de plágio acadêmico </p>
+            <p class="meta">Tópico 3 - Como evitar o plágio</a></p>
+            <p>Vamos ensinar maneiras de evitar o plágio na escrita acadêmica</p>
             
-			<h1><b>Tipos mais comuns de plágio cometidos pelos alunos</b></h1>
-			<p>Clique nos ícones abaixo para saber mais sobre cada tipo de plágio.</p>
-		  </div>
-		
-		<br>
+          <hr/>
+          </div>
 
-		<div class="row bg-light">
-          <div class="col-md-12">  
-			<div class="row bg-light" >
-				
-				<div class="col-sm" >
-				<a href="#abrircopiar" data-target="#abrircopiar" data-toggle="modal">
-					<img src="static/img/copiar.png" alt="Copiar e colar" width="120px" height="160px" />
-				</a>
-				</div>
-				<!-- modal abrircopiar--> 
-				<div class="modal" id="abrircopiar" tabindex="-1" role="dialog">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<p>Modal body text goes here.</p>
-						</div>
-						
-						</div>
-					</div>
-				</div>
-				<!-- END modal --> 
-				
-				<div class="col-sm" >
-				<a href="#abririmgtab" data-target="#abririmgtab" data-toggle="modal">
-					<img src="static/img/imgtab.png" alt="Imagens, gráficos e tabelas" width="120px" height="160px" />
-				</a>
-				</div>
-				<!-- modal abririmgtab--> 	
-				<div class="modal" id="abririmgtab" tabindex="-1" role="dialog">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<p>Modal body text goes here.</p>
-						</div>
-						
-						</div>
-					</div>
-				</div>
-				<!-- END modal --> 
-
-
-				<div class="col-sm" >
-				<a href="#parafrase" data-target="#parafrase" data-toggle="modal">
-					<img src="static/img/parafrase.png" alt="Paráfrase incorreta" width="120px" height="160px"/>
-				</a>
-				</div>
-				
-				<!-- modal parafrase--> 
-				<div class="modal" id="parafrase" tabindex="-1" role="dialog">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<p>Modal body text goes here.</p>
-						</div>
-						
-						</div>
-					</div>
-				</div>
-				<!-- END modal --> 
-
-
-
-			
-			
-		
-				
-				<div class="col-sm" >
-				<a href="#fabricar" data-target="#fabricar" data-toggle="modal">
-					<img src="static/img/fabricar.png" alt="Fabricar informações" width="120px" height="160px" />
-				</a>
-				</div>
-
-				<!-- modal fabricar--> 
-				<div class="modal" id="fabricar" tabindex="-1" role="dialog">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<p>Modal body text goes here.</p>
-						</div>
-						
-						</div>
-					</div>
-				</div>
-				<!-- END modal --> 
-
-				<div class="col-sm" >
-				<a href="#ideia" data-target="#ideia" data-toggle="modal">
-					<img src="static/img/ideia.png" alt="Utilizar ideias de outra pessoa" width="120px" height="160px" />
-				</a>
-				</div>
-
-				<!-- modal ideia--> 
-				<div class="modal" id="ideia" tabindex="-1" role="dialog">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<p>Modal body text goes here.</p>
-						</div>
-						
-						</div>
-					</div>
-				</div>
-				<!-- END modal --> 
-
-				<div class="col-sm">
-				<a href="#autoplagio" data-target="#autoplagio" data-toggle="modal">
-					<img src="static/img/autoplagio.png" alt="Autoplágio" width="120px" height="160px" />
-				</a>
-				</div>
-				
-				<!-- modal autoplagio--> 
-				<div class="modal" id="autoplagio" tabindex="-1" role="dialog">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<p>Modal body text goes here.</p>
-						</div>
-						
-						</div>
-					</div>
-				</div>
-				<!-- END modal --> 
-
-
-			</div>
-		  </div>
           
-				<div class="row bg-light">
-				<div class="col"> 
-				
-					<b>Adaptado de:</b>
-					<p class="meta"> <a href="https://libraries.ucsd.edu/assets/elearning/plagiarism/mod1-define-web/story_html5.html" target="_blank">The Library UC SAN DIEGO</a></p>
-				</div>
-				</div>
-		</div>
-	  </div>
-		<hr/>
+          <div class="row">
+          <div class="col-md-6" align="justify">
+            <h1><b>Como evitar o plágio</b></h1>
+            <b>Citando e referenciando as palavras e ideias de outras pessoas.</b>
+            <p>O plágio, na maioria das vezes acontece de forma não intencional. 
+            Isso pode acontecer quando você tenta colocar informações de uma fonte em suas 
+            próprias palavras, mas não consegue fazer corretamente. Geralmente, o plágio ocorre porque
+            o aluno não foi ensinado como incorporar as palavras e ideias de outras pessoas de forma 
+            adequada.</p>
+            
+            <hr/>
+            <p>Existem várias opções para incorporar as palavras e ideias de outras pessoas 
+            em seu próprio trabalho:</p>
+            <ul style="list-style-type:disc;">
+              <li><b><a href="{% url 'siteTutorial_citacao' %}">Citar diretamente:</a></b> colocar entre aspas as palavras e citar a fonte;</li>
+              <li><b><a href="{% url 'siteTutorial_citacao' %}">Citar indiretamente:</a></b> colocar as informações em suas próprias palavras e citar a fonte;</li>
+              <li><b><a href="{% url 'siteTutorial_resumo' %}">Resumir:</a></b> encontrar as ideias-chave, parafrasear e citar a fonte.</li>
+            
+            </ul>
+            <p> Não se esqueça de criar a <a href="{% url 'siteTutorial_referencia' %}"><b>referência bibliográfica</b></a> para cada fonte e 
+            colocá-la no final do seu documento, essa padronização facilita as pesquisas posteriores. </p>
+
+          </div>
+          <div class="col-md-6" align="justify">
+            <img src="static/img/identificar.png" alt="Identificar o plágio" width="500" height="629"/>
+          </div>
+          <hr/>
+          </div>
+
+          <div class="row">
+          <div class="col-md-12" align="justify">
+
+
+            
+            <hr/>
+            <p>A forma que você usará para citar e referenciar dependerá do estilo de citação que será usado:</p>
+            <ul style="list-style-type:disc;">
+              <li>ABNT - Associação Brasileira de Normas Técnicas - é o órgão responsável por regular e orientar a normalização de todos os trabalhos acadêmicos que são publicados no Brasil.;</li>
+              <li>APA - O estilo American Psychological Association é frequentemente utilizado pela história, economia, psicologia e ciência política;</li>
+              <li>Vancouver - comumente usado nas publicações científicas da área de ciências médicas e da saúde.</li>
+            </ul>
+            <p>Existem outros estilos de citação. Algumas revistas acadêmicas, por exemplo, têm os seus próprios estilos. Siga as instruções do seu professor ou orientador para saber qual estilo usar.</p>
+            <b>Neste tutorial, todos os exemplos estarão no estilo de citação  e referência ABNT.</b>
+          <hr/>
+          <b>Adaptado de:</b>
+          <p class="meta"> <a href="https://integrity.mit.edu/handbook/academic-writing/incorporating-words-and-ideas-others" target="_blank">Academic Integrity at MIT - A Handbook for Students</a></p>
+          <p class="meta"> <a href="https://easybib.files.wordpress.com/2012/03/plagiarisim-011.jpg"> EasyBib </a>
+          </div>
+        </div>
+      </div>  
+
+      <hr/>
 			<div class="row">
 			<div class="col" align="left">
 				
-				<p class="meta"> <a href="{% url 'siteTutorial_topicos' %}" ><<-Tutorial online</a></p>
+					<p class="meta"> <a href="{% url 'siteTutorial_topico2' %}" ><<-Má conduta acadêmica - plágio</a></p>
 				
-			</div>
+				</div>
 		
-			<div class="col" align="right">
+				<div class="col" align="right">
 				
-				<p class="meta"> <a href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica- plágio->></a></p>
+					<p class="meta"> <a href="{% url 'siteTutorial_citacao' %}" >Citações - direta e indireta->></a></p>
 					
 				
+				</div>
 			</div>
-			</div>
-		</div>
-	</section>
-		
-			
 
-    {% endblock %}
+  </section>
 
-    
+{% endblock %}
