@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'multichoice',
     'true_false',
     'essay',
-    'siteTutorial'
+    'siteTutorial',
+    'cadastro'
 ]
 
 SITE_ID = 1

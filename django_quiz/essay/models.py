@@ -65,7 +65,7 @@ class Essay_Question(Question):
         max_length=1000, blank=False, null=True, 
         unique=True)
     referencia = models.ForeignKey(
-        Referencia, blank=False, 
+        Referencia, blank=False, default="",
         verbose_name=_("Referência"), on_delete=models.PROTECT)
     
     citacao1 = models.CharField(max_length=1000, 
