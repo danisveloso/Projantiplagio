@@ -4,7 +4,7 @@ except ImportError:
     from django.urls import re_path as url
 
 from django.urls import path
-
+from django.contrib.auth import views as auth_views
 from .views import home, contato, topicos, topico1, topico2, topico3, topico4, citacao, referencia, resumo
 
 urlpatterns = [

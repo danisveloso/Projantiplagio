@@ -40,7 +40,7 @@ class QuizListView(ListView):
 class QuizDetailView(DetailView):
     model = Quiz
     slug_field = 'url'
-
+    @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
 

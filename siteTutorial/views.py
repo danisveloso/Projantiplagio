@@ -1,3 +1,8 @@
+from django.contrib.auth.decorators import login_required, permission_required
+from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404, render
+from django.views import View
+from django.utils.decorators import method_decorator
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from .models import Contato
@@ -28,24 +33,34 @@ def topicos(request):
     return render(request, 'siteTutorial/tutorial.html')
 
 
+@login_required
 def topico1(request):
     return render(request, 'siteTutorial/topico1.html')
 
+@login_required
 def topico2(request):
     return render(request, 'siteTutorial/topico2.html')
 
+@login_required
 def topico3(request):
     return render(request, 'siteTutorial/topico3.html')
 
+
+@login_required
 def topico4(request):
     return render(request, 'siteTutorial/topico4.html')
 
+
+@login_required
 def citacao(request):
     return render(request, 'siteTutorial/citacao.html')
 
+
+@login_required
 def referencia(request):
     return render(request, 'siteTutorial/referencia.html')
 
+
+@login_required
 def resumo(request):
     return render(request, 'siteTutorial/resumo.html')
-
