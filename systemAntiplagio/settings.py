@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'true_false',
     'essay',
     'siteTutorial',
-    'cadastro'
+    'cadastro',
 ]
 
 SITE_ID = 1

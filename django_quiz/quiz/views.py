@@ -101,6 +101,23 @@ class QuizUserProgressView(TemplateView):
         context['exams'] = progress.show_exams()
         return context
 
+class QuizProfProgressView(TemplateView):
+    template_name = 'progressdetail.html'
+
+    @method_decorator(login_required)
+    @method_decorator(permission_required('quiz.view_sittings'))
+    def dispatch(self, request, *args, **kwargs):
+        return super(QuizProfProgressView, self)\
+            .dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(QuizProfProgressView, self).get_context_data(**kwargs)
+        progress, c = Progress.objects.get_or_create(user_id=self.kwargs.get('pk'))
+        context['usuario']= Aluno.objects.select_related().get(usuario_id=self.kwargs.get('pk'))
+        context['cat_scores'] = progress.list_all_cat_scores
+        context['exams'] = progress.show_exams()
+        return context
+
 
 class QuizMarkingList(QuizMarkerMixin, ListView):
     model = Sitting
@@ -123,6 +140,7 @@ class QuizUserDetail(QuizMarkerMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(QuizUserDetail, self).get_context_data(**kwargs)
         context['usuario'] = Sitting.objects.filter(user_id=self.kwargs.get('pk'))
+        context['turma']= Aluno.objects.select_related().get(usuario_id=self.kwargs.get('pk'))
         return context
     
    
