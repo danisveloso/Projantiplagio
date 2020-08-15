@@ -108,6 +108,7 @@ class EssayQuestionAdmin(admin.ModelAdmin):
     fields = ('content', 'category', 'sub_category', 'original_text', 'referencia', 'tipo_citacao', 'citacao1', 'citacao2', 'explanation', 'quiz', )
     search_fields = ('content', 'explanation')
     filter_horizontal = ('quiz',)
+    raw_id_fields = ('referencia',)
 
 
 admin.site.register(Quiz, QuizAdmin)

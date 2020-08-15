@@ -1,9 +1,6 @@
-{% extends "account/base.html" %}
-
+{% extends 'base.html' %}
 {% load i18n %}
-{% load account %}
-
-{% block head_title %}{% trans "Password Reset" %}{% endblock %}
+{% block title %}{% trans "Todos alunos" %}{% endblock %}
 
 {% block menu %}
   
@@ -11,7 +8,7 @@
      
 	<nav class="navbar navbar-expand-md navbar-dark bg-light">
 	  <div class="container">
-		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">AntiPlágio</a>
+		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">TutorPlágio</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
 		  <span class="navbar-toggler-icon"></span>
 		</button>
@@ -27,9 +24,6 @@
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
-				  <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
-				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
-				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
 				</div>
 			</li>
@@ -50,23 +44,6 @@
 			</li>
 			{% endif %}
 
-			{% if user.is_authenticated and perms.quiz.change_quiz %}
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown05">
-                  <a class="dropdown-item" href="{% url 'admin:index' %}">Admnistração - Questionário</a>
-                  <a class="dropdown-item" href="{% url 'quiz_marking' %}">Correção questionários</a>
-				        </div>
-            </li>
-			{% else %}
-			<li class="nav-item" style="display: none;">
-					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown04">
-                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Admnistração - Questionário</a>
-                  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Correção questionários</a>
-				        </div>
-			</li>
-			{% endif %}  
 
 			<li class="nav-item">
 			  <a class="nav-link" href="{% url 'siteTutorial_contato' %}">Contato</a>
@@ -83,7 +60,7 @@
             </li>
 			{% else %}
 			<li class="nav-item">
-					<a class="nav-link active" href="{% url 'login' %}">Login</a>
+					<a class="nav-link" href="{% url 'login' %}">Login</a>
 			</li>
 			{% endif %}
 		  </ul>     
@@ -94,18 +71,60 @@
   <!-- END header -->     
 {% endblock %}
 
-
 {% block content %}
-<section class="site-section episodes">
-      <div class="container">
-            <h1>{% trans "Password Reset" %}</h1>
-            
-            {% if user.is_authenticated %}
-            {% include "account/snippets/already_logged_in.html" %}
-            {% endif %}
-            
-            <p>{% blocktrans %}We have sent you an e-mail. Please contact us if you do not receive it within a few minutes.{% endblocktrans %}</p>
-        </div>
-</section>
 
+<section class="site-section">
+    <div class="container">
+			<h2>{% trans "Lista de alunos" %}</h2>
+				{% if aluno_list %}
+
+					<table class="table table-bordered table-striped">
+
+					<thead>
+						<tr>
+						<th>{% trans "Matrícula" %}</th>
+						<th>{% trans "Usuário" %}</th>
+						<th>{% trans "Turma" %}</th>
+						<th>{% trans "Ano ingresso" %}(%)</th>
+						<th>{% trans "Campus" %}(%)</th>
+						<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+						<form action="" method="GET">
+							<td></td>
+							<td><input type="text" name="user_filter" /></td>
+							<td><input type="text" name="turma_filter" /></td>
+							<td></td>
+							<td><button type="submit" class="btn btn-default">{% trans "Filtro"%}</button></td>
+						</form>
+						</tr>
+
+
+					{% for aluno in alunos %}
+						
+						<tr>
+						<td>{{ aluno.matricula }}</td>
+						<td>{{ aluno.user }}</td>
+						<td>{{ aluno.turma|curso }}</td>
+						<td>{{ aluno.anoingresso }}</td>
+						<td>{{ aluno.campus }}</td>
+				
+						<td>	<a href="{% url 'quiz_marking_detail' pk=sitting.id %}">
+							{% trans "Ver detalhes" %}
+							</a></td>
+						</tr>
+					
+					{% endfor %}
+
+					</tbody>
+
+					</table>
+				{% else %}
+					<p>{% trans "Não há alunos cadastrados" %}.</p>
+				{% endif %}
+			</div>
+		</section>
 {% endblock %}

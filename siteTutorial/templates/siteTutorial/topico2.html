@@ -51,6 +51,23 @@
 			</li>
 			{% endif %}
 
+			{% if user.is_authenticated and perms.quiz.change_quiz %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown05">
+                  <a class="dropdown-item" href="{% url 'admin:index' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'quiz_marking' %}">Correção questionários</a>
+				        </div>
+            </li>
+			{% else %}
+			<li class="nav-item" style="display: none;">
+					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Correção questionários</a>
+				        </div>
+			</li>
+			{% endif %}  
 
 
 			<li class="nav-item">
@@ -89,9 +106,12 @@
           <div class="col-md-12">
             <p class="meta">Tópico 2 - Má conduta acadêmica - plágio</a></p>
             <p>Olá! Antes de falar sobre o que é plágio, vamos falar sobre a má conduta acadêmica.</p>
-            <div class="video-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/0kYm7pv9rI0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+             <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/u0hVAWO3Kl8" 
+					frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
             </div>
+
           </div>
 
           <div class="row">

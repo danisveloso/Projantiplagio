@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
-from .models import Curso, Disciplina, Campus, Professor, Aluno
+from .models import Curso, Disciplina, Campus, Professor, Aluno, Turma
 from django.contrib.admin.widgets import FilteredSelectMultiple
 from django.utils.translation import ugettext_lazy as _
 
@@ -16,20 +16,28 @@ class DisciplinaAdmin(admin.ModelAdmin):
     list_display = ('disciplina', 'codigo',)
     list_filter = ('disciplina',)
 
+class TurmaAdmin(admin.ModelAdmin):
+    search_fields = ('turma', 'periodo','ano','curso',)
+    list_display = ('turma', 'periodo','ano','curso',)
+    list_filter = ('turma','ano','curso',)
+    raw_id_fields = ('curso',)
+
 class CampusAdmin(admin.ModelAdmin):
     search_fields = ('campus', )
 
 
 class AlunoAdmin(admin.ModelAdmin):
     search_fields = ('usuario', 'matricula',)
-    fields = ( 'usuario','matricula','curso', 'anoingresso', 'campus', 'disciplina', )
+    raw_id_fields = ('usuario','turma',)
+    fields = ( 'usuario', 'matricula', 'turma','anoingresso', 'campus', 'disciplina', )
     filter_horizontal = ('disciplina',)
-    list_filter = ('curso', 'campus',)
+    list_filter = ('turma', 'campus',)
     list_display = ('usuario', 'matricula',)
 
 
 class ProfessorAdmin(admin.ModelAdmin):
     search_fields = ('usuario', 'cracha',)
+    raw_id_fields = ('usuario',)
     fields = ('usuario', 'cracha', 'campus', 'disciplina', )
     filter_horizontal = ('disciplina',)
     list_filter = ('campus',)
@@ -41,5 +49,6 @@ class ProfessorAdmin(admin.ModelAdmin):
 admin.site.register(Curso, CursoAdmin)
 admin.site.register(Disciplina, DisciplinaAdmin)
 admin.site.register(Campus, CampusAdmin)
+admin.site.register(Turma, TurmaAdmin)
 admin.site.register(Aluno, AlunoAdmin)
 admin.site.register(Professor, ProfessorAdmin)

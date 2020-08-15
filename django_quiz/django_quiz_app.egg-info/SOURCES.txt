@@ -55,7 +55,7 @@ quiz/locale/zh_CN/LC_MESSAGES/django.mo
 quiz/locale/zh_CN/LC_MESSAGES/django.po
 quiz/migrations/0001_initial.py
 quiz/migrations/__init__.py
-quiz/templates/base-old.html
+quiz/templates/base.html
 quiz/templates/correct_answer.html
 quiz/templates/feedback_detail.html
 quiz/templates/progress.html
@@ -68,6 +68,7 @@ quiz/templates/quiz/quiz_detail.html
 quiz/templates/quiz/quiz_list.html
 quiz/templates/quiz/sitting_detail.html
 quiz/templates/quiz/sitting_list.html
+quiz/templates/quiz/sitting_user.html
 quiz/templatetags/__init__.py
 quiz/templatetags/quiz_tags.py
 true_false/__init__.py

@@ -10,6 +10,8 @@ from django.views import View
 from .forms import QuestionForm, EssayForm
 from .models import Quiz, Category, Progress, Sitting, Question
 from essay.models import Essay_Question, Referencia
+from cadastro.models import Aluno, Turma, Curso, Professor, Campus, Disciplina
+from django.views.generic.detail import SingleObjectMixin
 
 
 class QuizMarkerMixin(object):
@@ -37,9 +39,13 @@ class QuizListView(ListView):
         return queryset.filter(draft=False)
 
 
+
+
+
 class QuizDetailView(DetailView):
     model = Quiz
     slug_field = 'url'
+
     @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()
@@ -96,7 +102,7 @@ class QuizUserProgressView(TemplateView):
         return context
 
 
-class QuizMarkingList(QuizMarkerMixin, SittingFilterTitleMixin, ListView):
+class QuizMarkingList(QuizMarkerMixin, ListView):
     model = Sitting
 
     def get_queryset(self):
@@ -104,11 +110,22 @@ class QuizMarkingList(QuizMarkerMixin, SittingFilterTitleMixin, ListView):
                                                .filter(complete=True)
 
         user_filter = self.request.GET.get('user_filter')
+             
         if user_filter:
             queryset = queryset.filter(user__username__icontains=user_filter)
-
+       
         return queryset
 
+class QuizUserDetail(QuizMarkerMixin, DetailView): 
+    model = Sitting
+    template_name = 'quiz/sitting_user.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(QuizUserDetail, self).get_context_data(**kwargs)
+        context['usuario'] = Sitting.objects.filter(user_id=self.kwargs.get('pk'))
+        return context
+    
+   
 class SystemFeedbackView(QuizMarkerMixin, DetailView):
     model = Sitting
     template_name = 'feedback_detail.html'

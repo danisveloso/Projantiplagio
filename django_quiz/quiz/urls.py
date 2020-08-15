@@ -9,7 +9,7 @@ from django.conf.urls.static import static
 
 from .views import QuizListView, CategoriesListView, \
     ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList, \
-    QuizMarkingDetail, QuizDetailView, QuizTake, SystemFeedbackView
+    QuizMarkingDetail, QuizDetailView, QuizTake, SystemFeedbackView, QuizUserDetail
 
 urlpatterns = [
 
@@ -37,6 +37,11 @@ urlpatterns = [
         view=QuizMarkingDetail.as_view(),
         name='quiz_marking_detail'),
 
+    url(r'^userquiz/(?P<pk>[\d.]+)/$',
+        view=QuizUserDetail.as_view(),
+        name='quiz_user_detail'),
+
+
     #  passes variable 'quiz_name' to quiz_take view
     url(r'^(?P<slug>[\w-]+)/$',
         view=QuizDetailView.as_view(),
@@ -50,6 +55,7 @@ urlpatterns = [
         view=SystemFeedbackView.as_view(),
         name='feedback'),
     
+   
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
