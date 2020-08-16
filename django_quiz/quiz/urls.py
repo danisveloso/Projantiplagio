@@ -33,9 +33,9 @@ urlpatterns = [
         view=QuizMarkingList.as_view(),
         name='quiz_marking'),
 
-    url(r'^marking/(?P<pk>[\d.]+)/$',
+    url(r'^userdetail/(?P<pk>[\d.]+)/(?P<pk2>[\d.]+)/$',
         view=QuizMarkingDetail.as_view(),
-        name='quiz_marking_detail'),
+        name='usuario_detail'),
 
     url(r'^userquiz/(?P<pk>[\d.]+)/$',
         view=QuizUserDetail.as_view(),

@@ -27,21 +27,21 @@ class CampusAdmin(admin.ModelAdmin):
 
 
 class AlunoAdmin(admin.ModelAdmin):
-    search_fields = ('usuario', 'matricula',)
+    search_fields = ('nomecompleto', 'matricula',)
     raw_id_fields = ('usuario','turma',)
-    fields = ( 'usuario', 'matricula', 'turma','anoingresso', 'campus', 'disciplina', )
+    fields = ( 'usuario', 'nomecompleto', 'matricula', 'turma','anoingresso', 'campus', 'disciplina', )
     filter_horizontal = ('disciplina',)
     list_filter = ('turma', 'campus',)
-    list_display = ('usuario', 'matricula',)
+    list_display = ('nomecompleto', 'matricula',)
 
 
 class ProfessorAdmin(admin.ModelAdmin):
-    search_fields = ('usuario', 'cracha',)
+    search_fields = ('nomecompleto', 'cracha',)
     raw_id_fields = ('usuario',)
-    fields = ('usuario', 'cracha', 'campus', 'disciplina', )
+    fields = ('usuario', 'nomecompleto', 'cracha', 'campus', 'disciplina', )
     filter_horizontal = ('disciplina',)
     list_filter = ('campus',)
-    list_display = ('usuario', 'cracha',)
+    list_display = ('nomecompleto', 'cracha',)
 
 
 

@@ -14,6 +14,7 @@ from cadastro.models import Aluno, Turma, Curso, Professor, Campus, Disciplina
 from django.views.generic.detail import SingleObjectMixin
 
 
+
 class QuizMarkerMixin(object):
     @method_decorator(login_required)
     @method_decorator(permission_required('quiz.view_sittings'))
@@ -113,7 +114,7 @@ class QuizProfProgressView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(QuizProfProgressView, self).get_context_data(**kwargs)
         progress, c = Progress.objects.get_or_create(user_id=self.kwargs.get('pk'))
-        context['usuario']= Aluno.objects.select_related().get(usuario_id=self.kwargs.get('pk'))
+        context['usuario']= Aluno.objects.select_related('turma', 'turma__curso').get(usuario_id=self.kwargs.get('pk'))
         context['cat_scores'] = progress.list_all_cat_scores
         context['exams'] = progress.show_exams()
         return context
@@ -121,6 +122,7 @@ class QuizProfProgressView(TemplateView):
 
 class QuizMarkingList(QuizMarkerMixin, ListView):
     model = Sitting
+    template_name = 'quiz/sitting_list.html'
 
     def get_queryset(self):
         queryset = super(QuizMarkingList, self).get_queryset()\
@@ -133,15 +135,7 @@ class QuizMarkingList(QuizMarkerMixin, ListView):
        
         return queryset
 
-class QuizUserDetail(QuizMarkerMixin, DetailView): 
-    model = Sitting
-    template_name = 'quiz/sitting_user.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(QuizUserDetail, self).get_context_data(**kwargs)
-        context['usuario'] = Sitting.objects.filter(user_id=self.kwargs.get('pk'))
-        context['turma']= Aluno.objects.select_related().get(usuario_id=self.kwargs.get('pk'))
-        return context
+    
     
    
 class SystemFeedbackView(QuizMarkerMixin, DetailView):
@@ -168,10 +162,22 @@ class SystemFeedbackView(QuizMarkerMixin, DetailView):
         return context
 
 
+class QuizUserDetail(QuizMarkerMixin, DetailView): 
+    model = Sitting
+    template_name = 'quiz/sitting_user.html'
+
+    
+    def get_context_data(self, **kwargs):
+        context = super(QuizUserDetail, self).get_context_data(**kwargs)
+        context['usuario'] = Sitting.objects.filter(user_id=self.kwargs.get('pk'))
+        context['turma']= Aluno.objects.select_related('turma', 'turma__curso').get(usuario_id=self.kwargs.get('pk'))
+        return context
 
 class QuizMarkingDetail(QuizMarkerMixin, DetailView):
     model = Sitting
+    template_name = 'quiz/sitting_detail.html'
 
+    
     def post(self, request, *args, **kwargs):
         sitting = self.get_object()
 
@@ -185,12 +191,16 @@ class QuizMarkingDetail(QuizMarkerMixin, DetailView):
 
         return self.get(request)
 
+    
+
     def get_context_data(self, **kwargs):
         context = super(QuizMarkingDetail, self).get_context_data(**kwargs)
         context['questions'] =\
             context['sitting'].get_questions(with_answers=True)
+        context['usuario'] = Sitting.objects.filter(user_id=self.kwargs.get('pk2'))
+        context['turma']= Aluno.objects.select_related('turma', 'turma__curso').get(usuario_id=self.kwargs.get('pk2'))
+        
         return context
-
 
 class QuizTake(FormView):
     form_class = QuestionForm

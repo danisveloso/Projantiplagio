@@ -77,9 +77,10 @@
     <div class="container">
 			<h2>{% trans "Lista completa de testes" %}</h2>
 				{% if usuario %}
-					<p><b>Usuário:</b> {{ sitting.user.first_name }} {{ sitting.user.last_name }}</p>
+					<p><b>Aluno:</b> {{ turma.nomecompleto }}</p>
 					
 						<p><b>Turma:</b> {{ turma.turma }}</p>
+						<p><b>Curso:</b> {{ turma.turma.curso }}</p>
 				
 					<table class="table table-bordered table-striped">
 
@@ -93,16 +94,7 @@
 					</thead>
 
 					<tbody>
-						<tr>
-						
-						
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><button type="submit" class="btn btn-info">{% trans "Filtrar"%}</button></td>
-						
-						</tr>
-
+											
 
 					{% for sitting in usuario %}
 						
@@ -112,7 +104,7 @@
 						<td>{{ sitting.end|date }}</td>
 						<td>{{ sitting.get_percent_correct }}</td>
 				
-						<td>	<a href="{% url 'quiz_marking_detail' pk=sitting.id %}">
+						<td>	<a href="{% url 'usuario_detail' pk=sitting.id pk2=sitting.user_id %}">
 							{% trans "Ver detalhes" %}
 							</a></td>
 						</tr>

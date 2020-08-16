@@ -79,12 +79,16 @@
 <section class="site-section">
     <div class="container">
 			<h2>{% trans "Título do questionário" %}: {{ sitting.quiz.title }}</h2>
-			<h3>{% trans "Categoria" %}: {{ sitting.quiz.category }}</h3>
+		
 			<p>{{ sitting.quiz.description }}</p>
 			<hr>
-			<p>{% trans "Usário" %}: {{ sitting.user }}</p>
-			<p>{% trans "Concluído" %}: {{ sitting.end|date }}</p>
-			<p>{% trans "Pontuação" %}: {{ sitting.get_percent_correct }}%</p>
+
+			<p><b>Aluno:</b> {{ turma.nomecompleto }}</p>
+					
+			<p><b>Turma:</b> {{ turma.turma }}</p>
+			<p><b>Curso:</b> {{ turma.turma.curso }}</p>
+			<p><b>{% trans "Concluído" %}:</b> {{ sitting.end|date }}</p>
+			<p><b>{% trans "Pontuação" %}:</b> {{ sitting.get_percent_correct }}%</p>
 
 			<table class="table table-bordered table-striped">
 

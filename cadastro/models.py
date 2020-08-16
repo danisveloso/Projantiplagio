@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
+
 # Create your models here.
 
 
@@ -47,7 +48,7 @@ class Turma(models.Model):
 
 
     def __str__(self):
-        return f'{self.curso}, {self.turma}, {self.periodo}'
+        return self.turma
 
 
 class Aluno(models.Model):
@@ -55,6 +56,7 @@ class Aluno(models.Model):
                                  blank=False,
                                  null=False,
                                  on_delete=models.CASCADE)
+    nomecompleto = models.CharField(max_length=255, null=False)                             
     matricula = models.CharField(max_length=255, null=False)
     disciplina = models.ManyToManyField(Disciplina, verbose_name =("Disciplina"),
                                   blank=True)
@@ -86,6 +88,7 @@ class Professor(models.Model):
                                  blank=False,
                                  null=False,
                                  on_delete=models.CASCADE)
+    nomecompleto = models.CharField(max_length=255, null=False)
     cracha = models.CharField(max_length=255, null=False)
     disciplina = models.ManyToManyField(Disciplina, verbose_name=("Disciplina"),
                                   blank=True)
