@@ -85,6 +85,8 @@ class ProgressAdmin(admin.ModelAdmin):
             create a user section
     """
     search_fields = ('user', 'score', )
+    list_display = ('user', 'score',)
+    list_filter = ('user',)
 
 
 class TFQuestionAdmin(admin.ModelAdmin):

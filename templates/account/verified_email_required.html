@@ -4,6 +4,100 @@
 
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
 
+{% block menu %}
+  
+<header role="banner">
+     
+	<nav class="navbar navbar-expand-md navbar-dark bg-light">
+	  <div class="container">
+		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">TutorPlágio</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+		  <ul class="navbar-nav mx-auto">
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'siteTutorial_home' %}">Home</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
+				<div class="dropdown-menu" aria-labelledby="dropdown04">
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
+          <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
+				</div>
+			</li>
+
+			</li>
+			
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
+			</li>
+
+      
+      {% if user.is_authenticated and not perms.quiz.change_quiz %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
+            </li>
+			{% else %}
+			<li class="nav-item" style="display: none;">
+					<a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
+			</li>
+			{% endif %}
+     
+
+
+    {% if user.is_authenticated and perms.quiz.change_quiz %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown05">
+                  <a class="dropdown-item" href="{% url 'admin:index' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
+				        </div>
+            </li>
+			{% else %}
+			<li class="nav-item" style="display: none;">
+					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta - Alunos</a>
+				        </div>
+			</li>
+			{% endif %}  
+
+
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'siteTutorial_contato' %}">Contato</a>
+			</li>
+		  </ul>
+		  <ul class="navbar-nav absolute-right">
+			{% if user.is_authenticated %}
+			<li class="nav-item">
+				<a class="nav-link disabled" href="">Ola, {{ user }}</a>
+            </li>
+
+            <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+			{% else %}
+			<li class="nav-item">
+					<a class="nav-link" href="{% url 'login' %}">Login</a>
+			</li>
+			{% endif %}
+		  </ul>     
+		</div>
+	  </div>
+	</nav>
+</header>
+  <!-- END header -->     
+{% endblock %}
+
+
 {% block content %}
 <h1>{% trans "Verify Your E-mail Address" %}</h1>
 

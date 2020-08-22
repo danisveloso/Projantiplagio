@@ -9,7 +9,8 @@ from django.conf.urls.static import static
 
 from .views import QuizListView, CategoriesListView, \
     ViewQuizListByCategory, QuizUserProgressView, QuizMarkingList, \
-    QuizMarkingDetail, QuizDetailView, QuizTake, SystemFeedbackView, QuizUserDetail, QuizProfProgressView
+    QuizMarkingDetail, QuizDetailView, QuizTake, SystemFeedbackView, \
+    QuizUserDetail, QuizProfProgressView, QuizTurmaProgressView
 
 urlpatterns = [
 
@@ -44,6 +45,10 @@ urlpatterns = [
     url(r'^progressdetail/(?P<pk>[\d.]+)/$',
         view=QuizProfProgressView.as_view(),
         name='progress_detail'),
+
+    url(r'^progressturma/(?P<pk>[\d.]+)/$',
+        view=QuizTurmaProgressView.as_view(),
+        name='progress_turma'),
     
 
 

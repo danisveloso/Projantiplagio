@@ -23,12 +23,12 @@
 			  <a class="nav-link" href="{% url 'siteTutorial_home' %}">Home</a>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle active" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
+				<a class="nav-link active dropdown-toggle" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
 				<div class="dropdown-menu" aria-labelledby="dropdown04">
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
-				  <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+          <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
 				  <a class="dropdown-item active" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
@@ -41,7 +41,8 @@
 			  <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
 			</li>
 
-			{% if user.is_authenticated %}
+      
+      {% if user.is_authenticated and not perms.quiz.change_quiz %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
             </li>
@@ -50,13 +51,15 @@
 					<a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
 			</li>
 			{% endif %}
+     
 
-           {% if user.is_authenticated and perms.quiz.change_quiz %}
+
+    {% if user.is_authenticated and perms.quiz.change_quiz %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown05">
                   <a class="dropdown-item" href="{% url 'admin:index' %}">Admnistração - Questionário</a>
-                  <a class="dropdown-item" href="{% url 'quiz_marking' %}">Correção questionários</a>
+                   <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
 				        </div>
             </li>
 			{% else %}
@@ -64,13 +67,14 @@
 					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
                   <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Admnistração - Questionário</a>
-                  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Correção questionários</a>
+                  <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
 				        </div>
 			</li>
 			{% endif %}  
 
+
 			<li class="nav-item">
-			  <a class="nav-link" href="contact.html">Contato</a>
+			  <a class="nav-link" href="{% url 'siteTutorial_contato' %}">Contato</a>
 			</li>
 		  </ul>
 		  <ul class="navbar-nav absolute-right">

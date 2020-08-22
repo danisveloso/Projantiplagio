@@ -40,7 +40,8 @@
 			  <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
 			</li>
 
-      {% if user.is_authenticated %}
+      
+      {% if user.is_authenticated and not perms.quiz.change_quiz %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
             </li>
@@ -49,6 +50,7 @@
 					<a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
 			</li>
 			{% endif %}
+     
 
 
     {% if user.is_authenticated and perms.quiz.change_quiz %}
@@ -56,7 +58,7 @@
                 <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown05">
                   <a class="dropdown-item" href="{% url 'admin:index' %}">Admnistração - Questionário</a>
-                  <a class="dropdown-item" href="{% url 'quiz_marking' %}">Correção questionários</a>
+                  <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
 				        </div>
             </li>
 			{% else %}
@@ -64,7 +66,7 @@
 					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
                   <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Admnistração - Questionário</a>
-                  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Correção questionários</a>
+                  <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta - Alunos</a>
 				        </div>
 			</li>
 			{% endif %}  

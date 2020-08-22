@@ -59,6 +59,7 @@ quiz/templates/base.html
 quiz/templates/correct_answer.html
 quiz/templates/feedback_detail.html
 quiz/templates/progress.html
+quiz/templates/progress_turma.html
 quiz/templates/progressdetail.html
 quiz/templates/question.html
 quiz/templates/result.html

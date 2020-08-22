@@ -23,12 +23,12 @@
 			  <a class="nav-link" href="{% url 'siteTutorial_home' %}">Home</a>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle active" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
+				<a class="nav-link active dropdown-toggle" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
 				<div class="dropdown-menu" aria-labelledby="dropdown04">
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
 				  <a class="dropdown-item active" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
-				  <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+          <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
@@ -41,7 +41,8 @@
 			  <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
 			</li>
 
-      {% if user.is_authenticated %}
+      
+      {% if user.is_authenticated and not perms.quiz.change_quiz %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
             </li>
@@ -50,13 +51,15 @@
 					<a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
 			</li>
 			{% endif %}
+     
 
-			{% if user.is_authenticated and perms.quiz.change_quiz %}
+
+    {% if user.is_authenticated and perms.quiz.change_quiz %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown05">
                   <a class="dropdown-item" href="{% url 'admin:index' %}">Admnistração - Questionário</a>
-                  <a class="dropdown-item" href="{% url 'quiz_marking' %}">Correção questionários</a>
+                  <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
 				        </div>
             </li>
 			{% else %}
@@ -64,7 +67,7 @@
 					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
                   <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Admnistração - Questionário</a>
-                  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Correção questionários</a>
+                   <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
 				        </div>
 			</li>
 			{% endif %}  
@@ -93,7 +96,7 @@
 	  </div>
 	</nav>
 </header>
-  <!-- END header -->     
+  <!-- END header -->      
 {% endblock %}
 
 
@@ -106,13 +109,7 @@
           <div class="col-md-12">
             <p class="meta">Tópico 2 - Má conduta acadêmica - plágio</a></p>
             <p>Olá! Antes de falar sobre o que é plágio, vamos falar sobre a má conduta acadêmica.</p>
-             <div class="video-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/u0hVAWO3Kl8" 
-					frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-            </div>
-
-          </div>
+             <div style="width: 100%;"><div style="position: relative; padding-bottom: 56.25%; padding-top: 0; height: 0;"><iframe frameborder="0" width="1200" height="675" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://view.genial.ly/5f3f0ff2839ef80d8787e530" type="text/html" allowscriptaccess="always" allowfullscreen="true" scrolling="yes" allownetworking="all"></iframe> </div> </div>
 
           <div class="row">
           <div class="col-md-12" align="justify">
@@ -167,7 +164,7 @@
 
 
       <h3>Tipos mais comuns de plágio cometidos pelos alunos</h3>
-			<p>Clique nos ícones abaixo para saber mais sobre cada tipo de plágio.</p>
+			<p><img src="static/img/clique.png" alt="Copiar e colar" width="20px" height="20px" />Clique nos ícones abaixo para saber mais sobre cada tipo de plágio.</p>
       <div class="row bg-light">
        <div class="col-md-12">  
 			<div class="row bg-light" >
@@ -182,13 +179,24 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
+							<h5 class="modal-title">Copiar e colar</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
-							<p>Modal body text goes here.</p>
+							<p>O plágio de copiar e colar ocorre quando você copia o texto
+							 de um documento e o cola em seu próprio arquivo, sem citar a fonte.</p>
+
+							<h5> Como prevenir?</h5>
+							<hr/>
+							<p>
+							O plágio pode ser evitado se o aluno usar aspas ao redor do texto copiado
+							e citar a fonte.
+							
+							</p>
+
+
 						</div>
 						
 						</div>
@@ -206,13 +214,27 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
+							<h5 class="modal-title">Usar imagens, gráficos e tabelas sem citar a fonte</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
-							<p>Modal body text goes here.</p>
+							<p>assim como o texto, os arquivos de mídia também precisam ser citados. 
+							Isso inclui imagens, tabelas e gráficos.</p>
+							<b> Erro comum:</b>
+							<p>Copiar e colar qualquer coisa que você encontra e está disponível na internet e não citar a fonte.
+							</p>
+							<h5>Como prevenir?</h5>
+							<p>
+							Imagens e outros tipos de mídia encontradas na internet precisam ser citadas 
+							assim como textos. Mesmo que estejam disponíveis de graça ou de fácil download, 
+							você ainda precisa citar. 
+							</p>
+							<p>
+							Verifique as permissões de diretios autorais quando for usar este tipo de 
+							mídia para mais instruções.
+							 </p>
 						</div>
 						
 						</div>
@@ -232,13 +254,26 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
+							<h5 class="modal-title">Paráfrase incorreta</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
-							<p>Modal body text goes here.</p>
+							<p>Paráfrase incorreta ocorre quando você não reformula um texto original, não coloca as ideias 
+							que são expressas em suas próprias palavras e não cita a fonte.
+							
+							
+							</p>
+							<b>Erros comuns:</b>
+							<p> Mudar, trocar algumas palavras por sinônimos, mas manter a estrutura básica da frase;</p>
+							<p> Parafrasear corretamente mas não citar a fonte.</p>
+							<h5> Como prevenir?</h5>
+							<p> Para parafrasear, você deve reescrever ou resumir as palavras ou ideias de outras pessoas
+							em suas próprias palavras e dar crédito citando a fonte original.</p>
+							<p> Para mais informações sobre como fazer a paráfrase corretamente veja 
+							<a href="{% url 'siteTutorial_citacao' %}"><b>Citações indiretas.</b></a>
+
 						</div>
 						
 						</div>
@@ -263,13 +298,23 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
+							<h5 class="modal-title">Fabricar informações</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
-							<p>Modal body text goes here.</p>
+							<p>Fabricar informações ocorre quando você inventa dados, procedimentos e 
+							resultados.</p>
+							<b> Erros comuns:</b>
+							<p> Falsificar toda ou parte de uma citação, é plágio;</p>
+							<p> Citar uma fonte real, mas não usar no seu documento, também é plágio;</p>
+							<p> Falsificar informações, procedimentos e resultados, manipulando
+							os experimentos para obter resultados desejados, representam má conduta grave.</p> 
+							<h5>Como previnir?</h5>
+							<p> Escrever leva tempo. Não deixe para o último minuto para fazer sua pesquisa.<p>
+							<p> Faça boas anotações para manter o controle das fontes que foram usadas.</p> 
+							
 						</div>
 						
 						</div>
@@ -288,13 +333,25 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
+							<h5 class="modal-title">Utilizar a ideia de outra pessoa</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
-							<p>Modal body text goes here.</p>
+							<p>Em vez de copiar palavras, você usa as ideias de outra pessoa sem dar-lhe crédito. 
+							Isso inclui receber crédito por todo o trabalho feito por outra pessoa.</p>
+							<p> Alguns exemplos:</p>
+							<p> Usar as ideias ou palavras de um autor sem citar o autor;</p>
+							<p> Usar o trabalho de uma pessoa, como imagens, tabelas, música, filme, fotografia e e outras mídias, 
+							sem dar crédito à pessoa;</p>
+							<p> Comprar um trabalho, relatório ou artigo online e enviá-lo como seu;</p>
+							<p> Reutilizar um trabalho, relatório ou artigo que outra pessoa escreveu.</p>
+							<h5> Como previnir?</h5>
+							<p> Esteja pronto para citar suas fontes ao usar as teorias, ideias ou trabalho de outra pessoa para fornecer 
+							evidências ou explicar uma ideia.</p>
+							<p>Uma maneira de ajudá-lo a fazer isso é incluir em suas notas as informações de citação de uma fonte junto
+							com as teorias ou ideias que vocẽ planeja usar.</p>
 						</div>
 						
 						</div>
@@ -313,13 +370,27 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title">Modal title</h5>
+							<h5 class="modal-title">Autoplágio</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
-							<p>Modal body text goes here.</p>
+							<p>O plágio geralmente envolve o uso de palavras ou ideias de outras pessoas 
+							sem a devida citação, mas você também pode plagiar a si mesmo.</p>
+
+							<p>Autoplágio significa reutilizar um trabalho que você já publicou ou 
+							enviou para uma aula. Pode envolver o reenvio de um artigo inteiro, copiar 
+							ou parafrasear passagens de seu trabalho anterior ou reciclar dados antigos.</p>
+
+							<p>O autoplágio engana seus leitores ao apresentar trabalhos antigos como 
+							completamente novos e originais. </p>
+							<h5>Como previnir?</h5>
+							<p>Não reutilize suas tarefas antigas. Você pode receber um trabalho parecido sobre um tema que você
+							já escreveu anteriormente. Nunca envie o mesmo documento novamente, mesmo em um curso 
+							completamente diferente. Se você quiser abordar algumas das mesmas ideias em seu novo 
+							trabalho, então ... Fale com seu professor ou orientador. Seu professor pode dizer se
+							 é aceitável reutilizar ou retrabalhar partes de trabalhos antigos.</p>
 						</div>
 						
 						</div>

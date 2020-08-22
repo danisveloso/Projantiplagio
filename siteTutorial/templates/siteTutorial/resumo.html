@@ -23,12 +23,12 @@
 			  <a class="nav-link" href="{% url 'siteTutorial_home' %}">Home</a>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle active" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
+				<a class="nav-link active dropdown-toggle" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
 				<div class="dropdown-menu" aria-labelledby="dropdown04">
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
-				  <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+          <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
 				  <a class="dropdown-item active" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
@@ -41,7 +41,8 @@
 			  <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
 			</li>
 
-			{% if user.is_authenticated %}
+      
+      {% if user.is_authenticated and not perms.quiz.change_quiz %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
             </li>
@@ -50,13 +51,15 @@
 					<a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
 			</li>
 			{% endif %}
+     
 
-			{% if user.is_authenticated and perms.quiz.change_quiz %}
+
+    {% if user.is_authenticated and perms.quiz.change_quiz %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown05">
                   <a class="dropdown-item" href="{% url 'admin:index' %}">Admnistração - Questionário</a>
-                  <a class="dropdown-item" href="{% url 'quiz_marking' %}">Correção questionários</a>
+                   <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
 				        </div>
             </li>
 			{% else %}
@@ -64,10 +67,11 @@
 					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
                   <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Admnistração - Questionário</a>
-                  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Correção questionários</a>
+                  <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
 				        </div>
 			</li>
 			{% endif %}  
+
 
 			<li class="nav-item">
 			  <a class="nav-link" href="{% url 'siteTutorial_contato' %}">Contato</a>
@@ -120,11 +124,36 @@
          </ul>
          <p>Resumos podem variar de tamanho. Siga as instruções dadas pelo seu professor ou orientador para saber qual tamanho o resumo deve ter.</p>
          <h4>Um exemplo de resumo:</h4>
-         <b>Texto original:</b><br>
-         <b>Resumo um parágrafo:</b><br>
+         <b>Texto original:</b><p>O homem como um ser racional, principal atributo que o diferencia dos demais seres vivos,
+		   apoia-se em sua capacidade de pensar, refletir sobre suas ações, acumulando e desenvolvendo conhecimento, 
+		   traçando planos e hipóteses, buscando superar as adversidades, na tentativa de controlar os fenômenos
+		    naturais ou antropogênicos, transformando o espaço natural almejando qualidade de vida.</p>
+            <p>Há uma perspectiva generalizada de que tecnologias são apenas equipamentos e aparelhos, 
+			mas como ela engloba a engenhosidade do cérebro humano, tudo o que se produz torna-se tecnologia. 
+			Na idade da pedra, por exemplo, para se defender de animais ferozes o homem usava armas,
+			 elementos da natureza e aos poucos foram surgindo novas tecnologias, mas não apenas para defesa 
+			 e sim para dominação. A partir daí começou uma guerra pela conquista de territórios. 
+			 Do osso e a madeira utilizados como armas, passou-se a fazer uso de lanças, flechas,
+			 barcos e até mesmo navios. Dessa forma, com a inovação tecnológica o homem começou uma busca 
+			 incessante pelo acúmulo de riquezas. </p>
+			 <p>Conforme o homem foi evoluindo, surgiu a necessidade de adaptação do meio. 
+			 Criaram então a linguagem, números, roupas, cobertores, habitações, metalurgia, roda, arado, 
+			 construíam obras públicas, fundaram cidades e desenvolveram várias formas de obtenção de energia,
+			  etapas que contribuíram para universalidade do desenvolvimento social e cultural do povos.</p>
+           
+           ARAÚJO, SP de et al. Tecnologia na Educação: Contexto Histórico. Papel e Diversidade. IV Jornada de Didática e III Seminário de Pesquisa do CEMAD, v. 40, p. 920-928, 2017.
+<br>
+         <b>Resumo um parágrafo:</b>
+		 <p>Para Araújo et al. (2017), o que diferencia o homem dos demais seres é sua capacidade de raciocinar. 
+		 Para eles, tudo o que o homem cria é tecnologia, desde um complexo computador a uma simples pedra dilapidada e,
+		  a partir do momento em que o ser humano passou a utilizar instrumentos rudimentares,
+		   adaptando-se ao ambiente onde vive, iniciou-se a corrida tecnológica, que, com ela,
+		    ao longo da evolução humana, muitos itens tecnológicos foram criados, 
+			contribuindo para o desenvolvimento sócio-cultural.</p>
 
          <b>Por que é um bom resumo?</b>
-         <p>Identifica o autor, a data de publicação, a fonte, e reafirma as ideias-chave que utilizam redação original. Resume os relatórios sobre o ponto de vista do autor, de forma neutra.</p>
+         <p>Identifica o autor, a data de publicação, a fonte, e reafirma as ideias-chave que utilizam redação original. 
+		 Resume o ponto de vista apresentado pelo autor, de forma neutra.</p>
          
          		
 		

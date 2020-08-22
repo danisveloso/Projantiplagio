@@ -45,7 +45,10 @@ class Turma(models.Model):
                                  null=True,
                                  related_name='turmas',
                                  on_delete=models.PROTECT)
-
+    campus = models.ForeignKey(Campus, verbose_name=("Campus"),
+                                 blank=True,
+                                 null=True,
+                                 on_delete=models.PROTECT)
 
     def __str__(self):
         return self.turma

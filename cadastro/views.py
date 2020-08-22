@@ -40,3 +40,25 @@ class AlunoListView(ListView):
 
 class TurmaListView(ListView):
     model = Turma
+    template_name = 'cadastro/turma_list.html'
+
+    @method_decorator(login_required)
+    @method_decorator(permission_required('quiz.view_sittings'))
+    def dispatch(self, request, *args, **kwargs):
+        return super(TurmaListView, self)\
+            .dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        queryset = super(TurmaListView, self).get_queryset()
+        turma_filter = self.request.GET.get('turma_filter')
+        curso_filter = self.request.GET.get('curso_filter')
+        campus_filter = self.request.GET.get('campus_filter')
+        if turma_filter:
+            queryset = queryset.filter(turma__icontains=turma_filter)
+        if curso_filter:
+            queryset = queryset.filter(curso__curso__icontains=curso_filter)
+        if campus_filter:
+            queryset = queryset.filter(campus__campus__icontains=campus_filter)
+
+
+        return queryset

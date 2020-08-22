@@ -179,7 +179,7 @@ class ProgressManager(models.Manager):
 
     def new_progress(self, user):
         new_progress = self.create(user=user,
-                                   score="")
+                                   score="{}")
         new_progress.save()
         return new_progress
 
@@ -194,7 +194,7 @@ class Progress(models.Model):
     """
     user = models.OneToOneField(settings.AUTH_USER_MODEL, verbose_name=_("Usuário"), on_delete=models.PROTECT)
 
-    score = models.CharField(max_length=1024,
+    score = models.CharField(max_length=1024, 
                              verbose_name=_("Pontuação"),
                              validators=[validate_comma_separated_integer_list])
 

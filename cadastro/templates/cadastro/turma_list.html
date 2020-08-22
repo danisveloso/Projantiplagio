@@ -1,10 +1,6 @@
-{% extends "account/base.html" %}
-
+{% extends 'base.html' %}
 {% load i18n %}
-{% load account %}
-
-{% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
-
+{% block title %}{% trans "Turmas" %}{% endblock %}
 
 {% block menu %}
   
@@ -99,32 +95,64 @@
   <!-- END header -->     
 {% endblock %}
 
-
 {% block content %}
 
-<section class="site-section episodes">
-      <div class="container">
-        <h1>{% trans "Confirm E-mail Address" %}</h1>
+<section class="site-section">
+    <div class="container">
+			<h2>{% trans "Lista de Turmas" %}</h2>
+				{% if turma_list %}
 
-        {% if confirmation %}
+					<table class="table table-bordered table-striped">
 
-        {% user_display confirmation.email_address.user as user_display %}
+					<thead>
+						<tr>
+						<th>{% trans "Curso" %}</th>
+						<th>{% trans "Turma" %}</th>
+						<th>{% trans "Campus" %}</th>
+						<th>{% trans "Período" %}</th>
+						<th>{% trans "Ano" %}</th>
+						
+						<th></th>
+						</tr>
+					</thead>
 
-        <p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
+					<tbody>
+						<tr>
+						<form action="" method="GET">
+							<td><input type="text" name="curso_filter" /></td>
+							<td><input type="text" name="turma_filter" /></td>
+							<td><input type="text" name="campus_filter" /></td>
+							<td></td>
+							<td></td>
+							<td><button type="submit" class="btn btn-info">{% trans "Filtrar"%}</button></td>
+						</form>
+						</tr>
 
-        <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
-        {% csrf_token %}
-            <button type="submit">{% trans 'Confirm' %}</button>
-        </form>
 
-        {% else %}
+					{% for turma in object_list %}
+						
+						<tr>
+						<td>{{ turma.curso }}</td>
+						<td>{{ turma.turma }}</td>
+						<td>{{ turma.campus }}</td>
+						<td>{{ turma.periodo }}</td>
+						<td>{{ turma.ano }}</td>
+						
+						
+				
+						<td>	
+							<a href="{% url 'progress_turma' pk=turma.id %}">
+							{% trans "Progresso" %}
+							</a></td>
+						</tr>
+					{% endfor %}
 
-        {% url 'account_email' as email_url %}
+					</tbody>
 
-        <p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
-
-        {% endif %}
-      </div>
-</section>
-
+					</table>
+				{% else %}
+					<p>{% trans "Não há alunos cadastrados" %}.</p>
+				{% endif %}
+			</div>
+		</section>
 {% endblock %}

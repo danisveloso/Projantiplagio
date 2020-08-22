@@ -2,6 +2,7 @@ import random
 
 from django.contrib.auth.decorators import login_required, permission_required
 from django.core.exceptions import PermissionDenied
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, TemplateView, FormView
@@ -102,6 +103,18 @@ class QuizUserProgressView(TemplateView):
         context['exams'] = progress.show_exams()
         return context
 
+class QuizTurmaProgressView(TemplateView):
+    template_name = 'progress_turma.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(QuizTurmaProgressView, self)\
+            .dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        queryset=Progress.objects.filter(user_id__usuario_id__isnull=False).filter(Q(turma_id=self.kwargs.get('pk')))
+        return queryset
+
 class QuizProfProgressView(TemplateView):
     template_name = 'progressdetail.html'
 
@@ -119,6 +132,7 @@ class QuizProfProgressView(TemplateView):
         context['exams'] = progress.show_exams()
         return context
 
+       
 
 class QuizMarkingList(QuizMarkerMixin, ListView):
     model = Sitting
@@ -189,9 +203,7 @@ class QuizMarkingDetail(QuizMarkerMixin, DetailView):
             else:
                 sitting.add_incorrect_question(q)
 
-        return self.get(request)
-
-    
+        return self.get(request)  
 
     def get_context_data(self, **kwargs):
         context = super(QuizMarkingDetail, self).get_context_data(**kwargs)
