@@ -5,7 +5,7 @@ except ImportError:
 
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import home, contato, topicos, topico1, topico2, topico3, topico4, citacao, referencia, resumo
+from .views import home, contato, topicos, topico1, topico2, topico3, topico4, citacao, citacaodireta, citacaoindireta, citacaodecitacao, referencia, resumo
 
 urlpatterns = [
     url(r'^$', home, name='siteTutorial_home'),
@@ -16,6 +16,9 @@ urlpatterns = [
     path('topico3', topico3, name='siteTutorial_topico3'),
     path('topico4', topico4, name='siteTutorial_topico4'),
     path('citacao', citacao, name='siteTutorial_citacao'),
+    path('citacaodireta', citacaodireta, name='siteTutorial_citacaodireta'),
+    path('citacaoindireta', citacaoindireta, name='siteTutorial_citacaoindireta'),
+    path('citacaodecitacao', citacaodecitacao, name='siteTutorial_citacaodecitacao'),
     path('referencia', referencia, name='siteTutorial_referencia'),
     path('resumo', resumo, name='siteTutorial_resumo'),
 ]

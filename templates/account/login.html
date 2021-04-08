@@ -28,7 +28,10 @@
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
-          <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+                  <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_citacaodireta' %}">Citação direta</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_citacaoindireta' %}">Citação indireta - paráfrase</a>
+                  <a class="dropdown-item" href="{% url 'siteTutorial_citacaodecitacao' %}">Citação de citação</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
@@ -58,7 +61,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown05">
-                  <a class="dropdown-item" href="{% url 'admin:index' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'admin:index' %}">Gerenciar Objetos de aprendizagem</a>
                   <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
 				        </div>
             </li>
@@ -66,7 +69,7 @@
 			<li class="nav-item" style="display: none;">
 					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
-                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Gerenciar Objetos de aprendizagem</a>
                   <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta - Alunos</a>
 				        </div>
 			</li>
@@ -102,7 +105,7 @@
 
 {% block content %}
 
- <section class="site-section episodes">
+ <section class="site-section">
       <div class="container">
 
         <h1>{% trans "Sign In" %}</h1>
@@ -119,8 +122,8 @@
           </ul>
 
           <div class="login-or"><p>Ou, <a href="{{ signup_url }}">Cadastre-se</a>
-no site TutorPlágio para obter uma conta e faça login abaixo:</p>
-</div>
+			no site TutorPlágio para obter uma conta e faça login abaixo:</p>
+		  </div>
 
         </div>
 
@@ -134,9 +137,10 @@ no site TutorPlágio para obter uma conta e faça login abaixo:</p>
           {% csrf_token %}
           {{ form.as_p }}
           {% if redirect_field_value %}
-          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+	  <font color="#AA0000">
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" /></font>
           {% endif %}
-        
+          <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>        
           <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
         </form>
       </div>

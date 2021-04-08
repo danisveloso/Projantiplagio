@@ -1,0 +1,209 @@
+{% extends 'siteTutorial/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Tutorial Online - Citações" %}{% endblock %}
+
+
+
+{% block menu %}
+  
+<header role="banner">
+     
+	<nav class="navbar navbar-expand-md navbar-dark bg-light">
+	  <div class="container">
+		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">TutorPlágio</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+		  <ul class="navbar-nav mx-auto">
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'siteTutorial_home' %}">Home</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link active dropdown-toggle" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
+				<div class="dropdown-menu" aria-labelledby="dropdown04">
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
+                  <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+		          <a class="dropdown-item" href="{% url 'siteTutorial_citacaodireta' %}">Citação direta</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_citacaoindireta' %}">Citação indireta - paráfrase</a>
+                  <a class="active dropdown-item" href="{% url 'siteTutorial_citacaodecitacao' %}">Citação de citação</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
+				</div>
+			</li>
+
+			</li>
+			
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
+			</li>
+
+      
+      {% if user.is_authenticated and not perms.quiz.change_quiz %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
+            </li>
+			{% else %}
+			<li class="nav-item" style="display: none;">
+					<a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
+			</li>
+			{% endif %}
+     
+
+
+    {% if user.is_authenticated and perms.quiz.change_quiz %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown05">
+                  <a class="dropdown-item" href="{% url 'admin:index' %}">Gerenciar Objetos de aprendizagem</a>
+                  <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
+				        </div>
+            </li>
+			{% else %}
+			<li class="nav-item" style="display: none;">
+					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Gerenciar Objetos de aprendizagem</a>
+                   <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
+				        </div>
+			</li>
+			{% endif %}  
+
+
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'siteTutorial_contato' %}">Contato</a>
+			</li>
+		  </ul>
+		  <ul class="navbar-nav absolute-right">
+			{% if user.is_authenticated %}
+			<li class="nav-item">
+				<a class="nav-link disabled" href="">Ola, {{ user }}</a>
+            </li>
+
+            <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+			{% else %}
+			<li class="nav-item">
+					<a class="nav-link" href="{% url 'login' %}">Login</a>
+			</li>
+			{% endif %}
+		  </ul>     
+		</div>
+	  </div>
+	</nav>
+</header>
+  <!-- END header -->     
+  <!-- END header -->     
+{% endblock %}
+
+{% block content %}
+     <section class="site-section episodes">
+      <div class="container">
+
+		 <div class="row">
+	  <!-- Sidebar -->
+
+		
+			<div class="w3-sidebar w3-bar-block w3-collapse w3-card-2 w3-animate-left" style="height:70%;font-size:14px;" id="mySidebar">
+				<button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Fechar &times;</button>
+				<h4 class="categories">Tutorial online</h4>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_topico1' %}">1 - Redação acadêmica</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_topico2' %}">2 - Má conduta acadêmica</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_topico3' %}">3 - Como evitar o plágio</a>
+                <a class="w3-bar-item w3-button" href="{% url 'siteTutorial_citacao' %}">3.1 - Citações</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_citacaodireta' %}">3.2 - Citação direta</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_citacaoindireta' %}">3.3 - Citação indireta - paráfrase</a>
+                <a class="w3-bar-item w3-button" href="{% url 'siteTutorial_citacaodecitacao' %}">3.4 - Citação de citação</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_resumo' %}">3.5 - Resumo</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_referencia' %}">3.6 - Referência</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_topico4' %}">4 - Legislação e casos de plágio</a>
+			</div>
+	
+	
+	  
+	<div class="w3-main" style="margin-left:200px">
+		<div class="w3-teal">
+		<button class="w3-button w3-teal w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+			<div class="w3-container">
+				<h3 style="color:#fff">Tópico 3.4 - Como evitar o plágio - Citação de citação</h3>
+			</div>
+		</div>
+	<div class="w3-container">
+
+        
+          <div class="col-md-12">
+		  <div class="row bg-light align-items-center ">
+            
+            
+          </div>
+ 		<div class="row bg-light align-items-center">
+          <div class="col-md-12" align="justify">
+            
+
+			
+                     
+
+            <div id="citacaocitacao" class="w3-container w3-white city">
+              <h1>Citação de citação</h1>
+              
+              <p>Citação direta ou indireta de um texto, o qual não houve acesso ao original.
+			  Este tipo de citação deve ser evitado, <b> o ideal é sempre consultar a obra original. </b></p>
+              <h4> Quando o autor é parte integrante do texto:</h4>
+              <p>Exemplo:</p>
+			  <p>De acordo com Gough (1972, p. 59, apud NARDI, 1993, p. 94), “o ato de ler 
+			  envolve um processamento serial que começa com uma fixação ocular sobre o texto, 
+			  prosseguindo da esquerda para a direita de forma linear.”</p>
+			  <h4> Quando o nome do autor aparece ao final do parágrafo:</h4>
+              <p>Exemplo:</p>
+			  <p>“O direito penal está inserido no dia a dia da sociedade brasileira, 
+			      de modo a estratificar comportamentos considerados inadequados.” 
+				  (BALBOA, 2010, p. 111 apud CAPEZ, 1999, p. 33).</p>
+             
+			</div>
+
+
+
+            
+          <hr/>
+		  <p>Para mais informações consulte: </p>
+          <b>Fonte:</b>
+          <p class="meta"> <a href="https://www.unifesp.br/campus/gua/images/Biblioteca/MANUAL_de_normaliza%C3%A7%C3%A3o_2020.pdf" target="_blank">Manual de normalização de trabalhos acadêmicos - Unifesp - Biblioteca da Escola de Filosofia, Letras e Ciências Humanas</a></p>
+	      <p class="meta"> <a href="https://normas-abnt.espm.br/index.php?title=Normas_para_Apresenta%C3%A7%C3%A3o_de_Trabalhos_Acad%C3%AAmicos" target="_blank">Normas ABNT - Bibliotecas ESPM</a></p>
+		</div>
+    </div>
+	</div>
+		<hr/>
+			<div class="row">
+			<div class="col" align="left">
+				
+					<p class="meta"> <a href="{% url 'siteTutorial_citacaoindireta' %}" ><<- Citação indireta</a></p>
+				
+				</div>
+		
+				<div class="col" align="right">
+				
+					<p class="meta"> <a href="{% url 'siteTutorial_resumo' %}">Resumo ->></a></p>
+					
+				
+				</div>
+			</div>
+
+	</div>
+	</div>
+	</div>
+	</div>
+	</section>
+		
+			
+       
+
+    {% endblock %}
+       
+     

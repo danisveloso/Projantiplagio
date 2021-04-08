@@ -41,9 +41,6 @@ class QuizListView(ListView):
         return queryset.filter(draft=False)
 
 
-
-
-
 class QuizDetailView(DetailView):
     model = Quiz
     slug_field = 'url'
@@ -176,11 +173,9 @@ class SystemFeedbackView(QuizMarkerMixin, DetailView):
         return context
 
 
-class QuizUserDetail(QuizMarkerMixin, DetailView): 
-    model = Sitting
+class QuizUserDetail(QuizMarkerMixin, DetailView):
+    model = User
     template_name = 'quiz/sitting_user.html'
-
-    
     def get_context_data(self, **kwargs):
         context = super(QuizUserDetail, self).get_context_data(**kwargs)
         context['usuario'] = Sitting.objects.filter(user_id=self.kwargs.get('pk'))

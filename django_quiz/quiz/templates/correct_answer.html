@@ -24,29 +24,30 @@
 			</tr>
 		</tbody>
    </table>
+  						
   {% else %}		
-
   <table class="table table-striped table-bordered">
     <tbody>
-		{% for answer in previous.answers %}
-			{% if answer.correct %}
-				<tr class="success">
-				<td>{{ answer.content }}</td>
-				<td><strong>{% trans "Esta é a resposta correta" %}</strong></td>
-			{% else %}
-				<tr>
-				<td>{{ answer.content }}</td>
-				<td>
-				{% if previous.question_type.MCQuestion %}
-					{% if answer.id|add:"0" == previous.previous_answer|add:"0" %}
-						{% trans "Essa foi a sua resposta." %}
+			{% for answer in previous.answers %}
+				{% if answer.correct %}
+					<tr class="success">
+					<td>{{ answer.content }}</td>
+					<td><strong>{% trans "Esta é a resposta correta" %}</strong></td>
+				{% else %}
+					<tr>
+					<td>{{ answer.content }}</td>
+					<td>
+					{% if previous.question_type.MCQuestion %}
+						{% if answer.id|add:"0" == previous.previous_answer|add:"0" %}
+							{% trans "Essa foi a sua resposta." %}
+						{% endif %}
 					{% endif %}
+					</td>
+					
 				{% endif %}
-				</td>
-			{% endif %}
+			
 				</tr>	
-		{% endfor %}
-		
+			{% endfor %}
     </tbody>
   </table>
   {% endif %}

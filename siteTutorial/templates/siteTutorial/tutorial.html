@@ -29,7 +29,10 @@
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
           <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
-				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
+          <a class="dropdown-item" href="{% url 'siteTutorial_citacaodireta' %}">Citação direta</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_citacaoindireta' %}">Citação indireta - paráfrase</a>
+          <a class="dropdown-item" href="{% url 'siteTutorial_citacaodecitacao' %}">Citação de citação</a>
+          <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
 				</div>
@@ -58,7 +61,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown05">
-                  <a class="dropdown-item" href="{% url 'admin:index' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'admin:index' %}">Gerenciar Objetos de aprendizagem</a>
                   <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
 				        </div>
             </li>
@@ -66,7 +69,7 @@
 			<li class="nav-item" style="display: none;">
 					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
-                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Gerenciar Objetos de aprendizagem</a>
                    <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
 				        </div>
 			</li>
@@ -130,8 +133,8 @@
         <div class="row align-items-center">
           <div class="col-md-12" align="justify">
             <p>Neste tutorial, iremos apresentar a importância da redação acadêmica, definir o que é plágio, identificar os tipos de plágio, ensinar práticas de citação e referência, falar sobre a legislação e as possíveis implicações que podem ocorrer a quem comete o plágio e citar casos de plágio que aconteceram no mundo.</p>
-             <b>Quanto tempo vou precisar para ver o tutorial e para fazer os testes?</b>
-            <p>Espere gastar cerca de 1 hora e 30 minutos aprendendo com essa instrução e fazendo os testes. Você pode dividir seu aprendizado, não é necessário fazer todo o conteúdo de uma vez. Se você não for bem no teste, um feedback é fornecido sobre os tipos de erros que você cometeu, você poderá ver o tutorial e responder o teste quantas vezes quiser.</p>
+             
+            <p> Você pode dividir seu aprendizado, não é necessário fazer todo o conteúdo de uma vez. Se você não for bem no teste, um feedback é fornecido sobre os tipos de erros que você cometeu, você poderá ver o tutorial e responder o teste quantas vezes quiser.</p>
          </div>
         </div>
         <div class="row bg-light align-items-center p-4 episode">
@@ -162,6 +165,12 @@
           <div class="col-md-9">
             <p class="meta">Tópico 3 <a href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio </a></p>
             <p>Vamos ensinar como evitar o plágio.</p>
+            <p> 3.1 - <a href="{% url 'siteTutorial_citacao' %}">Citações </a></p>
+            <p> 3.2 - <a href="{% url 'siteTutorial_citacaodireta' %}">Citação direta </a></p>
+            <p> 3.3 - <a href="{% url 'siteTutorial_citacaoindireta' %}">Citação indireta </a></p>
+            <p> 3.4 - <a href="{% url 'siteTutorial_citacaodecitacao' %}">Citação de citação </a></p>
+            <p> 3.5 - <a href="{% url 'siteTutorial_resumo' %}">Resumo </a></p>
+            <p> 3.6 - <a href="{% url 'siteTutorial_referencia' %}">Referências</a></p>
           </div>
         </div>
 
@@ -171,7 +180,8 @@
           </div>
           <div class="col-md-9">
             <p class="meta">Tópico 4 <a href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio</a></p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, fugit!</p>
+            <p>Vamos falar sobre a legislação, as possíveis implicações que podem ocorrer a quem comete o plágio e citar 
+            casos de plágio que aconteceram no mundo.</p>
           </div>
         </div>
 
@@ -181,7 +191,7 @@
           </div>
           <div class="col-md-9">
             <p class="meta">Tópico 5 <a href="{% url 'quiz_index' %}">Teste seu conhecimento</a></p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, fugit!</p>
+            <p>Veja se você sabe como evitar o plágio, descubra em qual nível você está e o que você precisa melhorar.</p>
           </div>
         </div>
       </div>

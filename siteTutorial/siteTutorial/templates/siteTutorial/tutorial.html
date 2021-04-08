@@ -1,0 +1,198 @@
+{% extends 'siteTutorial/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Tutorial Online." %}{% endblock %}
+
+
+
+{% block menu %}
+  
+<header role="banner">
+     
+	<nav class="navbar navbar-expand-md navbar-dark bg-light">
+	  <div class="container">
+		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">TutorPlágio</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+		  <ul class="navbar-nav mx-auto">
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'siteTutorial_home' %}">Home</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link active dropdown-toggle" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
+				<div class="dropdown-menu" aria-labelledby="dropdown04">
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
+          <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
+				</div>
+			</li>
+
+			</li>
+			
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
+			</li>
+
+      
+      {% if user.is_authenticated and not perms.quiz.change_quiz %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
+            </li>
+			{% else %}
+			<li class="nav-item" style="display: none;">
+					<a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
+			</li>
+			{% endif %}
+     
+
+
+    {% if user.is_authenticated and perms.quiz.change_quiz %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown05">
+                  <a class="dropdown-item" href="{% url 'admin:index' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
+				        </div>
+            </li>
+			{% else %}
+			<li class="nav-item" style="display: none;">
+					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Admnistração - Questionário</a>
+                   <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
+				        </div>
+			</li>
+			{% endif %}  
+
+
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'siteTutorial_contato' %}">Contato</a>
+			</li>
+		  </ul>
+		  <ul class="navbar-nav absolute-right">
+			{% if user.is_authenticated %}
+			<li class="nav-item">
+				<a class="nav-link disabled" href="">Ola, {{ user }}</a>
+            </li>
+
+            <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+			{% else %}
+			<li class="nav-item">
+					<a class="nav-link" href="{% url 'login' %}">Login</a>
+			</li>
+			{% endif %}
+		  </ul>     
+		</div>
+	  </div>
+	</nav>
+</header>
+  <!-- END header -->     
+{% endblock %}
+
+{% block content %}
+
+    <section class="site-hero overlay" data-stellar-background-ratio="0.5" style="background-image:url('{{ STATIC_URL }}static/img/tutorial.jpg');">
+      <div class="container">
+        <div class="row align-items-center site-hero-inner justify-content-center">
+          <div class="col-md-12">
+
+            <div class="mb-5 element-animate">
+              <div class="row align-items-center">
+                <div class="col-md-8">
+                  <h1 class="mb-0">Tutorial Online</h1>
+              
+                  <p class="lead mb-5">Acesse este tutorial para aprender o que é plágio. Ao final teste suas habilidades.</p>
+                  
+                  <p><a href="#container" class="btn btn-primary mr-2">Iniciar</a></p>
+                </div>
+                
+              </div>
+            </div>          
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END section -->
+
+    
+     <section class="site-section episodes" id="container">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-12" align="justify">
+            <p>Neste tutorial, iremos apresentar a importância da redação acadêmica, definir o que é plágio, identificar os tipos de plágio, ensinar práticas de citação e referência, falar sobre a legislação e as possíveis implicações que podem ocorrer a quem comete o plágio e citar casos de plágio que aconteceram no mundo.</p>
+             <b>Quanto tempo vou precisar para ver o tutorial e para fazer os testes?</b>
+            <p>Espere gastar cerca de 1 hora e 30 minutos aprendendo com essa instrução e fazendo os testes. Você pode dividir seu aprendizado, não é necessário fazer todo o conteúdo de uma vez. Se você não for bem no teste, um feedback é fornecido sobre os tipos de erros que você cometeu, você poderá ver o tutorial e responder o teste quantas vezes quiser.</p>
+         </div>
+        </div>
+        <div class="row bg-light align-items-center p-4 episode">
+          <div class="col-md-3">
+            <span class="episode-number">1</span>
+          </div>
+          <div class="col-md-9">
+            <p class="meta">Tópico 1 <a href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a></p>
+            <p>Vamos iniciar mostrando a importância da escrita acadêmica.</p>
+            
+          </div>
+        </div>
+
+        <div class="row align-items-center p-4 episode">
+          <div class="col-md-3">
+            <span class="episode-number">2</span>
+          </div>
+          <div class="col-md-9">
+            <p class="meta">Tópico 2 <a href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a></p>
+            <p> Vamos definir má conduta acadêmica, o que é plágio e os tipos mais comuns de plágio.</p>
+          </div>
+        </div>
+
+        <div class="row bg-light align-items-center p-4 episode">
+          <div class="col-md-3">
+            <span class="episode-number">3</span>
+          </div>
+          <div class="col-md-9">
+            <p class="meta">Tópico 3 <a href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio </a></p>
+            <p>Vamos ensinar como evitar o plágio.</p>
+          </div>
+        </div>
+
+        <div class="row align-items-center p-4 episode">
+          <div class="col-md-3">
+            <span class="episode-number">4</span>
+          </div>
+          <div class="col-md-9">
+            <p class="meta">Tópico 4 <a href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio</a></p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, fugit!</p>
+          </div>
+        </div>
+
+        <div class="row bg-light align-items-center p-4 episode">
+          <div class="col-md-3">
+            <span class="episode-number">5</span>
+          </div>
+          <div class="col-md-9">
+            <p class="meta">Tópico 5 <a href="{% url 'quiz_index' %}">Teste seu conhecimento</a></p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto, fugit!</p>
+          </div>
+        </div>
+      </div>
+
+      <hr/>
+			
+    </div>
+    </section>
+
+    {% endblock %}
+          
+    
+    
+   

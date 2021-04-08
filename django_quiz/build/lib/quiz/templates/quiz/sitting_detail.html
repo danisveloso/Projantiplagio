@@ -27,7 +27,10 @@
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
-          <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+                  <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+                  <a class="dropdown-item" href="{% url 'siteTutorial_citacaodireta' %}">Citação direta</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_citacaoindireta' %}">Citação indireta - paráfrase</a>
+                  <a class="dropdown-item" href="{% url 'siteTutorial_citacaodecitacao' %}">Citação de citação</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
@@ -57,7 +60,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown05">
-                  <a class="dropdown-item" href="{% url 'admin:index' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'admin:index' %}">Gerenciar Objetos de aprendizagem</a>
                   <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
 				        </div>
             </li>
@@ -65,7 +68,7 @@
 			<li class="nav-item" style="display: none;">
 					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
-                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Gerenciar Objetos de aprendizagem</a>
                   <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta - Alunos</a>
 				        </div>
 			</li>
@@ -157,11 +160,40 @@
 					{% endif %}
 					<br>
 					{% if question.original_text %}
-					<form action="" method="POST">{% csrf_token %}
-						<input type=hidden name="qid" value="{{ question.id }}">
+					
+					<div class="row bg-light">
+					<div class="col-md-12">  
+							<div class="row bg-light" >
+								
+								<div class="col-sm" >
+								<a href="#alterar" data-target="#alterar" data-toggle="modal">
+									<button class="btn btn-warning">{% trans "Alterar" %}</button>
+								</a>
+								</div>
+								<!-- modal Alterar--> 
+								<div class="modal" id="alterar" tabindex="-1" role="dialog">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title">Alterar</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<p>Tem certeza que deseja alterar?</p>
+											<form action="" method="POST">{% csrf_token %}
+												<input type=hidden name="qid" value="{{ question.id }}">
 						
-						<button type="submit" class="btn btn-warning">{% trans "Alterar" %}</button>
-					</form>
+												<button type="submit" class="btn btn-warning">{% trans "Sim" %}</button>
+											</form>
+											
+										</div>
+										
+										</div>
+									</div>
+								</div>
+					
 					{% endif %}
 				</td>
 				

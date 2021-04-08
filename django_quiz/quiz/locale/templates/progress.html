@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% load quiz_tags %}
+
+
+{% block scripts %}
+<!-- SCRIPT GRÁFICO PROGRESSO POR CATEGORIA - SCRIPT GRÁFICO PROGRESSO POR CATEGORIA - SCRIPT   -->
+<script type="text/javascript">
+
+    	google.charts.load("current", {packages:['corechart']});
+    	google.charts.setOnLoadCallback(drawChart);
+     
+        function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Categorias', 'Porcentagem de acerto'],
+            {% for cat, value in cat_scores.items %}
+                ['{{ cat }}', {{ value.2 }}]{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]);
+
+        var options = {
+		  title: 'PROGRESSO POR CATEGORIA EM TODAS AS TENTATIVAS ',
+          backgroundColor: {
+              fill: '#fff'
+          },
+          legendTextStyle: { color: '#555' },
+          titleTextStyle: { color: '#555' },
+          is3D: true
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('columnchart_values'));
+
+		// ordena a coluna
+		data.sort([{column: 1}]);
+
+        chart.draw(data, options);
+      }
+	
+    </script>
+
+	<!-- SCRIPT GRÁFICO PROGRESSO EM TODAS AS TENTATIVAS - SCRIPT GRÁFICO - SCRIPT GRÁFICO - SCRIPT GRÁFICO  - SCRIPT   -->
+	<script type="text/javascript">
+
+    	google.charts.load("current", {packages:['corechart']});
+    	google.charts.setOnLoadCallback(drawChart);
+     
+        function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+            ['Data', 'Porcentagem'],
+            {% for exam in exams %}
+                ['{{ exam.end }}', {{ exam.get_percent_correct }}]{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        ]);
+
+        var options = {
+          backgroundColor: {
+              fill: '#fff'
+          },
+          legendTextStyle: { color: '#555' },
+          titleTextStyle: { color: '#555' },
+          is3D: true
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('column_2'));
+
+		// ordena a coluna
+		data.sort([{column: 0}]);
+
+	
+        	chart.draw(data, options);
+	
+      }
+	
+    </script>
+
+	<!-- SCRIPT GRÁFICO - SCRIPT GRÁFICO - SCRIPT GRÁFICO - SCRIPT GRÁFICO  - SCRIPT   -->
+
+
+
+{% endblock %}
+
+ {% block menu %}
+  
+<header role="banner">
+     
+	<nav class="navbar navbar-expand-md navbar-dark bg-light">
+	  <div class="container">
+		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">AntiPlágio</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+		  <ul class="navbar-nav mx-auto">
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'siteTutorial_home' %}">Home</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
+				<div class="dropdown-menu" aria-labelledby="dropdown04">
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
+				</div>
+			</li>
+
+			</li>
+			
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
+			</li>
+
+			{% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'progress' %}">Seu progresso</a>
+            </li>
+			{% else %}
+			<li class="nav-item" style="display: none;">
+					<a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
+			</li>
+			{% endif %}
+
+
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'siteTutorial_contato' %}">Contato</a>
+			</li>
+		  </ul>
+		  <ul class="navbar-nav absolute-right">
+			{% if user.is_authenticated %}
+			<li class="nav-item">
+				<a class="nav-link disabled" href="">Ola, {{ user }}</a>
+            </li>
+
+            <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+			{% else %}
+			<li class="nav-item">
+					<a class="nav-link" href="{% url 'login' %}">Login</a>
+			</li>
+			{% endif %}
+		  </ul>     
+		</div>
+	  </div>
+	</nav>
+</header>
+  <!-- END header -->     
+{% endblock %}
+
+{% block content %}
+
+<section class="site-section">
+    <div class="container">
+
+	{% if cat_scores %}
+	
+		<h1>{% trans "Progresso" %}</h1>
+
+		<table class="table table-bordered table-striped">
+
+			<thead>
+			<tr>
+				<th>{% trans "Categoria" %}</th>
+				<th>{% trans "Questões respondidas corretamente" %}</th>
+				<th>{% trans "Total de questões" %}</th>
+				<th>%</th>
+			</tr>
+			</thead>
+
+			<tbody>
+
+
+			{% for cat, value in cat_scores.items %}
+			<tr>
+				<td>{{ cat }}</td>
+				<td>{{ value.0 }}</td>
+				<td>{{ value.1 }}</td>
+				<td>{{ value.2 }}</td>
+			</tr>
+
+			{% endfor %}
+
+			</tbody>
+
+		</table>
+		
+		<div align="center" id="columnchart_values" style="width: 800px; height: 500px;"></div>
+		
+	{% endif %}
+
+	{% if exams %}
+
+		<hr>
+
+		<h1>{% trans "Testes anteriores" %}</h1>
+		<p class="lead">
+			{% trans "Abaixo estão os resultados dos testes realizados." %}
+		</p>
+
+		<table class="table table-bordered table-striped">
+
+			<thead>
+			<tr>
+				<th>{% trans "Título do questionário" %}</th>
+				<th>{% trans "Pontuação" %}</th>
+				<th>{% trans "Pontuação possível" %}</th>
+				<th>%</th>
+			</tr>
+			</thead>
+
+			<tbody>
+
+			{% for exam in exams %}
+
+			<tr>
+				<td>{{ exam.quiz.title }}</td>
+				<td>{{ exam.current_score }}</td>
+				<td>{{ exam.get_max_score }}</td>
+				<td>{{ exam.get_percent_correct }}</td>
+			</tr>
+
+			{% endfor %}
+
+			</tbody>
+
+		</table>
+		
+				<strong> Título do questionário: {{ exams.quiz.title }}</strong>
+				<div align="center" id="column_2" style="width: 800px; height: 500px;"></div>
+		
+
+	{% endif %}
+	</div>
+</section>
+
+	
+{% endblock %}

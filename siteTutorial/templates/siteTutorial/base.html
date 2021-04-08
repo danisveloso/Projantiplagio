@@ -16,7 +16,6 @@
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900" rel="stylesheet">
 
 
-
 <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 <link rel="stylesheet" href="{% static 'css/animate.css' %}">
 <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
@@ -42,10 +41,14 @@
 
 {% block menu %}
 
-{% endblock %}
 
+
+{% endblock %}
+ 
 
     {% block content %}
+
+   
    
     {% endblock %}
    
@@ -89,7 +92,26 @@
 <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
 
+<script>
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+}
 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+}
+
+
+var altura = $(document).height() - $(".site-footer").height();
+$(window).scroll(function(){
+  if ($(this).scrollTop() > altura){
+    $(".w3-sidebar").fadeOut(500);
+  }else{
+    $(".w3-sidebar").fadeIn(500);
+  }
+});
+</script>
+     
 
 
 

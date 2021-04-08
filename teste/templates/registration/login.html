@@ -1,0 +1,156 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>AntiPlágio - Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+
+    
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+
+    
+   <header role="banner">
+     
+      <nav class="navbar navbar-expand-md navbar-dark bg-light">
+        <div class="container">
+          <a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">AntiPlágio</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'siteTutorial_home' %}">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
+                  <div class="dropdown-menu" aria-labelledby="dropdown04">
+                    <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
+				            <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
+                    <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
+                    <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
+                              
+                  </div>
+              </li>
+
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.html">Contato</a>
+              </li>
+            </ul>
+            <ul class="navbar-nav absolute-right">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="">Ola, {{ user }}</a>
+                </li>
+    
+                <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'login' %}">Login</a>
+                </li>
+                {% endif %}
+              </ul>         
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- END header -->
+
+    
+
+
+
+
+<section class="site-section bg-light">
+    <div class="container">
+
+        {% if form.errors %}
+        <strong>Seu usuário e senha estão incorretos. Por favor tente novamente.</strong>
+        {% endif %}
+
+        {% if next %}
+            {% if user.is_authenticated %}
+            <strong>Sua conta não tem acesso a está página. Para prosseguir,
+            por favor faça login com uma conta que tenha permissão de acesso.</strong>
+            {% else %}
+            <strong>Por favor faça login para ver está página.</strong>
+            {% endif %}
+        {% endif %}
+      <div class="row justify-content-center">
+        <div class="col-md-5 box">
+          <h2 class="mb-5">Faça login com seu usuário e senha da intranet Unifesp</h2>
+            <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+            </table>
+            <div class="row">
+                <div class="col-md-6 form-group"><br>
+                    <input type="submit" value="Entrar" class="btn btn-primary">
+                    <input type="hidden" name="next" value="{{ next }}">
+                </div>
+            </div>    
+            </form>
+        </div>
+    </div>
+  </div>
+</section>
+{# Assumes you setup the password_reset view in your URLconf #}
+<footer class="site-footer" style="background: #334520 !important;">
+    <div class="container">
+      <div class="row mb-2">
+          <p>Universidade Federal de São Paulo - UNIFESP<br>
+            Instituto de Ciência e Tecnologia - ICT<br>
+          </p>
+        <div class="col-md-6 ml-auto">
+          <div class="row">
+            <div class="col-md-4">
+              <ul class="list-unstyled">
+                <li><a href="#">Contato</a></li>
+              </ul>
+            </div>
+            
+        </div>
+      </div>
+    </div>
+    </div>
+  </footer>
+  <!-- END footer -->
+  
+  <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+  <script src="{% static 'js/jquery-migrate-3.0.0.js' %}"></script>
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
+
+  
+  <script src="{% static 'js/main.js' %}"></script>
+
+  

@@ -59,13 +59,12 @@ class Essay_Question(Question):
         choices=OPTIONS_CITATION,
         help_text=_("Escolha qual tipo de citação o aluno terá que fazer nesta questão"),
         verbose_name=_("tipo de citação"))
-    original_text = models.TextField(
-        verbose_name=_("Texto original"),
-        help_text=_("Tamanho máximo do texto 1000 caracteres"),
-        max_length=1000, blank=False, null=True, 
-        unique=True)
+    original_text = models.CharField(
+        max_length=1000, blank=False,
+	verbose_name=_("Texto original"),
+        help_text=_("Tamanho máximo do texto 1000 caracteres"))
     referencia = models.ForeignKey(
-        Referencia, blank=False, default="",
+        Referencia, blank=False, 
         verbose_name=_("Referência"), on_delete=models.PROTECT)
     
     citacao1 = models.CharField(max_length=1000, 

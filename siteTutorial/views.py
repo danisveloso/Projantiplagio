@@ -55,6 +55,17 @@ def topico4(request):
 def citacao(request):
     return render(request, 'siteTutorial/citacao.html')
 
+@login_required
+def citacaodireta(request):
+    return render(request, 'siteTutorial/citacaodireta.html')
+
+@login_required
+def citacaoindireta(request):
+    return render(request, 'siteTutorial/citacaoindireta.html')
+
+@login_required
+def citacaodecitacao(request):
+    return render(request, 'siteTutorial/citacaodecitacao.html')
 
 @login_required
 def referencia(request):

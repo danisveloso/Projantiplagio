@@ -57,7 +57,9 @@ INSTALLED_APPS = [
     'cadastro',
 ]
 
-SITE_ID = 1
+SITE_ID = 2
+
+ACCOUNT_FORMS = {'signup': 'quiz.forms.MyCustomSignupForm'}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -129,6 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = (
 
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
    
 )
 
@@ -163,6 +166,10 @@ STATICFILES_DIRS = [
 # Media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL  = 'siteTutorial_home'
+LOGOUT_REDIRECT_URL = 'siteTutorial_home'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL  = 'siteTutorial_home'

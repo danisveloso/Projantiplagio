@@ -9,7 +9,7 @@ def correct_answer_for_all(context, question):
     processes the correct answer based on a given question object
     if the answer is incorrect, informs the user
     """
-    answers = question.get_answers()
+    answers = question.get_answersend()
     incorrect_list = context.get('incorrect_questions', [])
     if question.id in incorrect_list:
         user_was_incorrect = True

@@ -1,0 +1,164 @@
+{% extends 'siteTutorial/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{% trans "Tutorial Online - Resumo" %}{% endblock %}
+
+
+
+{% block menu %}
+  
+<header role="banner">
+     
+	<nav class="navbar navbar-expand-md navbar-dark bg-light">
+	  <div class="container">
+		<a class="navbar-brand absolute" href="{% url 'siteTutorial_home' %}">TutorPlágio</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse navbar-light" id="navbarsExample05">
+		  <ul class="navbar-nav mx-auto">
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'siteTutorial_home' %}">Home</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link active dropdown-toggle" href="{% url 'siteTutorial_topicos' %}" id="dropdown04" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Tutorial Online </a>
+				<div class="dropdown-menu" aria-labelledby="dropdown04">
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
+          <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+				  <a class="dropdown-item active" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
+				</div>
+			</li>
+
+			</li>
+			
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'quiz_index' %}">Teste seu conhecimento</a>
+			</li>
+
+      
+      {% if user.is_authenticated and not perms.quiz.change_quiz %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
+            </li>
+			{% else %}
+			<li class="nav-item" style="display: none;">
+					<a class="nav-link" href="{% url 'progress' %}">Seu progresso</a>
+			</li>
+			{% endif %}
+     
+
+
+    {% if user.is_authenticated and perms.quiz.change_quiz %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown05">
+                  <a class="dropdown-item" href="{% url 'admin:index' %}">Admnistração - Questionário</a>
+                   <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
+				        </div>
+            </li>
+			{% else %}
+			<li class="nav-item" style="display: none;">
+					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown04">
+                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
+				        </div>
+			</li>
+			{% endif %}  
+
+
+			<li class="nav-item">
+			  <a class="nav-link" href="{% url 'siteTutorial_contato' %}">Contato</a>
+			</li>
+		  </ul>
+		  <ul class="navbar-nav absolute-right">
+			{% if user.is_authenticated %}
+			<li class="nav-item">
+				<a class="nav-link disabled" href="">Ola, {{ user }}</a>
+            </li>
+
+            <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+			{% else %}
+			<li class="nav-item">
+					<a class="nav-link" href="{% url 'login' %}">Login</a>
+			</li>
+			{% endif %}
+		  </ul>     
+		</div>
+	  </div>
+	</nav>
+</header>
+  <!-- END header -->     
+{% endblock %}
+
+{% block content %}
+     <section class="site-section episodes">
+      <div class="container">
+        <div class="row bg-light align-items-center p-4 episode">
+          <div class="col-md-12">
+            <p class="meta">Tópico 3 - Como evitar o plágio - Resumo </p>            
+          </div>
+ 		<div class="row">
+        <div class="col-md-12" align="justify">
+        <hr/>
+                
+        <h1>Resumo</h1>
+    	<b>Encontrar as principais ideias, parafrasear e citar a fonte.</b>
+        <p>Um resumo é uma síntese das ideias-chave, atualizado em suas próprias palavras 
+		 - ou seja, parafraseando. Sempre que você resumir, você deve ter cuidado 
+		 para não copiar o texto exato da fonte original.</p>
+         <h3>Como faço um resumo?</h3>
+         <p>Um bom resumo:</p>
+         <ul style="list-style-type:disc;">
+            <li>Identifica o autor do texto original; </li>
+            <li>Sintetiza ideias-chave do autor;</li>
+            <li>Apresenta informação de forma neutra.</li>
+         </ul>
+         <p>Resumos podem variar de tamanho. Siga as instruções dadas pelo seu professor ou orientador para saber qual tamanho o resumo deve ter.</p>
+         <h4>Um exemplo de resumo:</h4>
+         <b>Texto original:</b><br>
+         <b>Resumo um parágrafo:</b><br>
+
+         <b>Por que é um bom resumo?</b>
+         <p>Identifica o autor, a data de publicação, a fonte, e reafirma as ideias-chave que utilizam redação original. Resume os relatórios sobre o ponto de vista do autor, de forma neutra.</p>
+         
+         		
+		
+         <hr/>
+          <p><b>Fonte:</b></p>
+          <p class="meta"> <a href="https://integrity.mit.edu/handbook/academic-writing/summarizing" target="_blank">Academic Integrity at MIT - A Handbook for Students</a></p>
+          </div>
+        </div>
+		
+	</div>
+		<hr/>
+			<div class="row">
+			<div class="col" align="left">
+				
+					<p class="meta"> <a href="{% url 'siteTutorial_citacao' %}" ><<- Citações - direta e indireta</a></p>
+				
+				</div>
+		
+				<div class="col" align="right">
+				
+					<p class="meta"> <a href="{% url 'siteTutorial_referencia' %}">Referência ->></a></p>
+					
+				
+				</div>
+			</div>
+	</section>
+		
+			
+       
+
+    {% endblock %}
+       
+     

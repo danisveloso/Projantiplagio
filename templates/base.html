@@ -11,7 +11,8 @@
 <meta name="description" content="{% block description %}{% endblock %}">
 
 <!-- styles -->
-
+<!--Datatable-->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.css"/>
 
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,900" rel="stylesheet">
 
@@ -87,7 +88,18 @@
 <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
 <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
+<!--Datatable-->
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
 
+<script>
+    $(document).ready( function () {
+        $('#listaaluno').DataTable( {
+            "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Portuguese-Brasil.json"
+        }
+        } );       
+    } );
+</script>
 
 
 </body>

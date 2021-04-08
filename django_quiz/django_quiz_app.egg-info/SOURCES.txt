@@ -51,6 +51,19 @@ quiz/locale/it/LC_MESSAGES/django.mo
 quiz/locale/it/LC_MESSAGES/django.po
 quiz/locale/ru/LC_MESSAGES/django.mo
 quiz/locale/ru/LC_MESSAGES/django.po
+quiz/locale/templates/base.html
+quiz/locale/templates/correct_answer.html
+quiz/locale/templates/feedback_detail.html
+quiz/locale/templates/progress.html
+quiz/locale/templates/question.html
+quiz/locale/templates/result.html
+quiz/locale/templates/single_complete.html
+quiz/locale/templates/view_quiz_category.html
+quiz/locale/templates/quiz/category_list.html
+quiz/locale/templates/quiz/quiz_detail.html
+quiz/locale/templates/quiz/quiz_list.html
+quiz/locale/templates/quiz/sitting_detail.html
+quiz/locale/templates/quiz/sitting_list.html
 quiz/locale/zh_CN/LC_MESSAGES/django.mo
 quiz/locale/zh_CN/LC_MESSAGES/django.po
 quiz/migrations/0001_initial.py
@@ -64,6 +77,7 @@ quiz/templates/progressdetail.html
 quiz/templates/question.html
 quiz/templates/result.html
 quiz/templates/single_complete.html
+quiz/templates/sitting_user.html
 quiz/templates/view_quiz_category.html
 quiz/templates/quiz/category_list.html
 quiz/templates/quiz/quiz_detail.html

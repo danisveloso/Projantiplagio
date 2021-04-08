@@ -28,7 +28,10 @@
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Redação acadêmica</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico2' %}">Má conduta acadêmica - plágio</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_topico3' %}">Como evitar o plágio</a>
-          <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+                  <a class="dropdown-item" href="{% url 'siteTutorial_citacao' %}">Citações</a>
+		          <a class="dropdown-item" href="{% url 'siteTutorial_citacaodireta' %}">Citação direta</a>
+				  <a class="dropdown-item" href="{% url 'siteTutorial_citacaoindireta' %}">Citação indireta - paráfrase</a>
+                  <a class="dropdown-item" href="{% url 'siteTutorial_citacaodecitacao' %}">Citação de citação</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_resumo' %}">Resumo</a>
 				  <a class="dropdown-item" href="{% url 'siteTutorial_referencia' %}">Referência</a>
 				  <a class="dropdown-item active" href="{% url 'siteTutorial_topico4' %}">Legislação e casos de plágio.</a>
@@ -58,7 +61,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown-item" aria-haspopup="true" aria-expanded="false">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown05">
-                  <a class="dropdown-item" href="{% url 'admin:index' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'admin:index' %}">Gerenciar Objetos de aprendizagem</a>
                    <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
 				        </div>
             </li>
@@ -66,7 +69,7 @@
 			<li class="nav-item" style="display: none;">
 					<a class="nav-link dropdown-toggle" href="">Área do professor</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown04">
-                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Admnistração - Questionário</a>
+                  <a class="dropdown-item" href="{% url 'siteTutorial_topico1' %}">Gerenciar Objetos de aprendizagem</a>
                   <a class="dropdown-item" href="{% url 'lista_aluno' %}">Consulta Alunos</a>
 				        </div>
 			</li>
@@ -103,16 +106,47 @@
     
      <section class="site-section episodes">
       <div class="container">
-        <div class="row bg-light align-items-center p-4 episode">
-          <div class="col-md-9">
-            <p class="meta">Tópico 4 - Legislação e casos de plágio</a></p>
+		 <div class="row">
+	  <!-- Sidebar -->
+
+		
+			<div class="w3-sidebar w3-bar-block w3-collapse w3-card-2 w3-animate-left" style="height:70%;font-size:14px;" id="mySidebar">
+				<button class="w3-bar-item w3-button w3-large w3-hide-large" onclick="w3_close()">Fechar &times;</button>
+				<h4 class="categories">Tutorial online</h4>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_topico1' %}">1 - Redação acadêmica</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_topico2' %}">2 - Má conduta acadêmica</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_topico3' %}">3 - Como evitar o plágio</a>
+                <a class="w3-bar-item w3-button" href="{% url 'siteTutorial_citacao' %}">3.1 - Citações</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_citacaodireta' %}">3.2 - Citação direta</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_citacaoindireta' %}">3.3 - Citação indireta - paráfrase</a>
+                <a class="w3-bar-item w3-button" href="{% url 'siteTutorial_citacaodecitacao' %}">3.4 - Citação de citação</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_resumo' %}">3.5 - Resumo</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_referencia' %}">3.6 - Referência</a>
+				<a class="w3-bar-item w3-button" href="{% url 'siteTutorial_topico4' %}">4 - Legislação e casos de plágio</a>
+			</div>
+	
+	
+	  
+	<div class="w3-main" style="margin-left:200px">
+		<div class="w3-teal">
+		<button class="w3-button w3-teal w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+			<div class="w3-container">
+				<h3 style="color:#fff">Tópico 4 - Legislação e casos de plágio</h3>
+			</div>
+		</div>
+	<div class="w3-container">
+
+        
+          <div class="col-md-12">
+		  <div class="row bg-light align-items-center p-4 episode">
+           
             
           </div>
 
-          <div class="row">
-          <div class="col-md-10" align="justify">
-            <hr/>
-            <h1><b>Legislação</b></h1>
+          <div class="row bg-light align-items-center">
+          <div class="col-md-11" align="justify">
+        
+            <h1>Legislação</h1>
            
            
             <p>É importante compreender que os padrões de reutilização de produção criativa variam de disciplina para disciplina e cultura para cultura.</p>
@@ -128,15 +162,20 @@
 
            <p>Alguns citados no site , por exemplo são:</p>
             <ul style="list-style-type:disc;">
-              <li><a href="https://educacao.estadao.com.br/noticias/geral,professor-da-usp-e-demitido-por-plagio,682903" target="_blank"> Professor da USP que foi demitido por liderar um estudo com trechos de outro trabalho;</a></li>
+              <li><a href="https://www.usp.br/imprensa/?p=7567" target="_blank"> Professor da USP que foi demitido por liderar um estudo com trechos de outro trabalho;</a></li>
               <li><a href="http://g1.globo.com/mundo/noticia/2011/03/ministro-acusado-de-plagio-renuncia-na-alemanha.html" target="_blank">Ministro acusado de plágio acadêmico renúncia na Alemanha;</a></li>
-              <li><a href="https://exame.abril.com.br/mundo/ministra-alema-perde-titulo-de-doutora-por-plagiar-tese/" target="_blank">Ministra alemã perde título de doutora por plagiar tese.</a></li>
+              <li><a href="https://noticias.uol.com.br/internacional/ultimas-noticias/2013/02/09/ministra-da-educacao-da-alemanha-renuncia-apos-acusacao-de-plagio.htm" target="_blank">Ministra da Educação da Alemanha renuncia após acusação de plágio.</a></li>
             </ul>
             <p>A acusação de plágio pode ter consequências graves, incluindo a expulsão de uma universidade ou perda de um emprego, para não mencionar a perda de credibilidade e reputação profissional.</p>
            
           </div>
         </div>
         </div> 
+		<hr/>
+			<p> Agora veja se você sabe como evitar o plágio, descubra em qual nível 
+			você está, acompanhe o seu progresso e veja o que você precisa melhorar. 
+			Faça este teste e proteja-se contra o plágio!</p>
+			<button style="color: #fff" class="button1"> <a style="color: #fff" href="{% url 'quiz_index' %}">Teste seu conhecimento</a></button>
 
 		<hr/>
 			<div class="row">
@@ -153,7 +192,10 @@
 				
 				</div>
 			</div>
-
+	</div>
+	</div>
+	</div>
+	</div>
     </section>
 
 {% endblock %}
